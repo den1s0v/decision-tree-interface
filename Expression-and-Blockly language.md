@@ -21,3 +21,27 @@
 |![image](https://github.com/den1s0v/decision-tree-interface/assets/42928670/e58a5cb3-5ab4-4c5e-8efb-a6aa29dac46a)|Decision tree var|переменная из дерева рассуждения (модели предметной области)|
 |![image](https://github.com/den1s0v/decision-tree-interface/assets/42928670/7e9e2588-e447-44e1-97a5-d24afd73df10)| — | [внутренняя] переменная выражения (рекомендация:  писать в нижнем регистре) |
 
+
+# Существенные замечания
+
+### _Get relationship object_ имеет устаревшие поля (слоты), которые будут удалены
+![изображение](https://github.com/den1s0v/decision-tree-interface/assets/42928670/769c01c2-8c53-4996-bc04-2f4ceb2218ef)  
+Переменная не используется, а  
+условие _boolean_ (которое предназначалось для выбора одного объекта из нескольких возможных) нужно всегда устанавливать в **true**.
+
+
+### _Find extreme_
+
+![изображение](https://github.com/den1s0v/decision-tree-interface/assets/42928670/70f4b554-aa29-4c9f-a05f-c9e51b6993f4)  
+Например:  
+```
+findExtreme Y_ex [ 
+  not exist Y [ true ] { Y->isBetween(Y_ex, A) }   # extreme condition
+]  
+where Y {
+ Y is operator and Y.state == state::unevaluated and Y->leftOf(A)   # general condition
+}
+```
+
+Сначала выполняется **_general condition_**, чтобы найти все возможные **`Y`**, а затем проверяется условие **_extreme condition_** с экстремальным **`Y_ex`** (который принимается равным одному из **`Y`**).  
+В результате должен остаться один **`Y`** (переменные дерева никогда не могут содержать множества, — только конкретные объекты/экземпляры).
