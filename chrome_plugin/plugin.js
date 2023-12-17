@@ -7390,7 +7390,7 @@ function exportEnums(jsonEnums) {
         if(enumItem.isLinear == 'true') {
             result += "|TRUE|" + enumItem.nameRDF + "\n";
         } else {
-            result += "||" + enumItem.nameRDF + "\n";
+            result += "|FALSE|" + enumItem.nameRDF + "\n";
         }
     });
     return result;
@@ -7427,7 +7427,11 @@ function exportProperties(jsonProperties) {
             }
             result += "|";
         } else {
-            result += "||";
+            result += "FALSE|" + propertyItem.classes[0];
+            for(var i = 1; i < propertyItem.classes.length; i++) {
+                result += ";" + propertyItem.classes[i];
+            }
+            result += "|";
         }
 
         result += propertyItem.range + "\n";
@@ -7448,7 +7452,7 @@ function exportRelastionships(jsonRelationships) {
         if(relationshipItem.isBetween == "true") {
             result += "TRUE" + "|" + relationshipItem.type + "|";
         } else {
-            result += "||";
+            result += "FALSE||";
         }
         result += relationshipItem.namesRels + "|" + relationshipItem.decFlags + "\n";
     });
