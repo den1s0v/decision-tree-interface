@@ -1,5 +1,5 @@
 function getTextByLocale(type) {
-    if(mxClient.language == "ru") {
+    if (mxClient.language == "ru") {
         return RU_TEXT[type];
     } else {
         return EN_TEXT[type];
@@ -22,11 +22,12 @@ const RU_TEXT = {
     "startNodeConstructor": "Создать начальный узел",
     "TrueNodeCreate": 'Создать узел "Истина"',
     "FalseNodeCreate": 'Создать узел "Ложь"',
-    "LogicNodeCreate": "Создать логический узел",
-    "PredeterminingFactorsNodeCreate": 'Создать узел "Независимое ветвление"',
-    "UncertaintyNodeCreate": 'Создать узел "Неопределенность"',
+    "LogicNodeCreate": "Создать агрегационный узел",
+    "PredeterminingFactorsNodeCreate": 'Создать узел "Mutex"',
+    "UncertaintyNodeCreate": 'Создать узел "Null"',
     "actionNodeConstructor": "Создать узел действия",
     "cycleNodeConstructor": 'Создать узел "Цикл"',
+    "whileNodeConstructor": 'Создать узел "While"',
     "conditionNodeConstructor": "Создать узел вопроса",
     "switchCaseNodeConstructor": 'Создать узел "Switch case"',
     "exportClass": "Экспорт словаря классов",
@@ -40,9 +41,9 @@ const RU_TEXT = {
     "convertStartNode": "Конвертировать в стартовый узел",
     "convertTrueNode": "Конвертировать в узел Истина",
     "convertFalseNode": "Конвертировать в узел Ложь",
-    "convertLogicNode": "Конвертировать в логический узел",
-    "convertPredeterminingFactorsNode": 'Конвертировать в узел "Независимое ветвление"',
-    "convertUncertaintyNode": 'Конвертировать в узел "Неопределенность"',
+    "convertLogicNode": "Конвертировать в агрегационный узел",
+    "convertPredeterminingFactorsNode": 'Конвертировать в узел "Mutex"',
+    "convertUncertaintyNode": 'Конвертировать в узел "Null"',
     "convertActionNode": "Конвертировать в узел действия",
     "convertCycleNode": 'Конвертировать в узел "Цикл"',
     "convertConditionNode": "Конвертировать в вопросительный узел",
@@ -67,12 +68,14 @@ const RU_TEXT = {
     "TitleConditionNodeEditorWindow": "Редактор узла вопроса",
     "TitleCycleNodeConstructorWindow": 'Конструктор узла "Цикл"',
     "TitleCycleNodeEditorWindow": 'Редактор узла "Цикл"',
+    "TitleWhileNodeConstructorWindow": 'Конструктор узла "Пока"',
+    "TitleWhileNodeEditorWindow": 'Редактор узла "Пока"',
     "TitleEditTextInNodeWindow": "Редактор текста в узле",
     "TitleEditValueInOutcomeWindow": "Редактор значений в ветке",
-    "TitleLogicNodeConstructorWindow": "Конструктор логическего узла",
-    "TitleLogicNodeEditorWindow": "Редактор логическего узла",
-    "TitlePredeterminingFactorsNodeConstructorWindow": 'Конструктор узла "Независимое ветвление"',
-    "TitlePredeterminingFactorsNodeEditorWindow": 'Редактор узла "Независимое ветвление"',
+    "TitleLogicNodeConstructorWindow": "Конструктор агрегационного узла",
+    "TitleLogicNodeEditorWindow": "Редактор агрегационного узла",
+    "TitlePredeterminingFactorsNodeConstructorWindow": 'Конструктор узла "Mutex"',
+    "TitlePredeterminingFactorsNodeEditorWindow": 'Редактор узла "Mutex"',
     "TitleEditQuestionInfoInNodeWindow": "Редактор информации для вопросов в узле",
     "TitleEditQuestionInfoInOutcomeWindow": "Редактор информации для вопросов в ветке",
     "TitleStartConstructorWindow": "Конструктор начального узла",
@@ -153,10 +156,10 @@ const RU_TEXT = {
     "bodyOnlyOne": "Ветка тела для узла цикла должна быть одна!\n",
     "trueCycleOnlyOne": "Истинная ветка для узла цикла должна быть одна!\n",
     "falseCycleOnlyOne": "Ложная ветка для узла цикла должна быть одна!\n",
-    "typeOutcomeLogicNodeIsMissing": 'Отсутствует тип у ветки после логического узла',
-    "OutcomeLogicNodeOnlyTwo": "Веток для логического узла должно быть 2 и более!\n",
-    "trueLogicNodeOnlyOne": "Истинная ветка для логического узла должна быть одна!\n",
-    "falseLogicNodeOnlyOne": "Ложная ветка для логического узла должна быть одна!\n",
+    "typeOutcomeLogicNodeIsMissing": 'Отсутствует тип у ветки после агрегационного узла',
+    "OutcomeLogicNodeOnlyTwo": "Веток для агрегационного узла должно быть 2 и более!\n",
+    "trueLogicNodeOnlyOne": "Истинная ветка для агрегационного узла должна быть одна!\n",
+    "falseLogicNodeOnlyOne": "Ложная ветка для агрегационного узла должна быть одна!\n",
     "typeOutcomePredIsMissing": 'Отсутствует тип у ветки после независимого ветвления',
     "predOutcomeIsMissing": "Отсутствует предрешающая ветка для узла независимое ветвление!\n",
     "undeterminedOnlyOne": "Ветка undetermined для узла независимое ветвление должна быть одна!\n",
@@ -191,11 +194,12 @@ const EN_TEXT = {
     "startNodeConstructor": "Create start node",
     "TrueNodeCreate": "Create true node",
     "FalseNodeCreate": "Create false node",
-    "LogicNodeCreate": "Create logic node",
-    "PredeterminingFactorsNodeCreate": "Create predetermining factors node",
-    "UncertaintyNodeCreate": "Create node uncertainty",
+    "LogicNodeCreate": "Create agregation node",
+    "PredeterminingFactorsNodeCreate": "Create Mutex node",
+    "UncertaintyNodeCreate": "Create node Null",
     "actionNodeConstructor": "Action Node Constructor",
     "cycleNodeConstructor": "Cycle Node Constructor",
+    "whileNodeConstructor": "While Node Constructor",
     "conditionNodeConstructor": "Condition Node Constructor",
     "switchCaseNodeConstructor": "Switch case Node Constructor",
     "exportClass": "Export class",
@@ -209,9 +213,9 @@ const EN_TEXT = {
     "convertStartNode": "Convert to a Start node",
     "convertTrueNode": "Convert to True Node",
     "convertFalseNode": "Convert to Node False",
-    "convertLogicNode": "Convert to a logical node",
-    "convertPredeterminingFactorsNode": 'Convert to an "Independent Branching" node',
-    "convertUncertaintyNode": 'Convert to node "Uncertainty"',
+    "convertLogicNode": "Convert to a agregation node",
+    "convertPredeterminingFactorsNode": 'Convert to an Mutex node',
+    "convertUncertaintyNode": 'Convert to node "Null"',
     "convertActionNode": "Convert to Action Node",
     "convertCycleNode": 'Convert to a "Cycle" node',
     "convertConditionNode": "Convert node in condition node",
@@ -236,12 +240,14 @@ const EN_TEXT = {
     "TitleConditionNodeEditorWindow": "Condition node editor",
     "TitleCycleNodeConstructorWindow": "Cycle node constructor",
     "TitleCycleNodeEditorWindow": "Cycle node editor",
+    "TitleWhileNodeConstructorWindow": "While node constructor",
+    "TitleWhileNodeEditorWindow": "While node editor",
     "TitleEditTextInNodeWindow": "Edit text in node",
     "TitleEditValueInOutcomeWindow": "Edit value in outcome",
-    "TitleLogicNodeConstructorWindow": "Logic node constructor",
-    "TitleLogicNodeEditorWindow": "Logic node editor",
-    "TitlePredeterminingFactorsNodeConstructorWindow": "Predetermining factors node constructor",
-    "TitlePredeterminingFactorsNodeEditorWindow": "Predetermining factors node editor",
+    "TitleLogicNodeConstructorWindow": "Agregation node constructor",
+    "TitleLogicNodeEditorWindow": "Agregation node editor",
+    "TitlePredeterminingFactorsNodeConstructorWindow": "Mutex node constructor",
+    "TitlePredeterminingFactorsNodeEditorWindow": "Mutex node editor",
     "TitleEditQuestionInfoInNodeWindow": "Edit question info in node",
     "TitleEditQuestionInfoInOutcomeWindow": "Edit question info in outcome",
     "TitleStartConstructorWindow": "Start node constructor",
@@ -322,10 +328,10 @@ const EN_TEXT = {
     "bodyOnlyOne": "The true branch for a cycle node must be one!\n",
     "trueCycleOnlyOne": "There must be only one true branch for the cycle node!\n",
     "falseCycleOnlyOne": "There must be only one false branch for the cycle node!\n",
-    "typeOutcomeLogicNodeIsMissing": 'The branch after the logical node has no type',
-    "OutcomeLogicNodeOnlyTwo": "There must be 2 or more branches for the logical node!\n",
-    "trueLogicNodeOnlyOne": "The true branch for a logical node must be one!\n",
-    "falseLogicNodeOnlyOne": "The false branch for a logical node must be one!\n",
+    "typeOutcomeLogicNodeIsMissing": 'The branch after the agregation node has no type',
+    "OutcomeLogicNodeOnlyTwo": "There must be 2 or more branches for the agregation node!\n",
+    "trueLogicNodeOnlyOne": "The true branch for a agregation node must be one!\n",
+    "falseLogicNodeOnlyOne": "The false branch for a agregation node must be one!\n",
     "typeOutcomePredIsMissing": 'No branch type after an independent branch',
     "predOutcomeIsMissing": "There is no predetermined branch for the independent branch node!\n",
     "undeterminedOnlyOne": "The undetermined branch for an independent branch node must be one!\n",
@@ -1311,11 +1317,11 @@ function addRowRelationship(editorUi) {
     });
 
     selectScale.addEventListener('change', (event) => {
-        checkFlags(event.target.parentElement.parentElement, 
+        checkFlags(event.target.parentElement.parentElement,
             event.target.options[event.target.options.selectedIndex].value)
-        if ((event.target.options[event.target.options.selectedIndex].value == "Linear" 
-        || event.target.options[event.target.options.selectedIndex].value == "Partially linear") 
-        && !event.currentTarget.parentElement.nextElementSibling.classList.contains("names")) {
+        if ((event.target.options[event.target.options.selectedIndex].value == "Linear"
+            || event.target.options[event.target.options.selectedIndex].value == "Partially linear")
+            && !event.currentTarget.parentElement.nextElementSibling.classList.contains("names")) {
             var tdInputNames = document.createElement('td');
             tdInputNames.classList = "names";
             tdInputNames.style.minWidth = "150px";
@@ -1353,10 +1359,10 @@ function addRowRelationship(editorUi) {
 
             event.currentTarget.parentElement.parentElement.insertBefore(tdAddName, event.currentTarget.parentElement.nextElementSibling);
             event.currentTarget.parentElement.parentElement.insertBefore(tdInputNames, event.currentTarget.parentElement.nextElementSibling);
-        } else if(event.target.options[event.target.options.selectedIndex].value == "None"
-        && event.currentTarget.parentElement.nextElementSibling.classList.contains("names")) {
+        } else if (event.target.options[event.target.options.selectedIndex].value == "None"
+            && event.currentTarget.parentElement.nextElementSibling.classList.contains("names")) {
             var currentTd = event.currentTarget.parentElement.nextElementSibling;
-            while(currentTd.classList != 'addNames') {
+            while (currentTd.classList != 'addNames') {
                 currentTd.remove();
                 currentTd = event.currentTarget.parentElement.nextElementSibling;
             }
@@ -1381,7 +1387,7 @@ function addRowRelationship(editorUi) {
             tdType.style.minWidth = "150px";
             var selectType = document.createElement('select');
             selectType = styleSelect(selectType);
-            var scales = ["One to one", "One to many"]; // "ONE_TO_ONE", "ONE_TO_MANY"
+            var scales = ["One to one", "One to many", "Many to one", "Many to many"]; // "ONE_TO_ONE", "ONE_TO_MANY", "MANY_TO_ONE", "MANY_TO_MANY"
             scales.forEach(element => {
                 var newOption = new Option(element, element);
                 selectType.options[selectType.options.length] = newOption;
@@ -1392,7 +1398,7 @@ function addRowRelationship(editorUi) {
             //Удаление поля с типом
             event.currentTarget.parentElement.nextElementSibling.remove();
         }
-      });
+    });
     td6.appendChild(span);
     td6.appendChild(checkbox);
     tr1.appendChild(td6);
@@ -1481,22 +1487,22 @@ function checkAllInputsRelationship(table) {
         arrayNames.push(checkValue);
         let checkValueExtend = table.rows.item(i).getElementsByTagName("td")
             .item(1).getElementsByTagName("input").item(0).value;
-        if(checkValue == "") {
-            errors += getTextByLocale("nameIsMissing").replace("%i", (i+1));
-        } else if(!checkValidID(checkValue)) {
-            errors += getTextByLocale("nameIsIncorrect").replace("%i", (i+1));
+        if (checkValue == "") {
+            errors += getTextByLocale("nameIsMissing").replace("%i", (i + 1));
+        } else if (!checkValidID(checkValue)) {
+            errors += getTextByLocale("nameIsIncorrect").replace("%i", (i + 1));
         }
-        if(checkValueExtend != "" && !checkValidID(checkValueExtend)) {
-            errors += getTextByLocale("extendRelationshipIsIncorrect").replace("%i", (i+1));
+        if (checkValueExtend != "" && !checkValidID(checkValueExtend)) {
+            errors += getTextByLocale("extendRelationshipIsIncorrect").replace("%i", (i + 1));
         }
 
         let lastIndex = 2;
         let currentSelect = table.rows.item(i).getElementsByTagName("td")
             .item(lastIndex).getElementsByTagName("select").item(0);
         let hasntClass = false;
-        while(currentSelect != null) {
-            if(typeof (currentSelect.options[currentSelect.options.selectedIndex]) == "undefined" && !hasntClass) {
-                errors += getTextByLocale("classesIsMissing").replace("%i", (i+1));
+        while (currentSelect != null) {
+            if (typeof (currentSelect.options[currentSelect.options.selectedIndex]) == "undefined" && !hasntClass) {
+                errors += getTextByLocale("classesIsMissing").replace("%i", (i + 1));
                 hasntClass = true;
             }
             lastIndex++;
@@ -1505,18 +1511,18 @@ function checkAllInputsRelationship(table) {
         }
         lastIndex++;
         currentSelect = table.rows.item(i).getElementsByTagName("td")
-                .item(lastIndex).getElementsByTagName("select").item(0);
-        if(currentSelect.options[currentSelect.options.selectedIndex].value == "Linear" 
-        || currentSelect.options[currentSelect.options.selectedIndex].value == "Partially linear") {
+            .item(lastIndex).getElementsByTagName("select").item(0);
+        if (currentSelect.options[currentSelect.options.selectedIndex].value == "Linear"
+            || currentSelect.options[currentSelect.options.selectedIndex].value == "Partially linear") {
             lastIndex++;
             let currentInputName = table.rows.item(i).getElementsByTagName("td")
                 .item(lastIndex).getElementsByTagName("input").item(0);
-            while(currentInputName != null) {
-                if(currentInputName.value == "") {
-                    errors += getTextByLocale("nameRelationshipsIsMissing").replace("%i", (i+1));
+            while (currentInputName != null) {
+                if (currentInputName.value == "") {
+                    errors += getTextByLocale("nameRelationshipsIsMissing").replace("%i", (i + 1));
                     break;
-                } else if(!checkValidID(currentInputName.value)) {
-                    errors += getTextByLocale("nameRelationshipsIsIncorrect").replace("%i", (i+1));
+                } else if (!checkValidID(currentInputName.value)) {
+                    errors += getTextByLocale("nameRelationshipsIsIncorrect").replace("%i", (i + 1));
                     break;
                 }
                 lastIndex++;
@@ -1525,10 +1531,10 @@ function checkAllInputsRelationship(table) {
             }
         }
     }
-    if(arrayNames.length != 0 && !checkUniqueValues(arrayNames)) {
+    if (arrayNames.length != 0 && !checkUniqueValues(arrayNames)) {
         errors += getTextByLocale("nonUniqueRelationshipName");
     }
-    if(errors != "") {
+    if (errors != "") {
         throw new Error(errors);
     }
 }
@@ -1544,7 +1550,7 @@ function generateStrValueForRelationships(table) {
 
         var extendRelationship = table.rows.item(i).getElementsByTagName("td")
             .item(1).getElementsByTagName("input").item(0).value;
-        
+
         var classList = [];
 
         var classSelect = table.rows.item(i).getElementsByTagName("td")
@@ -1553,7 +1559,7 @@ function generateStrValueForRelationships(table) {
         lastIndex = 3;
         let currentSelect = table.rows.item(i).getElementsByTagName("td")
             .item(lastIndex).getElementsByTagName("select").item(0);
-        while(currentSelect != null) {
+        while (currentSelect != null) {
             classList.push(currentSelect.options[currentSelect.options.selectedIndex].value);
             lastIndex++;
             currentSelect = table.rows.item(i).getElementsByTagName("td")
@@ -1565,11 +1571,11 @@ function generateStrValueForRelationships(table) {
             .item(lastIndex).getElementsByTagName("select").item(0);
         var scale = scaleSelect.options[scaleSelect.options.selectedIndex].value;
         let namesRels = [];
-        if(scale == "Linear" || scale == "Partially linear") {
+        if (scale == "Linear" || scale == "Partially linear") {
             lastIndex++;
             let currentInputName = table.rows.item(i).getElementsByTagName("td")
                 .item(lastIndex).getElementsByTagName("input").item(0);
-            while(currentInputName != null) {
+            while (currentInputName != null) {
                 namesRels.push(currentInputName.value);
                 lastIndex++;
                 currentInputName = table.rows.item(i).getElementsByTagName("td")
@@ -1582,7 +1588,7 @@ function generateStrValueForRelationships(table) {
         var isBetween = table.rows.item(i).getElementsByTagName("td")
             .item(lastIndex).getElementsByTagName("input").item(0).checked;
         var type = "";
-        if(isBetween) {
+        if (isBetween) {
             lastIndex++;
             var typeSelect = table.rows.item(i).getElementsByTagName("td")
                 .item(lastIndex).getElementsByTagName("select").item(0);
@@ -1591,22 +1597,22 @@ function generateStrValueForRelationships(table) {
         binFlags.push(getMarkedFlags(table.rows.item(i)));
 
         strValue += '<br>' + '<font color="#00cccc">' + relationship + '</font>';
-        if(extendRelationship != "") {
+        if (extendRelationship != "") {
             strValue += ' (<font color="#00cccc">' + extendRelationship + '</font>)'
         }
         strValue += ' <font color="#6666FF">classes:</font> <font color="#ff66b3">' + classList[0];
-        for(let i = 1; i < classList.length; i++) {
+        for (let i = 1; i < classList.length; i++) {
             strValue += ', ' + classList[i];
         }
         strValue += '</font>';
 
-        if(scale != "None") {
+        if (scale != "None") {
             strValue += ' <font color="#6666FF">scale:</font> <font color="#000000">' + scale + '</font>';
         }
 
-        strValue += ' <font color="#6666FF">is relationship between classes:</font> <font color="#000000">' 
+        strValue += ' <font color="#6666FF">is relationship between classes:</font> <font color="#000000">'
             + isBetween + '</font>';
-        if(isBetween) {
+        if (isBetween) {
             strValue += ' <font color="#6666FF">type:</font> <font color="#000000">' + type + '</font>';
         }
     }
@@ -1631,7 +1637,7 @@ function checkFlags(row, scale) {
     let tdAntiRelf = row.getElementsByClassName("antireflexivity")[0];
     let tdTrans = row.getElementsByClassName("transitivity")[0];
     let tdAntiTrans = row.getElementsByClassName("antitransivity")[0];
-    if(scale == "Linear") {
+    if (scale == "Linear") {
         tdSym.getElementsByTagName("input").item(0).checked = false;
         tdSym.getElementsByTagName("input").item(0).disabled = true;
         tdAntiSym.getElementsByTagName("input").item(0).checked = true;
@@ -1644,7 +1650,7 @@ function checkFlags(row, scale) {
         tdTrans.getElementsByTagName("input").item(0).disabled = true;
         tdAntiTrans.getElementsByTagName("input").item(0).checked = false;
         tdAntiTrans.getElementsByTagName("input").item(0).disabled = true;
-    } else if(scale == "Partially linear") {
+    } else if (scale == "Partially linear") {
         tdSym.getElementsByTagName("input").item(0).checked = false;
         tdSym.getElementsByTagName("input").item(0).disabled = true;
         tdAntiSym.getElementsByTagName("input").item(0).checked = true;
@@ -1657,7 +1663,7 @@ function checkFlags(row, scale) {
         tdTrans.getElementsByTagName("input").item(0).disabled = true;
         tdAntiTrans.getElementsByTagName("input").item(0).checked = false;
         tdAntiTrans.getElementsByTagName("input").item(0).disabled = true;
-    } else if(scale == "None") {
+    } else if (scale == "None") {
         tdSym.getElementsByTagName("input").item(0).checked = false;
         tdSym.getElementsByTagName("input").item(0).disabled = false;
         tdAntiSym.getElementsByTagName("input").item(0).checked = false;
@@ -1680,7 +1686,7 @@ function getMarkedFlags(row) {
     let AntiRelf = row.getElementsByClassName("antireflexivity")[0].getElementsByTagName("input").item(0).checked;;
     let trans = row.getElementsByClassName("transitivity")[0].getElementsByTagName("input").item(0).checked;;
     let antiTrans = row.getElementsByClassName("antitransivity")[0].getElementsByTagName("input").item(0).checked;;
-    return String(Number(sym)) + String(Number(antiSym)) + String(Number(relf)) + String(Number(AntiRelf)) 
+    return String(Number(sym)) + String(Number(antiSym)) + String(Number(relf)) + String(Number(AntiRelf))
         + String(Number(trans)) + String(Number(antiTrans));
 }
 function getEnums(editorUi) {
@@ -1699,20 +1705,20 @@ function getEnums(editorUi) {
             var values = cellValue.split('<br>');
 
             values.forEach(element => {
-                var nameEnum = element.slice(element.indexOf('<font color="#ff66b3">')+22, element.indexOf('</font>'));
-                
-                element = element.slice(element.indexOf('</font>')+7);
-                var valuesStr = element.slice(element.indexOf('<font color="#ff6666">')+22, element.indexOf('</font>'));
+                var nameEnum = element.slice(element.indexOf('<font color="#ff66b3">') + 22, element.indexOf('</font>'));
+
+                element = element.slice(element.indexOf('</font>') + 7);
+                var valuesStr = element.slice(element.indexOf('<font color="#ff6666">') + 22, element.indexOf('</font>'));
                 var valuesEnum = valuesStr.split(', ');
 
-                element = element.slice(element.indexOf('</font>')+7);
-                var Islinear = element.slice(element.indexOf('<font color="#123123">')+22, element.indexOf('</font>'));
+                element = element.slice(element.indexOf('</font>') + 7);
+                var Islinear = element.slice(element.indexOf('<font color="#123123">') + 22, element.indexOf('</font>'));
                 var nameRDF = "";
-                if(Islinear == 'true') {
-                    element = element.slice(element.indexOf('</font>')+7);
-                    nameRDF = element.slice(element.indexOf('<font color="#fff123">')+22, element.indexOf('</font>'));
+                if (Islinear == 'true') {
+                    element = element.slice(element.indexOf('</font>') + 7);
+                    nameRDF = element.slice(element.indexOf('<font color="#fff123">') + 22, element.indexOf('</font>'));
                 }
-                
+
                 var ItemEnum = {
                     "nameEnum": nameEnum,
                     "values": valuesEnum,
@@ -1740,19 +1746,19 @@ function getClasses(editorUi) {
             var cellLabel = cellValue.getAttribute('label');
             cellLabel = cellLabel.replace('<font color="#000000"><b>Classes</b></font><br>', '');
             var values = cellLabel.split('<br>');
-        
+
             values.forEach((element, index) => {
-                var nameClass = element.slice(element.indexOf('<font color="#ff66b3">')+22, element.indexOf('</font>'));
-                element = element.slice(element.indexOf('</font>')+7);
+                var nameClass = element.slice(element.indexOf('<font color="#ff66b3">') + 22, element.indexOf('</font>'));
+                element = element.slice(element.indexOf('</font>') + 7);
 
                 var classExtend = ""
-                if(element.indexOf('(<font color="#ff66b3">') != -1) {
-                    classExtend = element.slice(element.indexOf('(<font color="#ff66b3">')+23, element.indexOf('</font>)'));
-                    element = element.slice(element.indexOf('</font>)')+8);
+                if (element.indexOf('(<font color="#ff66b3">') != -1) {
+                    classExtend = element.slice(element.indexOf('(<font color="#ff66b3">') + 23, element.indexOf('</font>)'));
+                    element = element.slice(element.indexOf('</font>)') + 8);
                 }
 
-                var expression = cellValue.getAttribute('expression_'+index)
-                
+                var expression = cellValue.getAttribute('expression_' + index)
+
                 var ItemClass = {
                     "name": nameClass,
                     "extend": classExtend,
@@ -1781,28 +1787,28 @@ function getProperties(editorUi) {
             var values = cellValue.split('<br>');
 
             values.forEach(element => {
-                var nameProperty = element.slice(element.indexOf('<font color="#')+22, element.indexOf('</font>'));
-                element = element.slice(element.indexOf('</font>')+7);
+                var nameProperty = element.slice(element.indexOf('<font color="#') + 22, element.indexOf('</font>'));
+                element = element.slice(element.indexOf('</font>') + 7);
 
                 classes = [];
-                var valuesStr = element.slice(element.indexOf('(<font color="#fc49a4">')+23, element.indexOf('</font>'));
+                var valuesStr = element.slice(element.indexOf('(<font color="#fc49a4">') + 23, element.indexOf('</font>'));
                 classes = valuesStr.split(', ');
-                element = element.slice(element.indexOf('</font>)')+8);
+                element = element.slice(element.indexOf('</font>)') + 8);
 
-                var type = element.slice(element.indexOf('<font color="#000000">')+22, element.indexOf('</font>'));
-                element = element.slice(element.indexOf('</font>')+7);
+                var type = element.slice(element.indexOf('<font color="#000000">') + 22, element.indexOf('</font>'));
+                element = element.slice(element.indexOf('</font>') + 7);
 
                 var range = "";
-                if(type == "Integer" || type == "Double") {
-                    range = element.slice(element.indexOf('<font color="#000000">: ')+24, element.indexOf('</font>'));
-                    element = element.slice(element.indexOf('</font>')+7);
+                if (type == "Integer" || type == "Double") {
+                    range = element.slice(element.indexOf('<font color="#000000">: ') + 24, element.indexOf('</font>'));
+                    element = element.slice(element.indexOf('</font>') + 7);
                 }
-                element = element.slice(element.indexOf('<font color="#19c3c0">isStatic:</font>')+38);
-                
-                isStatic = element.slice(element.indexOf('<font color="#000000">')+22, element.indexOf('</font>'));
-                element = element.slice(element.indexOf('</font>')+7);
+                element = element.slice(element.indexOf('<font color="#19c3c0">isStatic:</font>') + 38);
 
-                
+                isStatic = element.slice(element.indexOf('<font color="#000000">') + 22, element.indexOf('</font>'));
+                element = element.slice(element.indexOf('</font>') + 7);
+
+
                 var ItemProperty = {
                     "name": nameProperty,
                     "type": type,
@@ -1834,41 +1840,44 @@ function getRelationships(editorUi) {
             var values = cellLabel.split('<br>');
 
             values.forEach((element, index) => {
-                var nameRelationship = element.slice(element.indexOf('<font color="#00cccc">')+22, element.indexOf('</font>'));
-                element = element.slice(element.indexOf('</font>')+7);
+                var nameRelationship = element.slice(element.indexOf('<font color="#00cccc">') + 22, element.indexOf('</font>'));
+                element = element.slice(element.indexOf('</font>') + 7);
 
                 var extendRelationship = ""
-                if(element.indexOf(' (<font color="#00cccc">') != -1) {
-                    extendRelationship = element.slice(element.indexOf('(<font color="#00cccc">')+23, element.indexOf('</font>)'));
-                    element = element.slice(element.indexOf('</font>)')+8);
+                if (element.indexOf(' (<font color="#00cccc">') != -1) {
+                    extendRelationship = element.slice(element.indexOf('(<font color="#00cccc">') + 23, element.indexOf('</font>)'));
+                    element = element.slice(element.indexOf('</font>)') + 8);
                 }
 
-                element = element.slice(element.indexOf('classes:</font>')+15);
-                var valuesStr = element.slice(element.indexOf('<font color="#ff66b3">')+22, element.indexOf('</font>'));
+                element = element.slice(element.indexOf('classes:</font>') + 15);
+                var valuesStr = element.slice(element.indexOf('<font color="#ff66b3">') + 22, element.indexOf('</font>'));
                 var classes = valuesStr.split(', ');
-                element = element.slice(element.indexOf('</font>')+7);
+                element = element.slice(element.indexOf('</font>') + 7);
 
                 var scale = "";
-                if(element.indexOf('<font color="#6666FF">scale:</font>') != -1) {
-                    element = element.slice(element.indexOf('scale:</font>')+13);
-                    scale = element.slice(element.indexOf('<font color="#000000">')+22, element.indexOf('</font>'));
-                    scale = scale.toUpperCase();
-                    element = element.slice(element.indexOf('</font>')+7);
+                if (element.indexOf('<font color="#6666FF">scale:</font>') != -1) {
+                    element = element.slice(element.indexOf('scale:</font>') + 13);
+                    scale = element.slice(element.indexOf('<font color="#000000">') + 22, element.indexOf('</font>'));
+                    scale = scale.toLowerCase();
+                    if (scale == "partially linear") {
+                        scale = "partial";
+                    }
+                    element = element.slice(element.indexOf('</font>') + 7);
                 }
 
-                element = element.slice(element.indexOf('classes:</font>')+15);
-                isBetween = element.slice(element.indexOf('<font color="#000000">')+22, element.indexOf('</font>'));
-                element = element.slice(element.indexOf('</font>')+7);
+                element = element.slice(element.indexOf('classes:</font>') + 15);
+                isBetween = element.slice(element.indexOf('<font color="#000000">') + 22, element.indexOf('</font>'));
+                element = element.slice(element.indexOf('</font>') + 7);
                 var type = "";
-                if(isBetween == "true") {
-                    element = element.slice(element.indexOf('type:</font>')+12);
-                    type = element.slice(element.indexOf('<font color="#000000">')+22, element.indexOf('</font>'));
-                    type = type.toUpperCase().replaceAll(" ", "_");
+                if (isBetween == "true") {
+                    element = element.slice(element.indexOf('type:</font>') + 12);
+                    type = element.slice(element.indexOf('<font color="#000000">') + 22, element.indexOf('</font>'));
+                    type = type.toLowerCase().replaceAll(" ", "");
                 }
 
-                let namesRels = cellValue.getAttribute('namesRels_'+index)
-                let binFlags = cellValue.getAttribute('binFlags_'+index)
-                
+                let namesRels = cellValue.getAttribute('namesRels_' + index)
+                let binFlags = cellValue.getAttribute('binFlags_' + index)
+
                 var ItemRelationship = {
                     "name": nameRelationship,
                     "extend": extendRelationship,
@@ -1878,7 +1887,7 @@ function getRelationships(editorUi) {
                     "type": type,
                     "namesRels": namesRels,
                     "binFlags": binFlags,
-                    "decFlags": parseInt( binFlags.split('').reverse().join(''), 2),
+                    "decFlags": parseInt(binFlags.split('').reverse().join(''), 2),
                 };
                 relationships.push(ItemRelationship);
             });
@@ -1887,15 +1896,33 @@ function getRelationships(editorUi) {
     return relationships;
 }
 function toBlock(rootNode, workspace) {
-	if (rootNode.stmt != null) {
-		stmtNodeToBlock(rootNode.stmt, workspace);
-	}
+    if (!rootNode.isBlock && rootNode.stmt != null) {
+        stmtNodeToBlock(rootNode.stmt, workspace);
+    } else if (rootNode.isBlock && rootNode.block != null) {
+        blockNodeToBlock(rootNode.block, workspace);
+    }
+}
+
+function blockNodeToBlock(blockNode, workspace) {
+    var resBlock = new Blockly.BlockSvg(workspace, "block");
+    resBlock.initSvg();
+    resBlock.itemCount_ = 0;
+    resBlock.render();
+
+    var current = blockNode.statementSeq.first;
+    while (current != null) {
+        resBlock.itemCount_++;
+        resBlock.updateShape_();
+        stmtBlock = stmtNodeToBlock(current, workspace);
+        resBlock.getInput("statement" + (resBlock.itemCount_ - 1)).connection.connect(stmtBlock.outputConnection);
+        current = current.next;
+    }
 }
 
 function stmtNodeToBlock(stmtNode, workspace) {
-    if(stmtNode.secondExpr == null) {
-        printExprNode(stmtNode.firstExpr, workspace);
-    } else if(stmtNode.secondExpr != null && stmtNode.firstExpr.type == ExprType.TREE_VAR) {
+    if (stmtNode.secondExpr == null) {
+        return printExprNode(stmtNode.firstExpr, workspace);
+    } else if (stmtNode.secondExpr != null && stmtNode.firstExpr.type == ExprType.TREE_VAR) {
         var assignment = new Blockly.BlockSvg(workspace, "assign_value_to_variable_decision_tree");
         assignment.initSvg();
         assignment.render();
@@ -1908,7 +1935,8 @@ function stmtNodeToBlock(stmtNode, workspace) {
         checkTypeBlocks(assignment, block2, "new_object");
         assignment.getInput("new_object").connection.connect(block2.outputConnection);
 
-    } else if(stmtNode.secondExpr != null && stmtNode.firstExpr.type == ExprType.PROPERTY) {
+        return assignment;
+    } else if (stmtNode.secondExpr != null && stmtNode.firstExpr.type == ExprType.PROPERTY) {
         var assignment = new Blockly.BlockSvg(workspace, "assign_value_to_property");
         assignment.initSvg();
         assignment.render();
@@ -1927,14 +1955,44 @@ function stmtNodeToBlock(stmtNode, workspace) {
         var valueBlock = printExprNode(stmtNode.secondExpr, workspace);
         checkTypeBlocks(assignment, valueBlock, "new_value");
         assignment.getInput("new_value").connection.connect(valueBlock.outputConnection);
-    } else if(stmtNode.secondExpr != null && stmtNode.firstExpr.type != ExprType.PROPERTY 
-        && stmtNode.firstExpr.type != ExprType.TREE_VAR) {
-            throw new Error(getTextByLocale("invalidAssign"));
+
+        return assignment;
+    } else if (stmtNode.type == StmtType.ADD_RELATION) {
+        var resBlock = new Blockly.BlockSvg(workspace, "add_relationship_to_object");
+        resBlock.initSvg();
+        resBlock.itemCount_ = 0;
+        resBlock.render();
+
+        relBlock = new Blockly.BlockSvg(workspace, "relationship");
+        relBlock.initSvg();
+        relBlock.render();
+        relBlock.inputList[0].fieldRow[0].setValue(stmtNode.ident);
+        checkTypeBlocks(resBlock, relBlock, "relationship");
+        resBlock.getInput("relationship").connection.connect(relBlock.outputConnection);
+
+        objBlock = printExprNode(stmtNode.firstExpr, workspace);
+        checkTypeBlocks(resBlock, objBlock, "object");
+        resBlock.getInput("object").connection.connect(objBlock.outputConnection);
+
+        var current = stmtNode.secondExpr.objectSeq.first;
+        while (current != null) {
+            resBlock.itemCount_++;
+            resBlock.updateShape_();
+            objOpBlock = printExprNode(current, workspace);
+            checkTypeBlocks(resBlock, objOpBlock, "object" + (resBlock.itemCount_ - 1));
+            resBlock.getInput("object" + (resBlock.itemCount_ - 1)).connection.connect(objOpBlock.outputConnection);
+            current = current.next;
         }
+
+        return resBlock
+    } else if (stmtNode.secondExpr != null && stmtNode.firstExpr.type != ExprType.PROPERTY
+        && stmtNode.firstExpr.type != ExprType.TREE_VAR) {
+        throw new Error(getTextByLocale("invalidAssign"));
+    }
 }
 
 function printExprNode(exprNode, workspace) {
-    switch(exprNode.type) {
+    switch (exprNode.type) {
         case ExprType.ID:
             var resBlock = new Blockly.BlockSvg(workspace, "object");
             resBlock.initSvg();
@@ -1995,7 +2053,7 @@ function printExprNode(exprNode, workspace) {
             relBlock.inputList[0].fieldRow[0].setValue(exprNode.rel);
             checkTypeBlocks(resBlock, relBlock, "relationship");
             resBlock.getInput("relationship").connection.connect(relBlock.outputConnection);
-            
+
             objBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, objBlock, "object");
             resBlock.getInput("object").connection.connect(objBlock.outputConnection);
@@ -2012,7 +2070,7 @@ function printExprNode(exprNode, workspace) {
             propBlock.inputList[0].fieldRow[0].setValue(exprNode.ident);
             checkTypeBlocks(resBlock, propBlock, "property");
             resBlock.getInput("property").connection.connect(propBlock.outputConnection);
-            
+
             objBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, objBlock, "object");
             resBlock.getInput("object").connection.connect(objBlock.outputConnection);
@@ -2022,12 +2080,12 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "check_object_class");
             resBlock.initSvg();
             resBlock.render();
-            
+
             objBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, objBlock, "object");
             resBlock.getInput("object").connection.connect(objBlock.outputConnection);
 
-            if(exprNode.secondOperand.type == ExprType.ID) {
+            if (exprNode.secondOperand.type == ExprType.ID) {
                 var classBlock = new Blockly.BlockSvg(workspace, "class");
                 classBlock.initSvg();
                 classBlock.render();
@@ -2044,7 +2102,7 @@ function printExprNode(exprNode, workspace) {
             resBlock.initSvg();
             resBlock.render();
             resBlock.inputList[2].fieldRow[0].setValue("GREATER");
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2059,7 +2117,7 @@ function printExprNode(exprNode, workspace) {
             resBlock.initSvg();
             resBlock.render();
             resBlock.inputList[2].fieldRow[0].setValue("LESS");
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2074,7 +2132,7 @@ function printExprNode(exprNode, workspace) {
             resBlock.initSvg();
             resBlock.render();
             resBlock.inputList[2].fieldRow[0].setValue("EQUAL");
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2089,7 +2147,7 @@ function printExprNode(exprNode, workspace) {
             resBlock.initSvg();
             resBlock.render();
             resBlock.inputList[2].fieldRow[0].setValue("NOT_EQUAL");
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2104,7 +2162,7 @@ function printExprNode(exprNode, workspace) {
             resBlock.initSvg();
             resBlock.render();
             resBlock.inputList[2].fieldRow[0].setValue("GE");
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2119,7 +2177,7 @@ function printExprNode(exprNode, workspace) {
             resBlock.initSvg();
             resBlock.render();
             resBlock.inputList[2].fieldRow[0].setValue("LE");
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2133,7 +2191,7 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "three_digit_comparison");
             resBlock.initSvg();
             resBlock.render();
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2147,7 +2205,7 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "and");
             resBlock.initSvg();
             resBlock.render();
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2161,7 +2219,7 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "or");
             resBlock.initSvg();
             resBlock.render();
-            
+
             op1Block = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, op1Block, "operand1");
             resBlock.getInput("operand1").connection.connect(op1Block.outputConnection);
@@ -2175,7 +2233,7 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "not");
             resBlock.initSvg();
             resBlock.render();
-            
+
             opBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, opBlock, "operand");
             resBlock.getInput("operand").connection.connect(opBlock.outputConnection);
@@ -2193,7 +2251,7 @@ function printExprNode(exprNode, workspace) {
             relBlock.inputList[0].fieldRow[0].setValue(exprNode.rel);
             checkTypeBlocks(resBlock, relBlock, "relationship");
             resBlock.getInput("relationship").connection.connect(relBlock.outputConnection);
-            
+
             objBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, objBlock, "object");
             resBlock.getInput("object").connection.connect(objBlock.outputConnection);
@@ -2203,8 +2261,8 @@ function printExprNode(exprNode, workspace) {
                 resBlock.itemCount_++;
                 resBlock.updateShape_();
                 objOpBlock = printExprNode(current, workspace);
-                checkTypeBlocks(resBlock, objOpBlock, "object" + (resBlock.itemCount_-1));
-                resBlock.getInput("object" + (resBlock.itemCount_-1)).connection.connect(objOpBlock.outputConnection);
+                checkTypeBlocks(resBlock, objOpBlock, "object" + (resBlock.itemCount_ - 1));
+                resBlock.getInput("object" + (resBlock.itemCount_ - 1)).connection.connect(objOpBlock.outputConnection);
                 current = current.next;
             }
 
@@ -2213,7 +2271,7 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "get_class");
             resBlock.initSvg();
             resBlock.render();
-            
+
             objBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, objBlock, "object");
             resBlock.getInput("object").connection.connect(objBlock.outputConnection);
@@ -2223,8 +2281,9 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "get_condition_object");
             resBlock.initSvg();
             resBlock.render();
-            resBlock.inputList[2].fieldRow[0].setValue(exprNode.ident);
-            
+            resBlock.inputList[2].fieldRow[0].setValue(exprNode.typeIdent);
+            resBlock.inputList[3].fieldRow[0].setValue(exprNode.ident);
+
             condBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, condBlock, "condition");
             resBlock.getInput("condition").connection.connect(condBlock.outputConnection);
@@ -2235,8 +2294,9 @@ function printExprNode(exprNode, workspace) {
             resBlock.initSvg();
             resBlock.render();
             resBlock.inputList[1].fieldRow[0].setValue(exprNode.extremeIdent);
-            resBlock.inputList[3].fieldRow[0].setValue(exprNode.ident);
-            
+            resBlock.inputList[3].fieldRow[0].setValue(exprNode.typeIdent);
+            resBlock.inputList[4].fieldRow[0].setValue(exprNode.ident);
+
             extrCondBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, extrCondBlock, "extreme_condition");
             resBlock.getInput("extreme_condition").connection.connect(extrCondBlock.outputConnection);
@@ -2250,8 +2310,9 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "quantifier_of_existence");
             resBlock.initSvg();
             resBlock.render();
-            resBlock.inputList[3].fieldRow[0].setValue(exprNode.ident);
-            
+            resBlock.inputList[3].fieldRow[0].setValue(exprNode.typeIdent);
+            resBlock.inputList[4].fieldRow[0].setValue(exprNode.ident);
+
             defBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, defBlock, "definition_area");
             resBlock.getInput("definition_area").connection.connect(defBlock.outputConnection);
@@ -2265,8 +2326,9 @@ function printExprNode(exprNode, workspace) {
             var resBlock = new Blockly.BlockSvg(workspace, "quantifier_of_generality");
             resBlock.initSvg();
             resBlock.render();
-            resBlock.inputList[3].fieldRow[0].setValue(exprNode.ident);
-            
+            resBlock.inputList[3].fieldRow[0].setValue(exprNode.typeIdent);
+            resBlock.inputList[4].fieldRow[0].setValue(exprNode.ident);
+
             defBlock = printExprNode(exprNode.firstOperand, workspace);
             checkTypeBlocks(resBlock, defBlock, "definition_area");
             resBlock.getInput("definition_area").connection.connect(defBlock.outputConnection);
@@ -2276,33 +2338,126 @@ function printExprNode(exprNode, workspace) {
             resBlock.getInput("verification_condition").connection.connect(verBlock.outputConnection);
 
             return resBlock
+        case ExprType.CAST:
+            var resBlock = new Blockly.BlockSvg(workspace, "cast_object_to_class");
+            resBlock.initSvg();
+            resBlock.render();
+
+            objBlock = printExprNode(exprNode.firstOperand, workspace);
+            checkTypeBlocks(resBlock, objBlock, "object");
+            resBlock.getInput("object").connection.connect(objBlock.outputConnection);
+
+            if (exprNode.cast.type == ExprType.ID) {
+                var classBlock = new Blockly.BlockSvg(workspace, "class");
+                classBlock.initSvg();
+                classBlock.render();
+                classBlock.inputList[0].fieldRow[0].setValue(exprNode.cast.ident);
+            }
+            else {
+                var classBlock = printExprNode(exprNode.cast, workspace);
+            }
+            checkTypeBlocks(resBlock, classBlock, "class");
+            resBlock.getInput("class").connection.connect(classBlock.outputConnection);
+            return resBlock
+        case ExprType.IF:
+            var resBlock = new Blockly.BlockSvg(workspace, "if_then_stmt");
+            resBlock.initSvg();
+            resBlock.render();
+
+            condBlock = printExprNode(exprNode.firstOperand, workspace);
+            checkTypeBlocks(resBlock, condBlock, "condition");
+            resBlock.getInput("condition").connection.connect(condBlock.outputConnection);
+
+            bodyBlock = printExprNode(exprNode.secondOperand, workspace);
+            checkTypeBlocks(resBlock, bodyBlock, "body");
+            resBlock.getInput("body").connection.connect(bodyBlock.outputConnection);
+
+            return resBlock
+        case ExprType.WITH:
+            var resBlock = new Blockly.BlockSvg(workspace, "with_stmt");
+            resBlock.initSvg();
+            resBlock.render();
+            resBlock.inputList[1].fieldRow[0].setValue(exprNode.ident);
+
+            expressionBlock = printExprNode(exprNode.firstOperand, workspace);
+            checkTypeBlocks(resBlock, expressionBlock, "expression");
+            resBlock.getInput("expression").connection.connect(expressionBlock.outputConnection);
+
+            bodyBlock = printExprNode(exprNode.secondOperand, workspace);
+            checkTypeBlocks(resBlock, bodyBlock, "body");
+            resBlock.getInput("body").connection.connect(bodyBlock.outputConnection);
+
+            return resBlock
     }
 }
 
 function checkTypeBlocks(blockInput, blockOutput, input) {
     let outputCheck = blockOutput.outputConnection.check_;
     let inputCheck = blockInput.getInput(input).connection.check_;
-    if(outputCheck.filter(x => inputCheck.includes(x)).length == 0) {
+    if (outputCheck.filter(x => inputCheck.includes(x)).length == 0) {
         throw new Error(getTextByLocale("InvalidType").replace("%type", blockInput.type)
             .replace("%inputCheck", inputCheck).replace("%outputCheck", outputCheck))
     }
 }
 var LASTID = 0;
 
-function ProgramNode(statement) {
-    this.stmt = statement;
+function ProgramNode(statement, isBlock) {
+    this.isBlock = isBlock;
+    if (isBlock) {
+        this.block = statement;
+        this.stmt = null;
+    } else {
+        this.block = null;
+        this.stmt = statement;
+    }
     this.id = LASTID++;
 }
 
-function StatementNode(firstExpression, secondExpression) {
+function BlockNode(statementSeq) {
+    this.statementSeq = statementSeq;
+    this.id = LASTID++;
+}
+
+const StmtType = {
+    EXPR: 'expr',
+    ASSIGNMENT: 'assignment',
+    ADD_RELATION: 'add_relation',
+}
+
+function StatementNode(type, firstExpression, secondExpression) {
     this.firstExpr = firstExpression;
     this.secondExpr = secondExpression;
+    this.type = type;
+    this.next = null;
     this.id = LASTID++;
 }
 
-const ExprType = { 
-    ID: 'id', 
-    STRING: 'string', 
+function StatementSeq(first, last) {
+    this.first = first;
+    this.last = last;
+}
+
+function createAddRelationshipStmtNode(first, relationship, objectSeq) {
+    second = new ExpressionNode();
+    second.type = ExprType.ID;
+    second.ident = relationship;
+    second.objectSeq = objectSeq;
+    return new StatementNode(StmtType.ADD_RELATION, first, second);
+}
+
+function createStmtSeqNode(stmt) {
+    return new StatementSeq(stmt, stmt);
+}
+
+function addStmtToStmtSeqNode(seqStmt, stmt) {
+    seqStmt.last.next = stmt;
+    seqStmt.last = stmt;
+    return seqStmt;
+}
+
+const ExprType = {
+    ID: 'id',
+    STRING: 'string',
     INT: 'int',
     DOUBLE: 'double',
     BOOLEAN: 'boolean',
@@ -2312,27 +2467,31 @@ const ExprType = {
     GET_BY_RELATIONSHIP: 'get by relationship',
     PROPERTY: 'property',
     IS: 'is',
-    GREATER: 'greater', 
-    LESS: 'less', 
-    EQUAL: 'equal', 
-    NOT_EQUAL: 'not equal', 
-    GE: 'ge', 
-    LE: 'le', 
-    COMPARE: 'compare', 
-    AND: 'and', 
-    OR: 'or', 
-    NOT: 'not', 
+    GREATER: 'greater',
+    LESS: 'less',
+    EQUAL: 'equal',
+    NOT_EQUAL: 'not equal',
+    GE: 'ge',
+    LE: 'le',
+    COMPARE: 'compare',
+    AND: 'and',
+    OR: 'or',
+    NOT: 'not',
     CHECK_REL: 'check_rel',
-    GET_CLASS: 'get_class', 
+    GET_CLASS: 'get_class',
     FIND: 'find',
-    FIND_EXTREM: 'find extreme', 
-    EXIST: 'exist', 
-    FORALL: 'forall', 
+    FIND_EXTREM: 'find extreme',
+    EXIST: 'exist',
+    FORALL: 'forall',
+    CAST: 'cast',
+    IF: 'if',
+    WITH: 'with',
 };
 
 function ExpressionNode() {
     this.id = LASTID++;
     this.type = null;
+    this.typeIdent = null;
     this.ident = null;
     this.rel = null;
     this.extremeIdent = null;
@@ -2342,6 +2501,8 @@ function ExpressionNode() {
     this.boolean = null;
 
     this.identValue = null;
+
+    this.cast = null;
 
     this.firstOperand = null;
     this.secondOperand = null;
@@ -2354,12 +2515,12 @@ function createBinExprNode(typeNode, firstExprOperand, secondExprOperand) {
     newNode = new ExpressionNode();
     newNode.type = typeNode;
     newNode.firstOperand = firstExprOperand;
-    if(typeNode == ExprType.PROPERTY) {
+    if (typeNode == ExprType.PROPERTY) {
         newNode.ident = secondExprOperand;
     } else {
         newNode.secondOperand = secondExprOperand;
     }
-    
+
     return newNode;
 }
 
@@ -2369,7 +2530,7 @@ function createGetObjectByRel(firstExprOperand, relationship) {
     newNode.rel = relationship;
 
     newNode.firstOperand = firstExprOperand;
-    
+
     return newNode;
 }
 
@@ -2380,24 +2541,32 @@ function createUnaryExprNode(typeNode, operand) {
     return newNode;
 }
 
+function createCastExprNode(cast, operand) {
+    newNode = new ExpressionNode();
+    newNode.type = ExprType.CAST;
+    newNode.firstOperand = operand;
+    newNode.cast = cast;
+    return newNode;
+}
+
 function createLiteral(typeNode, literal) {
     newNode = new ExpressionNode();
     newNode.type = typeNode;
-    if(typeNode == ExprType.ID) {
+    if (typeNode == ExprType.ID) {
         newNode.ident = literal;
-    } else if(typeNode == ExprType.TREE_VAR) {
+    } else if (typeNode == ExprType.TREE_VAR) {
         newNode.ident = literal.substring(4);
-    } else if(typeNode == ExprType.VAR) {
+    } else if (typeNode == ExprType.VAR) {
         newNode.ident = literal.substring(1);
-    } else if(typeNode == ExprType.STRING) {
+    } else if (typeNode == ExprType.STRING) {
         newNode.string = literal;
-    } else if(typeNode == ExprType.INT) {
+    } else if (typeNode == ExprType.INT) {
         newNode.int = Number(literal);
-    } else if(typeNode == ExprType.DOUBLE) {
+    } else if (typeNode == ExprType.DOUBLE) {
         newNode.double = Number(literal);
-    } else if(typeNode == ExprType.BOOLEAN) {
+    } else if (typeNode == ExprType.BOOLEAN) {
         newNode.boolean = literal;
-    } 
+    }
     return newNode;
 }
 
@@ -2418,27 +2587,47 @@ function createCheckRelExprNode(expression, relationship, objectSeq) {
     return newNode;
 }
 
-function createGetExprNode(typeNode, id, expression) {
+function createGetExprNode(typeNode, type, id, expression) {
     newNode = new ExpressionNode();
     newNode.type = typeNode;
     newNode.firstOperand = expression;
+    newNode.typeIdent = type;
     newNode.ident = id;
     return newNode;
 }
 
-function createFindExtremeExprNode(extremeVarName, extremeCondition, varName, condition) {
+function createFindExtremeExprNode(extremeVarName, extremeCondition, typeVar, varName, condition) {
     newNode = new ExpressionNode();
     newNode.type = ExprType.FIND_EXTREM;
     newNode.extremeIdent = extremeVarName;
     newNode.firstOperand = extremeCondition;
+    newNode.typeIdent = typeVar;
     newNode.ident = varName;
     newNode.secondOperand = condition;
     return newNode;
 }
 
-function createQuantifierExprNode(typeNode, id, expression1, expression2) { 
+function createQuantifierExprNode(typeNode, type, id, expression1, expression2) {
     newNode = new ExpressionNode();
     newNode.type = typeNode;
+    newNode.firstOperand = expression1;
+    newNode.secondOperand = expression2;
+    newNode.typeIdent = type;
+    newNode.ident = id;
+    return newNode;
+}
+
+function createIfExprNode(condition, expression) {
+    newNode = new ExpressionNode();
+    newNode.type = ExprType.IF;
+    newNode.firstOperand = condition;
+    newNode.secondOperand = expression;
+    return newNode;
+}
+
+function createWithExprNode(id, expression1, expression2) {
+    newNode = new ExpressionNode();
+    newNode.type = ExprType.WITH;
     newNode.firstOperand = expression1;
     newNode.secondOperand = expression2;
     newNode.ident = id;
@@ -2536,723 +2725,761 @@ var string;
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var parser = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,4],$V1=[1,5],$V2=[1,6],$V3=[1,7],$V4=[1,8],$V5=[1,9],$V6=[1,10],$V7=[1,11],$V8=[1,12],$V9=[1,13],$Va=[1,14],$Vb=[1,15],$Vc=[1,16],$Vd=[1,17],$Ve=[1,19],$Vf=[1,20],$Vg=[1,21],$Vh=[1,22],$Vi=[1,23],$Vj=[1,24],$Vk=[1,25],$Vl=[1,26],$Vm=[1,27],$Vn=[1,28],$Vo=[1,29],$Vp=[1,6,16,17,18,19,20,21,22,23,24,27,28,29,35,38,42],$Vq=[1,6,18,19,20,21,22,23,24,27,28,29,35,38,42],$Vr=[27,42];
-var parser = {trace: function trace () { },
-yy: {},
-symbols_: {"error":2,"program":3,"stmt":4,"exp":5,"=":6,"ID":7,"STRING":8,"INT":9,"DOUBLE":10,"TRUE":11,"FALSE":12,"TREE_VAR":13,"VAR":14,"::":15,"->":16,".":17,"IS":18,">":19,"<":20,"==":21,"!=":22,">=":23,"<=":24,"COMPARE":25,"(":26,")":27,"AND":28,"OR":29,"NOT":30,"object_seq":31,"CLASS":32,"FIND":33,"{":34,"}":35,"FIND_EXTREM":36,"[":37,"]":38,"WHERE":39,"EXIST":40,"FORALL":41,",":42,"$accept":0,"$end":1},
-terminals_: {2:"error",6:"=",7:"ID",8:"STRING",9:"INT",10:"DOUBLE",11:"TRUE",12:"FALSE",13:"TREE_VAR",14:"VAR",15:"::",16:"->",17:".",18:"IS",19:">",20:"<",21:"==",22:"!=",23:">=",24:"<=",25:"COMPARE",26:"(",27:")",28:"AND",29:"OR",30:"NOT",32:"CLASS",33:"FIND",34:"{",35:"}",36:"FIND_EXTREM",37:"[",38:"]",39:"WHERE",40:"EXIST",41:"FORALL",42:","},
-productions_: [0,[3,1],[4,1],[4,3],[5,1],[5,1],[5,1],[5,1],[5,1],[5,1],[5,1],[5,1],[5,3],[5,3],[5,3],[5,3],[5,3],[5,3],[5,3],[5,3],[5,3],[5,3],[5,6],[5,3],[5,3],[5,3],[5,2],[5,6],[5,5],[5,5],[5,10],[5,8],[5,8],[31,1],[31,3]],
-performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
-/* this == yyval */
+var parser = (function () {
+    var o = function (k, v, o, l) { for (o = o || {}, l = k.length; l--; o[k[l]] = v); return o }, $V0 = [1, 6], $V1 = [1, 14], $V2 = [1, 7], $V3 = [1, 8], $V4 = [1, 9], $V5 = [1, 10], $V6 = [1, 11], $V7 = [1, 12], $V8 = [1, 13], $V9 = [1, 15], $Va = [1, 16], $Vb = [1, 17], $Vc = [1, 18], $Vd = [1, 19], $Ve = [1, 20], $Vf = [1, 21], $Vg = [1, 24], $Vh = [1, 25], $Vi = [1, 26], $Vj = [1, 27], $Vk = [1, 28], $Vl = [1, 29], $Vm = [1, 30], $Vn = [1, 31], $Vo = [1, 32], $Vp = [1, 33], $Vq = [1, 34], $Vr = [1, 35], $Vs = [1, 8, 9, 11, 12, 16, 25, 26, 27, 28, 29, 30, 31, 32, 33, 35, 36, 37, 43, 49], $Vt = [1, 8, 9, 11, 12, 16, 27, 28, 29, 30, 31, 32, 33, 36, 37, 43, 49], $Vu = [1, 8, 9, 11, 12, 16, 27, 30, 31, 36, 37, 43, 49], $Vv = [8, 13, 14, 17, 18, 19, 20, 21, 22, 23, 38, 40, 41, 45, 46, 47, 48], $Vw = [1, 97], $Vx = [16, 49];
+    var parser = {
+        trace: function trace() { },
+        yy: {},
+        symbols_: { "error": 2, "program": 3, "stmt": 4, "block": 5, "{": 6, "stmt_seq": 7, "}": 8, ";": 9, "exp": 10, "=": 11, "+=>": 12, "ID": 13, "(": 14, "object_seq": 15, ")": 16, "STRING": 17, "INT": 18, "DOUBLE": 19, "TRUE": 20, "FALSE": 21, "TREE_VAR": 22, "VAR": 23, "::": 24, "->": 25, ".": 26, "IS": 27, ">": 28, "<": 29, "==": 30, "!=": 31, ">=": 32, "<=": 33, "COMPARE": 34, "AS": 35, "AND": 36, "OR": 37, "NOT": 38, "CLASS": 39, "FIND": 40, "FIND_EXTREM": 41, "[": 42, "]": 43, "AMONG": 44, "EXIST": 45, "FORALL": 46, "IF": 47, "WITH": 48, ",": 49, "$accept": 0, "$end": 1 },
+        terminals_: { 2: "error", 6: "{", 8: "}", 9: ";", 11: "=", 12: "+=>", 13: "ID", 14: "(", 16: ")", 17: "STRING", 18: "INT", 19: "DOUBLE", 20: "TRUE", 21: "FALSE", 22: "TREE_VAR", 23: "VAR", 24: "::", 25: "->", 26: ".", 27: "IS", 28: ">", 29: "<", 30: "==", 31: "!=", 32: ">=", 33: "<=", 34: "COMPARE", 35: "AS", 36: "AND", 37: "OR", 38: "NOT", 39: "CLASS", 40: "FIND", 41: "FIND_EXTREM", 42: "[", 43: "]", 44: "AMONG", 45: "EXIST", 46: "FORALL", 47: "IF", 48: "WITH", 49: "," },
+        productions_: [0, [3, 1], [3, 1], [5, 3], [7, 2], [7, 3], [4, 1], [4, 3], [4, 6], [10, 1], [10, 1], [10, 1], [10, 1], [10, 1], [10, 1], [10, 1], [10, 1], [10, 3], [10, 3], [10, 3], [10, 3], [10, 3], [10, 3], [10, 3], [10, 3], [10, 3], [10, 3], [10, 6], [10, 3], [10, 3], [10, 3], [10, 3], [10, 2], [10, 6], [10, 5], [10, 6], [10, 11], [10, 9], [10, 9], [10, 5], [10, 7], [15, 1], [15, 3]],
+        performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
+            /* this == yyval */
 
-var $0 = $$.length - 1;
-switch (yystate) {
-case 1:
- root = new ProgramNode($$[$0]); return $$[$0];
-break;
-case 2:
- this.$ = new StatementNode($$[$0], null); 
-break;
-case 3:
- this.$ = new StatementNode($$[$0-2], $$[$0]); 
-break;
-case 4:
- this.$ = createLiteral(ExprType.ID, $$[$0]); 
-break;
-case 5:
- this.$ = createLiteral(ExprType.STRING, $$[$0]); 
-break;
-case 6:
- this.$ = createLiteral(ExprType.INT, $$[$0]); 
-break;
-case 7:
- this.$ = createLiteral(ExprType.DOUBLE, $$[$0]); 
-break;
-case 8:
- this.$ = createLiteral(ExprType.BOOLEAN, true); 
-break;
-case 9:
- this.$ = createLiteral(ExprType.BOOLEAN, false); 
-break;
-case 10:
- this.$ = createLiteral(ExprType.TREE_VAR, $$[$0]); 
-break;
-case 11:
- this.$ = createLiteral(ExprType.VAR, $$[$0]); 
-break;
-case 12:
- this.$ = createEnum($$[$0-2], $$[$0]); 
-break;
-case 13:
- this.$ = createGetObjectByRel($$[$0-2], $$[$0]); 
-break;
-case 14:
- this.$ = createBinExprNode(ExprType.PROPERTY, $$[$0-2], $$[$0]); 
-break;
-case 15:
- this.$ = createBinExprNode(ExprType.IS, $$[$0-2], $$[$0]); 
-break;
-case 16:
- this.$ = createBinExprNode(ExprType.GREATER, $$[$0-2], $$[$0]); 
-break;
-case 17:
- this.$ = createBinExprNode(ExprType.LESS, $$[$0-2], $$[$0]); 
-break;
-case 18:
- this.$ = createBinExprNode(ExprType.EQUAL, $$[$0-2], $$[$0]); 
-break;
-case 19:
- this.$ = createBinExprNode(ExprType.NOT_EQUAL, $$[$0-2], $$[$0]); 
-break;
-case 20:
- this.$ = createBinExprNode(ExprType.GE, $$[$0-2], $$[$0]); 
-break;
-case 21:
- this.$ = createBinExprNode(ExprType.LE, $$[$0-2], $$[$0]); 
-break;
-case 22:
- this.$ = createBinExprNode(ExprType.COMPARE, $$[$0-5], $$[$0-1]); 
-break;
-case 23:
- this.$ = $$[$0-1]; 
-break;
-case 24:
- this.$ = createBinExprNode(ExprType.AND, $$[$0-2], $$[$0]); 
-break;
-case 25:
- this.$ = createBinExprNode(ExprType.OR, $$[$0-2], $$[$0]); 
-break;
-case 26:
- this.$ = createUnaryExprNode(ExprType.NOT, $$[$0]); 
-break;
-case 27:
- this.$ = createCheckRelExprNode($$[$0-5], $$[$0-3], $$[$0-1]); 
-break;
-case 28:
- this.$ = createUnaryExprNode(ExprType.GET_CLASS, $$[$0-4]); 
-break;
-case 29:
- this.$ = createGetExprNode(ExprType.FIND, $$[$0-3], $$[$0-1]); 
-break;
-case 30:
- this.$ = createFindExtremeExprNode($$[$0-8], $$[$0-6], $$[$0-3], $$[$0-1]); 
-break;
-case 31:
- this.$ = createQuantifierExprNode(ExprType.EXIST, $$[$0-6], $$[$0-4], $$[$0-1]); 
-break;
-case 32:
- this.$ = createQuantifierExprNode(ExprType.FORALL, $$[$0-6], $$[$0-4], $$[$0-1]); 
-break;
-case 33:
- this.$ = createObjectSeqNode($$[$0]); 
-break;
-case 34:
- this.$ = addObjectToObjectSeqNode($$[$0-2], $$[$0]); 
-break;
-}
-},
-table: [{3:1,4:2,5:3,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{1:[3]},{1:[2,1]},{1:[2,2],6:[1,18],16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo},o($Vp,[2,4],{15:[1,30]}),o($Vp,[2,5]),o($Vp,[2,6]),o($Vp,[2,7]),o($Vp,[2,8]),o($Vp,[2,9]),o($Vp,[2,10]),o($Vp,[2,11]),{5:31,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:32,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{7:[1,33]},{7:[1,34]},{7:[1,35]},{7:[1,36]},{5:37,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{7:[1,38]},{7:[1,39],25:[1,40],32:[1,41]},{5:42,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:43,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:44,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:45,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:46,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:47,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:48,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:49,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:50,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{7:[1,51]},{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,27:[1,52],28:$Vn,29:$Vo},o($Vq,[2,26],{16:$Ve,17:$Vf}),{34:[1,53]},{37:[1,54]},{37:[1,55]},{37:[1,56]},{1:[2,3],16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo},o($Vp,[2,13],{26:[1,57]}),o($Vp,[2,14]),{26:[1,58]},{26:[1,59]},o([1,6,18,27,28,29,35,38,42],[2,15],{16:$Ve,17:$Vf,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm}),o($Vq,[2,16],{16:$Ve,17:$Vf}),o($Vq,[2,17],{16:$Ve,17:$Vf}),o($Vq,[2,18],{16:$Ve,17:$Vf}),o($Vq,[2,19],{16:$Ve,17:$Vf}),o($Vq,[2,20],{16:$Ve,17:$Vf}),o($Vq,[2,21],{16:$Ve,17:$Vf}),o([1,6,27,28,29,35,38,42],[2,24],{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm}),o([1,6,27,29,35,38,42],[2,25],{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn}),o($Vp,[2,12]),o($Vp,[2,23]),{5:60,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:61,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:62,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:63,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:65,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,31:64,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:66,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{27:[1,67]},{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo,35:[1,68]},{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo,38:[1,69]},{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo,38:[1,70]},{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo,38:[1,71]},{27:[1,72],42:[1,73]},o($Vr,[2,33],{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo}),{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,27:[1,74],28:$Vn,29:$Vo},o($Vp,[2,28]),o($Vp,[2,29]),{39:[1,75]},{34:[1,76]},{34:[1,77]},o($Vp,[2,27]),{5:78,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},o($Vp,[2,22]),{7:[1,79]},{5:80,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},{5:81,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},o($Vr,[2,34],{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo}),{34:[1,82]},{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo,35:[1,83]},{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo,35:[1,84]},{5:85,7:$V0,8:$V1,9:$V2,10:$V3,11:$V4,12:$V5,13:$V6,14:$V7,26:$V8,30:$V9,33:$Va,36:$Vb,40:$Vc,41:$Vd},o($Vp,[2,31]),o($Vp,[2,32]),{16:$Ve,17:$Vf,18:$Vg,19:$Vh,20:$Vi,21:$Vj,22:$Vk,23:$Vl,24:$Vm,28:$Vn,29:$Vo,35:[1,86]},o($Vp,[2,30])],
-defaultActions: {2:[2,1]},
-parseError: function parseError (str, hash) {
-    if (hash.recoverable) {
-        this.trace(str);
-    } else {
-        var error = new Error(str);
-        error.hash = hash;
-        throw error;
-    }
-},
-parse: function parse(input) {
-    var self = this, stack = [0], tstack = [], vstack = [null], lstack = [], table = this.table, yytext = '', yylineno = 0, yyleng = 0, recovering = 0, TERROR = 2, EOF = 1;
-    var args = lstack.slice.call(arguments, 1);
-    var lexer = Object.create(this.lexer);
-    var sharedState = { yy: {} };
-    for (var k in this.yy) {
-        if (Object.prototype.hasOwnProperty.call(this.yy, k)) {
-            sharedState.yy[k] = this.yy[k];
-        }
-    }
-    lexer.setInput(input, sharedState.yy);
-    sharedState.yy.lexer = lexer;
-    sharedState.yy.parser = this;
-    if (typeof lexer.yylloc == 'undefined') {
-        lexer.yylloc = {};
-    }
-    var yyloc = lexer.yylloc;
-    lstack.push(yyloc);
-    var ranges = lexer.options && lexer.options.ranges;
-    if (typeof sharedState.yy.parseError === 'function') {
-        this.parseError = sharedState.yy.parseError;
-    } else {
-        this.parseError = Object.getPrototypeOf(this).parseError;
-    }
-    function popStack(n) {
-        stack.length = stack.length - 2 * n;
-        vstack.length = vstack.length - n;
-        lstack.length = lstack.length - n;
-    }
-    _token_stack:
-        var lex = function () {
-            var token;
-            token = lexer.lex() || EOF;
-            if (typeof token !== 'number') {
-                token = self.symbols_[token] || token;
+            var $0 = $$.length - 1;
+            switch (yystate) {
+                case 1:
+                    root = new ProgramNode($$[$0], false); return $$[$0];
+                    break;
+                case 2:
+                    root = new ProgramNode($$[$0], true); return $$[$0];
+                    break;
+                case 3:
+                    this.$ = new BlockNode($$[$0 - 1]);
+                    break;
+                case 4:
+                    this.$ = createStmtSeqNode($$[$0 - 1]);
+                    break;
+                case 5:
+                    this.$ = addStmtToStmtSeqNode($$[$0 - 2], $$[$0 - 1]);
+                    break;
+                case 6:
+                    this.$ = new StatementNode(StmtType.EXPR, $$[$0], null);
+                    break;
+                case 7:
+                    this.$ = new StatementNode(StmtType.ASSIGNMENT, $$[$0 - 2], $$[$0]);
+                    break;
+                case 8:
+                    this.$ = createAddRelationshipStmtNode($$[$0 - 5], $$[$0 - 3], $$[$0 - 1]);
+                    break;
+                case 9:
+                    this.$ = createLiteral(ExprType.ID, $$[$0]);
+                    break;
+                case 10:
+                    this.$ = createLiteral(ExprType.STRING, $$[$0]);
+                    break;
+                case 11:
+                    this.$ = createLiteral(ExprType.INT, $$[$0]);
+                    break;
+                case 12:
+                    this.$ = createLiteral(ExprType.DOUBLE, $$[$0]);
+                    break;
+                case 13:
+                    this.$ = createLiteral(ExprType.BOOLEAN, true);
+                    break;
+                case 14:
+                    this.$ = createLiteral(ExprType.BOOLEAN, false);
+                    break;
+                case 15:
+                    this.$ = createLiteral(ExprType.TREE_VAR, $$[$0]);
+                    break;
+                case 16:
+                    this.$ = createLiteral(ExprType.VAR, $$[$0]);
+                    break;
+                case 17:
+                    this.$ = createEnum($$[$0 - 2], $$[$0]);
+                    break;
+                case 18:
+                    this.$ = createGetObjectByRel($$[$0 - 2], $$[$0]);
+                    break;
+                case 19:
+                    this.$ = createBinExprNode(ExprType.PROPERTY, $$[$0 - 2], $$[$0]);
+                    break;
+                case 20:
+                    this.$ = createBinExprNode(ExprType.IS, $$[$0 - 2], $$[$0]);
+                    break;
+                case 21:
+                    this.$ = createBinExprNode(ExprType.GREATER, $$[$0 - 2], $$[$0]);
+                    break;
+                case 22:
+                    this.$ = createBinExprNode(ExprType.LESS, $$[$0 - 2], $$[$0]);
+                    break;
+                case 23:
+                    this.$ = createBinExprNode(ExprType.EQUAL, $$[$0 - 2], $$[$0]);
+                    break;
+                case 24:
+                    this.$ = createBinExprNode(ExprType.NOT_EQUAL, $$[$0 - 2], $$[$0]);
+                    break;
+                case 25:
+                    this.$ = createBinExprNode(ExprType.GE, $$[$0 - 2], $$[$0]);
+                    break;
+                case 26:
+                    this.$ = createBinExprNode(ExprType.LE, $$[$0 - 2], $$[$0]);
+                    break;
+                case 27:
+                    this.$ = createBinExprNode(ExprType.COMPARE, $$[$0 - 5], $$[$0 - 1]);
+                    break;
+                case 28:
+                    this.$ = $$[$0 - 1];
+                    break;
+                case 29:
+                    this.$ = createCastExprNode($$[$0], $$[$0 - 2]);
+                    break;
+                case 30:
+                    this.$ = createBinExprNode(ExprType.AND, $$[$0 - 2], $$[$0]);
+                    break;
+                case 31:
+                    this.$ = createBinExprNode(ExprType.OR, $$[$0 - 2], $$[$0]);
+                    break;
+                case 32:
+                    this.$ = createUnaryExprNode(ExprType.NOT, $$[$0]);
+                    break;
+                case 33:
+                    this.$ = createCheckRelExprNode($$[$0 - 5], $$[$0 - 3], $$[$0 - 1]);
+                    break;
+                case 34:
+                    this.$ = createUnaryExprNode(ExprType.GET_CLASS, $$[$0 - 4]);
+                    break;
+                case 35:
+                    this.$ = createGetExprNode(ExprType.FIND, $$[$0 - 4], $$[$0 - 3], $$[$0 - 1]);
+                    break;
+                case 36:
+                    this.$ = createFindExtremeExprNode($$[$0 - 9], $$[$0 - 7], $$[$0 - 4], $$[$0 - 3], $$[$0 - 1]);
+                    break;
+                case 37:
+                    this.$ = createQuantifierExprNode(ExprType.EXIST, $$[$0 - 7], $$[$0 - 6], $$[$0 - 4], $$[$0 - 1]);
+                    break;
+                case 38:
+                    this.$ = createQuantifierExprNode(ExprType.FORALL, $$[$0 - 7], $$[$0 - 6], $$[$0 - 4], $$[$0 - 1]);
+                    break;
+                case 39:
+                    this.$ = createIfExprNode($$[$0 - 2], $$[$0]);
+                    break;
+                case 40:
+                    this.$ = createWithExprNode($$[$0 - 4], $$[$0 - 2], $$[$0]);
+                    break;
+                case 41:
+                    this.$ = createObjectSeqNode($$[$0]);
+                    break;
+                case 42:
+                    this.$ = addObjectToObjectSeqNode($$[$0 - 2], $$[$0]);
+                    break;
             }
-            return token;
-        };
-    var symbol, preErrorSymbol, state, action, a, r, yyval = {}, p, len, newState, expected;
-    while (true) {
-        state = stack[stack.length - 1];
-        if (this.defaultActions[state]) {
-            action = this.defaultActions[state];
-        } else {
-            if (symbol === null || typeof symbol == 'undefined') {
-                symbol = lex();
-            }
-            action = table[state] && table[state][symbol];
-        }
-                    if (typeof action === 'undefined' || !action.length || !action[0]) {
-                var errStr = '';
-                expected = [];
-                for (p in table[state]) {
-                    if (this.terminals_[p] && p > TERROR) {
-                        expected.push('\'' + this.terminals_[p] + '\'');
-                    }
-                }
-                if (lexer.showPosition) {
-                    errStr = 'Parse error on line ' + (yylineno + 1) + ':\n' + lexer.showPosition() + '\nExpecting ' + expected.join(', ') + ', got \'' + (this.terminals_[symbol] || symbol) + '\'';
-                } else {
-                    errStr = 'Parse error on line ' + (yylineno + 1) + ': Unexpected ' + (symbol == EOF ? 'end of input' : '\'' + (this.terminals_[symbol] || symbol) + '\'');
-                }
-                this.parseError(errStr, {
-                    text: lexer.match,
-                    token: this.terminals_[symbol] || symbol,
-                    line: lexer.yylineno,
-                    loc: yyloc,
-                    expected: expected
-                });
-            }
-        if (action[0] instanceof Array && action.length > 1) {
-            throw new Error('Parse Error: multiple actions possible at state: ' + state + ', token: ' + symbol);
-        }
-        switch (action[0]) {
-        case 1:
-            stack.push(symbol);
-            vstack.push(lexer.yytext);
-            lstack.push(lexer.yylloc);
-            stack.push(action[1]);
-            symbol = null;
-            if (!preErrorSymbol) {
-                yyleng = lexer.yyleng;
-                yytext = lexer.yytext;
-                yylineno = lexer.yylineno;
-                yyloc = lexer.yylloc;
-                if (recovering > 0) {
-                    recovering--;
-                }
+        },
+        table: [{ 3: 1, 4: 2, 5: 3, 6: [1, 5], 10: 4, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 1: [3] }, { 1: [2, 1] }, { 1: [2, 2] }, o($V4, [2, 6], { 11: [1, 22], 12: [1, 23], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }), { 4: 37, 7: 36, 10: 4, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, o($Vs, [2, 9], { 24: [1, 38] }), o($Vs, [2, 10]), o($Vs, [2, 11]), o($Vs, [2, 12]), o($Vs, [2, 13]), o($Vs, [2, 14]), o($Vs, [2, 15]), o($Vs, [2, 16]), { 10: 39, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 40, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 13: [1, 41] }, { 13: [1, 42] }, { 13: [1, 43] }, { 13: [1, 44] }, { 14: [1, 45] }, { 14: [1, 46] }, { 10: 47, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 13: [1, 48] }, { 13: [1, 49] }, { 13: [1, 50], 34: [1, 51], 39: [1, 52] }, { 10: 53, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 54, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 55, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 56, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 57, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 58, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 59, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 60, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 61, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 62, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 4: 64, 8: [1, 63], 10: 4, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 9: [1, 65] }, { 13: [1, 66] }, { 16: [1, 67], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }, o($Vt, [2, 32], { 25: $Vg, 26: $Vh, 35: $Vp }), { 13: [1, 68] }, { 42: [1, 69] }, { 13: [1, 70] }, { 13: [1, 71] }, { 10: 72, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 13: [1, 73] }, o($V4, [2, 7], { 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }), { 14: [1, 74] }, o($Vs, [2, 18], { 14: [1, 75] }), o($Vs, [2, 19]), { 14: [1, 76] }, { 14: [1, 77] }, o([1, 8, 9, 11, 12, 16, 27, 36, 37, 43, 49], [2, 20], { 25: $Vg, 26: $Vh, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp }), o($Vt, [2, 21], { 25: $Vg, 26: $Vh, 35: $Vp }), o($Vt, [2, 22], { 25: $Vg, 26: $Vh, 35: $Vp }), o($Vu, [2, 23], { 25: $Vg, 26: $Vh, 28: $Vj, 29: $Vk, 32: $Vn, 33: $Vo, 35: $Vp }), o($Vu, [2, 24], { 25: $Vg, 26: $Vh, 28: $Vj, 29: $Vk, 32: $Vn, 33: $Vo, 35: $Vp }), o($Vt, [2, 25], { 25: $Vg, 26: $Vh, 35: $Vp }), o($Vt, [2, 26], { 25: $Vg, 26: $Vh, 35: $Vp }), o($Vs, [2, 29]), o([1, 8, 9, 11, 12, 16, 36, 37, 43, 49], [2, 30], { 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp }), o([1, 8, 9, 11, 12, 16, 37, 43, 49], [2, 31], { 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq }), { 1: [2, 3] }, { 9: [1, 78] }, o($Vv, [2, 4]), o($Vs, [2, 17]), o($Vs, [2, 28]), { 6: [1, 79] }, { 10: 80, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 42: [1, 81] }, { 42: [1, 82] }, { 16: [1, 83], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }, { 11: [1, 84] }, { 10: 86, 13: $V0, 14: $V1, 15: 85, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 86, 13: $V0, 14: $V1, 15: 87, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 88, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 16: [1, 89] }, o($Vv, [2, 5]), { 10: 90, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr, 43: [1, 91] }, { 10: 92, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 93, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 94, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 95, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 16: [1, 96], 49: $Vw }, o($Vx, [2, 41], { 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }), { 16: [1, 98], 49: $Vw }, { 16: [1, 99], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }, o($Vs, [2, 34]), { 8: [1, 100], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }, { 44: [1, 101] }, { 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr, 43: [1, 102] }, { 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr, 43: [1, 103] }, o($Vs, [2, 39]), { 16: [1, 104], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }, o($V4, [2, 8]), { 10: 105, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, o($Vs, [2, 33]), o($Vs, [2, 27]), o($Vs, [2, 35]), { 13: [1, 106] }, { 6: [1, 107] }, { 6: [1, 108] }, { 10: 109, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, o($Vx, [2, 42], { 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }), { 13: [1, 110] }, { 10: 111, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, { 10: 112, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, o($Vs, [2, 40]), { 6: [1, 113] }, { 8: [1, 114], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }, { 8: [1, 115], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }, { 10: 116, 13: $V0, 14: $V1, 17: $V2, 18: $V3, 19: $V4, 20: $V5, 21: $V6, 22: $V7, 23: $V8, 38: $V9, 40: $Va, 41: $Vb, 45: $Vc, 46: $Vd, 47: $Ve, 48: $Vf }, o($Vs, [2, 37]), o($Vs, [2, 38]), { 8: [1, 117], 25: $Vg, 26: $Vh, 27: $Vi, 28: $Vj, 29: $Vk, 30: $Vl, 31: $Vm, 32: $Vn, 33: $Vo, 35: $Vp, 36: $Vq, 37: $Vr }, o($Vs, [2, 36])],
+        defaultActions: { 2: [2, 1], 3: [2, 2], 63: [2, 3] },
+        parseError: function parseError(str, hash) {
+            if (hash.recoverable) {
+                this.trace(str);
             } else {
-                symbol = preErrorSymbol;
-                preErrorSymbol = null;
+                var error = new Error(str);
+                error.hash = hash;
+                throw error;
             }
-            break;
-        case 2:
-            len = this.productions_[action[1]][1];
-            yyval.$ = vstack[vstack.length - len];
-            yyval._$ = {
-                first_line: lstack[lstack.length - (len || 1)].first_line,
-                last_line: lstack[lstack.length - 1].last_line,
-                first_column: lstack[lstack.length - (len || 1)].first_column,
-                last_column: lstack[lstack.length - 1].last_column
+        },
+        parse: function parse(input) {
+            var self = this, stack = [0], tstack = [], vstack = [null], lstack = [], table = this.table, yytext = '', yylineno = 0, yyleng = 0, recovering = 0, TERROR = 2, EOF = 1;
+            var args = lstack.slice.call(arguments, 1);
+            var lexer = Object.create(this.lexer);
+            var sharedState = { yy: {} };
+            for (var k in this.yy) {
+                if (Object.prototype.hasOwnProperty.call(this.yy, k)) {
+                    sharedState.yy[k] = this.yy[k];
+                }
+            }
+            lexer.setInput(input, sharedState.yy);
+            sharedState.yy.lexer = lexer;
+            sharedState.yy.parser = this;
+            if (typeof lexer.yylloc == 'undefined') {
+                lexer.yylloc = {};
+            }
+            var yyloc = lexer.yylloc;
+            lstack.push(yyloc);
+            var ranges = lexer.options && lexer.options.ranges;
+            if (typeof sharedState.yy.parseError === 'function') {
+                this.parseError = sharedState.yy.parseError;
+            } else {
+                this.parseError = Object.getPrototypeOf(this).parseError;
+            }
+            function popStack(n) {
+                stack.length = stack.length - 2 * n;
+                vstack.length = vstack.length - n;
+                lstack.length = lstack.length - n;
+            }
+            _token_stack:
+            var lex = function () {
+                var token;
+                token = lexer.lex() || EOF;
+                if (typeof token !== 'number') {
+                    token = self.symbols_[token] || token;
+                }
+                return token;
             };
-            if (ranges) {
-                yyval._$.range = [
-                    lstack[lstack.length - (len || 1)].range[0],
-                    lstack[lstack.length - 1].range[1]
-                ];
+            var symbol, preErrorSymbol, state, action, a, r, yyval = {}, p, len, newState, expected;
+            while (true) {
+                state = stack[stack.length - 1];
+                if (this.defaultActions[state]) {
+                    action = this.defaultActions[state];
+                } else {
+                    if (symbol === null || typeof symbol == 'undefined') {
+                        symbol = lex();
+                    }
+                    action = table[state] && table[state][symbol];
+                }
+                if (typeof action === 'undefined' || !action.length || !action[0]) {
+                    var errStr = '';
+                    expected = [];
+                    for (p in table[state]) {
+                        if (this.terminals_[p] && p > TERROR) {
+                            expected.push('\'' + this.terminals_[p] + '\'');
+                        }
+                    }
+                    if (lexer.showPosition) {
+                        errStr = 'Parse error on line ' + (yylineno + 1) + ':\n' + lexer.showPosition() + '\nExpecting ' + expected.join(', ') + ', got \'' + (this.terminals_[symbol] || symbol) + '\'';
+                    } else {
+                        errStr = 'Parse error on line ' + (yylineno + 1) + ': Unexpected ' + (symbol == EOF ? 'end of input' : '\'' + (this.terminals_[symbol] || symbol) + '\'');
+                    }
+                    this.parseError(errStr, {
+                        text: lexer.match,
+                        token: this.terminals_[symbol] || symbol,
+                        line: lexer.yylineno,
+                        loc: yyloc,
+                        expected: expected
+                    });
+                }
+                if (action[0] instanceof Array && action.length > 1) {
+                    throw new Error('Parse Error: multiple actions possible at state: ' + state + ', token: ' + symbol);
+                }
+                switch (action[0]) {
+                    case 1:
+                        stack.push(symbol);
+                        vstack.push(lexer.yytext);
+                        lstack.push(lexer.yylloc);
+                        stack.push(action[1]);
+                        symbol = null;
+                        if (!preErrorSymbol) {
+                            yyleng = lexer.yyleng;
+                            yytext = lexer.yytext;
+                            yylineno = lexer.yylineno;
+                            yyloc = lexer.yylloc;
+                            if (recovering > 0) {
+                                recovering--;
+                            }
+                        } else {
+                            symbol = preErrorSymbol;
+                            preErrorSymbol = null;
+                        }
+                        break;
+                    case 2:
+                        len = this.productions_[action[1]][1];
+                        yyval.$ = vstack[vstack.length - len];
+                        yyval._$ = {
+                            first_line: lstack[lstack.length - (len || 1)].first_line,
+                            last_line: lstack[lstack.length - 1].last_line,
+                            first_column: lstack[lstack.length - (len || 1)].first_column,
+                            last_column: lstack[lstack.length - 1].last_column
+                        };
+                        if (ranges) {
+                            yyval._$.range = [
+                                lstack[lstack.length - (len || 1)].range[0],
+                                lstack[lstack.length - 1].range[1]
+                            ];
+                        }
+                        r = this.performAction.apply(yyval, [
+                            yytext,
+                            yyleng,
+                            yylineno,
+                            sharedState.yy,
+                            action[1],
+                            vstack,
+                            lstack
+                        ].concat(args));
+                        if (typeof r !== 'undefined') {
+                            return r;
+                        }
+                        if (len) {
+                            stack = stack.slice(0, -1 * len * 2);
+                            vstack = vstack.slice(0, -1 * len);
+                            lstack = lstack.slice(0, -1 * len);
+                        }
+                        stack.push(this.productions_[action[1]][0]);
+                        vstack.push(yyval.$);
+                        lstack.push(yyval._$);
+                        newState = table[stack[stack.length - 2]][stack[stack.length - 1]];
+                        stack.push(newState);
+                        break;
+                    case 3:
+                        return true;
+                }
             }
-            r = this.performAction.apply(yyval, [
-                yytext,
-                yyleng,
-                yylineno,
-                sharedState.yy,
-                action[1],
-                vstack,
-                lstack
-            ].concat(args));
-            if (typeof r !== 'undefined') {
-                return r;
-            }
-            if (len) {
-                stack = stack.slice(0, -1 * len * 2);
-                vstack = vstack.slice(0, -1 * len);
-                lstack = lstack.slice(0, -1 * len);
-            }
-            stack.push(this.productions_[action[1]][0]);
-            vstack.push(yyval.$);
-            lstack.push(yyval._$);
-            newState = table[stack[stack.length - 2]][stack[stack.length - 1]];
-            stack.push(newState);
-            break;
-        case 3:
             return true;
         }
-    }
-    return true;
-}};
-/* generated by jison-lex 0.3.4 */
-var lexer = (function(){
-var lexer = ({
+    };
+    /* generated by jison-lex 0.3.4 */
+    var lexer = (function () {
+        var lexer = ({
 
-EOF:1,
+            EOF: 1,
 
-parseError:function parseError(str, hash) {
-        if (this.yy.parser) {
-            this.yy.parser.parseError(str, hash);
-        } else {
-            throw new Error(str);
-        }
-    },
+            parseError: function parseError(str, hash) {
+                if (this.yy.parser) {
+                    this.yy.parser.parseError(str, hash);
+                } else {
+                    throw new Error(str);
+                }
+            },
 
-// resets the lexer, sets new input
-setInput:function (input, yy) {
-        this.yy = yy || this.yy || {};
-        this._input = input;
-        this._more = this._backtrack = this.done = false;
-        this.yylineno = this.yyleng = 0;
-        this.yytext = this.matched = this.match = '';
-        this.conditionStack = ['INITIAL'];
-        this.yylloc = {
-            first_line: 1,
-            first_column: 0,
-            last_line: 1,
-            last_column: 0
-        };
-        if (this.options.ranges) {
-            this.yylloc.range = [0,0];
-        }
-        this.offset = 0;
-        return this;
-    },
+            // resets the lexer, sets new input
+            setInput: function (input, yy) {
+                this.yy = yy || this.yy || {};
+                this._input = input;
+                this._more = this._backtrack = this.done = false;
+                this.yylineno = this.yyleng = 0;
+                this.yytext = this.matched = this.match = '';
+                this.conditionStack = ['INITIAL'];
+                this.yylloc = {
+                    first_line: 1,
+                    first_column: 0,
+                    last_line: 1,
+                    last_column: 0
+                };
+                if (this.options.ranges) {
+                    this.yylloc.range = [0, 0];
+                }
+                this.offset = 0;
+                return this;
+            },
 
-// consumes and returns one char from the input
-input:function () {
-        var ch = this._input[0];
-        this.yytext += ch;
-        this.yyleng++;
-        this.offset++;
-        this.match += ch;
-        this.matched += ch;
-        var lines = ch.match(/(?:\r\n?|\n).*/g);
-        if (lines) {
-            this.yylineno++;
-            this.yylloc.last_line++;
-        } else {
-            this.yylloc.last_column++;
-        }
-        if (this.options.ranges) {
-            this.yylloc.range[1]++;
-        }
+            // consumes and returns one char from the input
+            input: function () {
+                var ch = this._input[0];
+                this.yytext += ch;
+                this.yyleng++;
+                this.offset++;
+                this.match += ch;
+                this.matched += ch;
+                var lines = ch.match(/(?:\r\n?|\n).*/g);
+                if (lines) {
+                    this.yylineno++;
+                    this.yylloc.last_line++;
+                } else {
+                    this.yylloc.last_column++;
+                }
+                if (this.options.ranges) {
+                    this.yylloc.range[1]++;
+                }
 
-        this._input = this._input.slice(1);
-        return ch;
-    },
+                this._input = this._input.slice(1);
+                return ch;
+            },
 
-// unshifts one char (or a string) into the input
-unput:function (ch) {
-        var len = ch.length;
-        var lines = ch.split(/(?:\r\n?|\n)/g);
+            // unshifts one char (or a string) into the input
+            unput: function (ch) {
+                var len = ch.length;
+                var lines = ch.split(/(?:\r\n?|\n)/g);
 
-        this._input = ch + this._input;
-        this.yytext = this.yytext.substr(0, this.yytext.length - len);
-        //this.yyleng -= len;
-        this.offset -= len;
-        var oldLines = this.match.split(/(?:\r\n?|\n)/g);
-        this.match = this.match.substr(0, this.match.length - 1);
-        this.matched = this.matched.substr(0, this.matched.length - 1);
+                this._input = ch + this._input;
+                this.yytext = this.yytext.substr(0, this.yytext.length - len);
+                //this.yyleng -= len;
+                this.offset -= len;
+                var oldLines = this.match.split(/(?:\r\n?|\n)/g);
+                this.match = this.match.substr(0, this.match.length - 1);
+                this.matched = this.matched.substr(0, this.matched.length - 1);
 
-        if (lines.length - 1) {
-            this.yylineno -= lines.length - 1;
-        }
-        var r = this.yylloc.range;
+                if (lines.length - 1) {
+                    this.yylineno -= lines.length - 1;
+                }
+                var r = this.yylloc.range;
 
-        this.yylloc = {
-            first_line: this.yylloc.first_line,
-            last_line: this.yylineno + 1,
-            first_column: this.yylloc.first_column,
-            last_column: lines ?
-                (lines.length === oldLines.length ? this.yylloc.first_column : 0)
-                 + oldLines[oldLines.length - lines.length].length - lines[0].length :
-              this.yylloc.first_column - len
-        };
-
-        if (this.options.ranges) {
-            this.yylloc.range = [r[0], r[0] + this.yyleng - len];
-        }
-        this.yyleng = this.yytext.length;
-        return this;
-    },
-
-// When called from action, caches matched text and appends it on next action
-more:function () {
-        this._more = true;
-        return this;
-    },
-
-// When called from action, signals the lexer that this rule fails to match the input, so the next matching rule (regex) should be tested instead.
-reject:function () {
-        if (this.options.backtrack_lexer) {
-            this._backtrack = true;
-        } else {
-            return this.parseError('Lexical error on line ' + (this.yylineno + 1) + '. You can only invoke reject() in the lexer when the lexer is of the backtracking persuasion (options.backtrack_lexer = true).\n' + this.showPosition(), {
-                text: "",
-                token: null,
-                line: this.yylineno
-            });
-
-        }
-        return this;
-    },
-
-// retain first n characters of the match
-less:function (n) {
-        this.unput(this.match.slice(n));
-    },
-
-// displays already matched input, i.e. for error messages
-pastInput:function () {
-        var past = this.matched.substr(0, this.matched.length - this.match.length);
-        return (past.length > 20 ? '...':'') + past.substr(-20).replace(/\n/g, "");
-    },
-
-// displays upcoming input, i.e. for error messages
-upcomingInput:function () {
-        var next = this.match;
-        if (next.length < 20) {
-            next += this._input.substr(0, 20-next.length);
-        }
-        return (next.substr(0,20) + (next.length > 20 ? '...' : '')).replace(/\n/g, "");
-    },
-
-// displays the character position where the lexing error occurred, i.e. for error messages
-showPosition:function () {
-        var pre = this.pastInput();
-        var c = new Array(pre.length + 1).join("-");
-        return pre + this.upcomingInput() + "\n" + c + "^";
-    },
-
-// test the lexed token: return FALSE when not a match, otherwise return token
-test_match:function(match, indexed_rule) {
-        var token,
-            lines,
-            backup;
-
-        if (this.options.backtrack_lexer) {
-            // save context
-            backup = {
-                yylineno: this.yylineno,
-                yylloc: {
+                this.yylloc = {
                     first_line: this.yylloc.first_line,
-                    last_line: this.last_line,
+                    last_line: this.yylineno + 1,
                     first_column: this.yylloc.first_column,
-                    last_column: this.yylloc.last_column
-                },
-                yytext: this.yytext,
-                match: this.match,
-                matches: this.matches,
-                matched: this.matched,
-                yyleng: this.yyleng,
-                offset: this.offset,
-                _more: this._more,
-                _input: this._input,
-                yy: this.yy,
-                conditionStack: this.conditionStack.slice(0),
-                done: this.done
-            };
-            if (this.options.ranges) {
-                backup.yylloc.range = this.yylloc.range.slice(0);
-            }
-        }
+                    last_column: lines ?
+                        (lines.length === oldLines.length ? this.yylloc.first_column : 0)
+                        + oldLines[oldLines.length - lines.length].length - lines[0].length :
+                        this.yylloc.first_column - len
+                };
 
-        lines = match[0].match(/(?:\r\n?|\n).*/g);
-        if (lines) {
-            this.yylineno += lines.length;
-        }
-        this.yylloc = {
-            first_line: this.yylloc.last_line,
-            last_line: this.yylineno + 1,
-            first_column: this.yylloc.last_column,
-            last_column: lines ?
-                         lines[lines.length - 1].length - lines[lines.length - 1].match(/\r?\n?/)[0].length :
-                         this.yylloc.last_column + match[0].length
-        };
-        this.yytext += match[0];
-        this.match += match[0];
-        this.matches = match;
-        this.yyleng = this.yytext.length;
-        if (this.options.ranges) {
-            this.yylloc.range = [this.offset, this.offset += this.yyleng];
-        }
-        this._more = false;
-        this._backtrack = false;
-        this._input = this._input.slice(match[0].length);
-        this.matched += match[0];
-        token = this.performAction.call(this, this.yy, this, indexed_rule, this.conditionStack[this.conditionStack.length - 1]);
-        if (this.done && this._input) {
-            this.done = false;
-        }
-        if (token) {
-            return token;
-        } else if (this._backtrack) {
-            // recover context
-            for (var k in backup) {
-                this[k] = backup[k];
-            }
-            return false; // rule action called reject() implying the next rule should be tested instead.
-        }
-        return false;
-    },
+                if (this.options.ranges) {
+                    this.yylloc.range = [r[0], r[0] + this.yyleng - len];
+                }
+                this.yyleng = this.yytext.length;
+                return this;
+            },
 
-// return next match in input
-next:function () {
-        if (this.done) {
-            return this.EOF;
-        }
-        if (!this._input) {
-            this.done = true;
-        }
+            // When called from action, caches matched text and appends it on next action
+            more: function () {
+                this._more = true;
+                return this;
+            },
 
-        var token,
-            match,
-            tempMatch,
-            index;
-        if (!this._more) {
-            this.yytext = '';
-            this.match = '';
-        }
-        var rules = this._currentRules();
-        for (var i = 0; i < rules.length; i++) {
-            tempMatch = this._input.match(this.rules[rules[i]]);
-            if (tempMatch && (!match || tempMatch[0].length > match[0].length)) {
-                match = tempMatch;
-                index = i;
+            // When called from action, signals the lexer that this rule fails to match the input, so the next matching rule (regex) should be tested instead.
+            reject: function () {
                 if (this.options.backtrack_lexer) {
-                    token = this.test_match(tempMatch, rules[i]);
+                    this._backtrack = true;
+                } else {
+                    return this.parseError('Lexical error on line ' + (this.yylineno + 1) + '. You can only invoke reject() in the lexer when the lexer is of the backtracking persuasion (options.backtrack_lexer = true).\n' + this.showPosition(), {
+                        text: "",
+                        token: null,
+                        line: this.yylineno
+                    });
+
+                }
+                return this;
+            },
+
+            // retain first n characters of the match
+            less: function (n) {
+                this.unput(this.match.slice(n));
+            },
+
+            // displays already matched input, i.e. for error messages
+            pastInput: function () {
+                var past = this.matched.substr(0, this.matched.length - this.match.length);
+                return (past.length > 20 ? '...' : '') + past.substr(-20).replace(/\n/g, "");
+            },
+
+            // displays upcoming input, i.e. for error messages
+            upcomingInput: function () {
+                var next = this.match;
+                if (next.length < 20) {
+                    next += this._input.substr(0, 20 - next.length);
+                }
+                return (next.substr(0, 20) + (next.length > 20 ? '...' : '')).replace(/\n/g, "");
+            },
+
+            // displays the character position where the lexing error occurred, i.e. for error messages
+            showPosition: function () {
+                var pre = this.pastInput();
+                var c = new Array(pre.length + 1).join("-");
+                return pre + this.upcomingInput() + "\n" + c + "^";
+            },
+
+            // test the lexed token: return FALSE when not a match, otherwise return token
+            test_match: function (match, indexed_rule) {
+                var token,
+                    lines,
+                    backup;
+
+                if (this.options.backtrack_lexer) {
+                    // save context
+                    backup = {
+                        yylineno: this.yylineno,
+                        yylloc: {
+                            first_line: this.yylloc.first_line,
+                            last_line: this.last_line,
+                            first_column: this.yylloc.first_column,
+                            last_column: this.yylloc.last_column
+                        },
+                        yytext: this.yytext,
+                        match: this.match,
+                        matches: this.matches,
+                        matched: this.matched,
+                        yyleng: this.yyleng,
+                        offset: this.offset,
+                        _more: this._more,
+                        _input: this._input,
+                        yy: this.yy,
+                        conditionStack: this.conditionStack.slice(0),
+                        done: this.done
+                    };
+                    if (this.options.ranges) {
+                        backup.yylloc.range = this.yylloc.range.slice(0);
+                    }
+                }
+
+                lines = match[0].match(/(?:\r\n?|\n).*/g);
+                if (lines) {
+                    this.yylineno += lines.length;
+                }
+                this.yylloc = {
+                    first_line: this.yylloc.last_line,
+                    last_line: this.yylineno + 1,
+                    first_column: this.yylloc.last_column,
+                    last_column: lines ?
+                        lines[lines.length - 1].length - lines[lines.length - 1].match(/\r?\n?/)[0].length :
+                        this.yylloc.last_column + match[0].length
+                };
+                this.yytext += match[0];
+                this.match += match[0];
+                this.matches = match;
+                this.yyleng = this.yytext.length;
+                if (this.options.ranges) {
+                    this.yylloc.range = [this.offset, this.offset += this.yyleng];
+                }
+                this._more = false;
+                this._backtrack = false;
+                this._input = this._input.slice(match[0].length);
+                this.matched += match[0];
+                token = this.performAction.call(this, this.yy, this, indexed_rule, this.conditionStack[this.conditionStack.length - 1]);
+                if (this.done && this._input) {
+                    this.done = false;
+                }
+                if (token) {
+                    return token;
+                } else if (this._backtrack) {
+                    // recover context
+                    for (var k in backup) {
+                        this[k] = backup[k];
+                    }
+                    return false; // rule action called reject() implying the next rule should be tested instead.
+                }
+                return false;
+            },
+
+            // return next match in input
+            next: function () {
+                if (this.done) {
+                    return this.EOF;
+                }
+                if (!this._input) {
+                    this.done = true;
+                }
+
+                var token,
+                    match,
+                    tempMatch,
+                    index;
+                if (!this._more) {
+                    this.yytext = '';
+                    this.match = '';
+                }
+                var rules = this._currentRules();
+                for (var i = 0; i < rules.length; i++) {
+                    tempMatch = this._input.match(this.rules[rules[i]]);
+                    if (tempMatch && (!match || tempMatch[0].length > match[0].length)) {
+                        match = tempMatch;
+                        index = i;
+                        if (this.options.backtrack_lexer) {
+                            token = this.test_match(tempMatch, rules[i]);
+                            if (token !== false) {
+                                return token;
+                            } else if (this._backtrack) {
+                                match = false;
+                                continue; // rule action called reject() implying a rule MISmatch.
+                            } else {
+                                // else: this is a lexer rule which consumes input without producing a token (e.g. whitespace)
+                                return false;
+                            }
+                        } else if (!this.options.flex) {
+                            break;
+                        }
+                    }
+                }
+                if (match) {
+                    token = this.test_match(match, rules[index]);
                     if (token !== false) {
                         return token;
-                    } else if (this._backtrack) {
-                        match = false;
-                        continue; // rule action called reject() implying a rule MISmatch.
-                    } else {
-                        // else: this is a lexer rule which consumes input without producing a token (e.g. whitespace)
-                        return false;
                     }
-                } else if (!this.options.flex) {
-                    break;
+                    // else: this is a lexer rule which consumes input without producing a token (e.g. whitespace)
+                    return false;
                 }
-            }
-        }
-        if (match) {
-            token = this.test_match(match, rules[index]);
-            if (token !== false) {
-                return token;
-            }
-            // else: this is a lexer rule which consumes input without producing a token (e.g. whitespace)
-            return false;
-        }
-        if (this._input === "") {
-            return this.EOF;
-        } else {
-            return this.parseError('Lexical error on line ' + (this.yylineno + 1) + '. Unrecognized text.\n' + this.showPosition(), {
-                text: "",
-                token: null,
-                line: this.yylineno
-            });
-        }
-    },
+                if (this._input === "") {
+                    return this.EOF;
+                } else {
+                    return this.parseError('Lexical error on line ' + (this.yylineno + 1) + '. Unrecognized text.\n' + this.showPosition(), {
+                        text: "",
+                        token: null,
+                        line: this.yylineno
+                    });
+                }
+            },
 
-// return next match that has a token
-lex:function lex () {
-        var r = this.next();
-        if (r) {
-            return r;
-        } else {
-            return this.lex();
-        }
-    },
+            // return next match that has a token
+            lex: function lex() {
+                var r = this.next();
+                if (r) {
+                    return r;
+                } else {
+                    return this.lex();
+                }
+            },
 
-// activates a new lexer condition state (pushes the new lexer condition state onto the condition stack)
-begin:function begin (condition) {
-        this.conditionStack.push(condition);
-    },
+            // activates a new lexer condition state (pushes the new lexer condition state onto the condition stack)
+            begin: function begin(condition) {
+                this.conditionStack.push(condition);
+            },
 
-// pop the previously active lexer condition state off the condition stack
-popState:function popState () {
-        var n = this.conditionStack.length - 1;
-        if (n > 0) {
-            return this.conditionStack.pop();
-        } else {
-            return this.conditionStack[0];
-        }
-    },
+            // pop the previously active lexer condition state off the condition stack
+            popState: function popState() {
+                var n = this.conditionStack.length - 1;
+                if (n > 0) {
+                    return this.conditionStack.pop();
+                } else {
+                    return this.conditionStack[0];
+                }
+            },
 
-// produce the lexer rule set which is active for the currently active lexer condition state
-_currentRules:function _currentRules () {
-        if (this.conditionStack.length && this.conditionStack[this.conditionStack.length - 1]) {
-            return this.conditions[this.conditionStack[this.conditionStack.length - 1]].rules;
-        } else {
-            return this.conditions["INITIAL"].rules;
-        }
-    },
+            // produce the lexer rule set which is active for the currently active lexer condition state
+            _currentRules: function _currentRules() {
+                if (this.conditionStack.length && this.conditionStack[this.conditionStack.length - 1]) {
+                    return this.conditions[this.conditionStack[this.conditionStack.length - 1]].rules;
+                } else {
+                    return this.conditions["INITIAL"].rules;
+                }
+            },
 
-// return the currently active lexer condition state; when an index argument is provided it produces the N-th previous condition state, if available
-topState:function topState (n) {
-        n = this.conditionStack.length - 1 - Math.abs(n || 0);
-        if (n >= 0) {
-            return this.conditionStack[n];
-        } else {
-            return "INITIAL";
-        }
-    },
+            // return the currently active lexer condition state; when an index argument is provided it produces the N-th previous condition state, if available
+            topState: function topState(n) {
+                n = this.conditionStack.length - 1 - Math.abs(n || 0);
+                if (n >= 0) {
+                    return this.conditionStack[n];
+                } else {
+                    return "INITIAL";
+                }
+            },
 
-// alias for begin(condition)
-pushState:function pushState (condition) {
-        this.begin(condition);
-    },
+            // alias for begin(condition)
+            pushState: function pushState(condition) {
+                this.begin(condition);
+            },
 
-// return the number of states currently on the stack
-stateStackSize:function stateStackSize() {
-        return this.conditionStack.length;
-    },
-options: {},
-performAction: function anonymous(yy,yy_,$avoiding_name_collisions,YY_START) {
-var YYSTATE=YY_START;
-switch($avoiding_name_collisions) {
-case 0:return 11;
-break;
-case 1:return 12;
-break;
-case 2:return 32;
-break;
-case 3:return 33;
-break;
-case 4:return 36;
-break;
-case 5:return 18;
-break;
-case 6:return 28;
-break;
-case 7:return 29;
-break;
-case 8:return 30;
-break;
-case 9:return 25;
-break;
-case 10:return 40;
-break;
-case 11:return 41;
-break;
-case 12:return 39;
-break;
-case 13:return 16;
-break;
-case 14:return 34;
-break;
-case 15:return 35;
-break;
-case 16:return 37;
-break;
-case 17:return 38;
-break;
-case 18:return 21;
-break;
-case 19:return 22;
-break;
-case 20:return 23;
-break;
-case 21:return 24;
-break;
-case 22:return 6;
-break;
-case 23:return 26;
-break;
-case 24:return 27;
-break;
-case 25:return 42;
-break;
-case 26:return 19;
-break;
-case 27:return 20;
-break;
-case 28:return 15;
-break;
-case 29:return 13;
-break;
-case 30:return 7; 
-break;
-case 31:return 14;
-break;
-case 32: string = ''; this.begin('STRING'); 
-break;
-case 33:string += yy_.yytext;
-break;
-case 34:string += '\n';
-break;
-case 35:string += '\t';
-break;
-case 36:string += '\\';
-break;
-case 37:throw new Error('Error: invalid escape\n');
-break;
-case 38:throw new Error('Error: unfinished string.\n');
-break;
-case 39:string += '"';
-break;
-case 40:string += '\'';
-break;
-case 41: this.begin('INITIAL'); yy_.yytext = string; return 8; 
-break;
-case 42: this.begin('INITIAL'); throw new Error('Error: expected \".\n'); 
-break;
-case 43:return 10;
-break;
-case 44:return 9;
-break;
-case 45:return 17;
-break;
-case 46:/* skip whitespace */
-break;
-}
-},
-rules: [/^(?:true\b)/,/^(?:false\b)/,/^(?:getClass\b)/,/^(?:find\b)/,/^(?:findExtreme\b)/,/^(?:is\b)/,/^(?:and\b)/,/^(?:or\b)/,/^(?:not\b)/,/^(?:compare\b)/,/^(?:exist\b)/,/^(?:forall\b)/,/^(?:where\b)/,/^(?:->)/,/^(?:\{)/,/^(?:\})/,/^(?:\[)/,/^(?:\])/,/^(?:==)/,/^(?:!=)/,/^(?:>=)/,/^(?:<=)/,/^(?:=)/,/^(?:\()/,/^(?:\))/,/^(?:,)/,/^(?:>)/,/^(?:<)/,/^(?:::)/,/^(?:var:[a-zA-Z_][A-Za-z0-9_]*)/,/^(?:[a-zA-Z_][A-Za-z0-9_]*)/,/^(?:\$[a-zA-Z_][A-Za-z0-9_]*)/,/^(?:")/,/^(?:[^\\\"\n]+)/,/^(?:\\n)/,/^(?:\\t)/,/^(?:\\\\)/,/^(?:\\[^nt\"\'\\])/,/^(?:\n)/,/^(?:\\")/,/^(?:\\')/,/^(?:")/,/^(?:$)/,/^(?:([0-9]+\.[0-9]*|[0-9]*\.[0-9]+))/,/^(?:[0-9]+)/,/^(?:\.)/,/^(?:\s+)/],
-conditions: {"STRING":{"rules":[33,34,35,36,37,38,39,40,41,42],"inclusive":false},"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,43,44,45,46],"inclusive":true}}
-});
-return lexer;
-})();
-parser.lexer = lexer;
-function Parser () {
-  this.yy = {};
-}
-Parser.prototype = parser;parser.Parser = Parser;
-return new Parser;
+            // return the number of states currently on the stack
+            stateStackSize: function stateStackSize() {
+                return this.conditionStack.length;
+            },
+            options: {},
+            performAction: function anonymous(yy, yy_, $avoiding_name_collisions, YY_START) {
+                var YYSTATE = YY_START;
+                switch ($avoiding_name_collisions) {
+                    case 0: return 20;
+                        break;
+                    case 1: return 21;
+                        break;
+                    case 2: return 39;
+                        break;
+                    case 3: return 40;
+                        break;
+                    case 4: return 41;
+                        break;
+                    case 5: return 27;
+                        break;
+                    case 6: return 36;
+                        break;
+                    case 7: return 37;
+                        break;
+                    case 8: return 38;
+                        break;
+                    case 9: return 34;
+                        break;
+                    case 10: return 45;
+                        break;
+                    case 11: return 46;
+                        break;
+                    case 12: return 'WHERE';
+                        break;
+                    case 13: return 44;
+                        break;
+                    case 14: return 47;
+                        break;
+                    case 15: return 48;
+                        break;
+                    case 16: return 35;
+                        break;
+                    case 17: return 25;
+                        break;
+                    case 18: return 6;
+                        break;
+                    case 19: return 8;
+                        break;
+                    case 20: return 42;
+                        break;
+                    case 21: return 43;
+                        break;
+                    case 22: return 30;
+                        break;
+                    case 23: return 31;
+                        break;
+                    case 24: return 32;
+                        break;
+                    case 25: return 33;
+                        break;
+                    case 26: return 11;
+                        break;
+                    case 27: return 14;
+                        break;
+                    case 28: return 16;
+                        break;
+                    case 29: return 49;
+                        break;
+                    case 30: return 9;
+                        break;
+                    case 31: return 28;
+                        break;
+                    case 32: return 29;
+                        break;
+                    case 33: return 24;
+                        break;
+                    case 34: return 12;
+                        break;
+                    case 35: return 22;
+                        break;
+                    case 36: return 13;
+                        break;
+                    case 37: return 23;
+                        break;
+                    case 38: string = ''; this.begin('STRING');
+                        break;
+                    case 39: string += yy_.yytext;
+                        break;
+                    case 40: string += '\n';
+                        break;
+                    case 41: string += '\t';
+                        break;
+                    case 42: string += '\\';
+                        break;
+                    case 43: throw new Error('Error: invalid escape\n');
+                        break;
+                    case 44: throw new Error('Error: unfinished string.\n');
+                        break;
+                    case 45: string += '"';
+                        break;
+                    case 46: string += '\'';
+                        break;
+                    case 47: this.begin('INITIAL'); yy_.yytext = string; return 17;
+                        break;
+                    case 48: this.begin('INITIAL'); throw new Error('Error: expected \".\n');
+                        break;
+                    case 49: return 19;
+                        break;
+                    case 50: return 18;
+                        break;
+                    case 51: return 26;
+                        break;
+                    case 52:/* skip whitespace */
+                        break;
+                }
+            },
+            rules: [/^(?:true\b)/, /^(?:false\b)/, /^(?:getClass\b)/, /^(?:find\b)/, /^(?:findExtreme\b)/, /^(?:is\b)/, /^(?:and\b)/, /^(?:or\b)/, /^(?:not\b)/, /^(?:compare\b)/, /^(?:exist\b)/, /^(?:forall\b)/, /^(?:where\b)/, /^(?:among\b)/, /^(?:if\b)/, /^(?:with\b)/, /^(?:as\b)/, /^(?:->)/, /^(?:\{)/, /^(?:\})/, /^(?:\[)/, /^(?:\])/, /^(?:==)/, /^(?:!=)/, /^(?:>=)/, /^(?:<=)/, /^(?:=)/, /^(?:\()/, /^(?:\))/, /^(?:,)/, /^(?:;)/, /^(?:>)/, /^(?:<)/, /^(?:::)/, /^(?:\+=>)/, /^(?:var:[a-zA-Z_][A-Za-z0-9_]*)/, /^(?:[a-zA-Z_][A-Za-z0-9_]*)/, /^(?:\$[a-zA-Z_][A-Za-z0-9_]*)/, /^(?:")/, /^(?:[^\\\"\n]+)/, /^(?:\\n)/, /^(?:\\t)/, /^(?:\\\\)/, /^(?:\\[^nt\"\'\\])/, /^(?:\n)/, /^(?:\\")/, /^(?:\\')/, /^(?:")/, /^(?:$)/, /^(?:([0-9]+\.[0-9]*|[0-9]*\.[0-9]+))/, /^(?:[0-9]+)/, /^(?:\.)/, /^(?:\s+)/],
+            conditions: { "STRING": { "rules": [39, 40, 41, 42, 43, 44, 45, 46, 47, 48], "inclusive": false }, "INITIAL": { "rules": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 49, 50, 51, 52], "inclusive": true } }
+        });
+        return lexer;
+    })();
+    parser.lexer = lexer;
+    function Parser() {
+        this.yy = {};
+    }
+    Parser.prototype = parser; parser.Parser = Parser;
+    return new Parser;
 })();
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = parser;
-exports.Parser = parser.Parser;
-exports.parse = function () { return parser.parse.apply(parser, arguments); };
-exports.main = function commonjsMain (args) {
-    if (!args[1]) {
-        console.log('Usage: '+args[0]+' FILE');
-        process.exit(1);
+    exports.parser = parser;
+    exports.Parser = parser.Parser;
+    exports.parse = function () { return parser.parse.apply(parser, arguments); };
+    exports.main = function commonjsMain(args) {
+        if (!args[1]) {
+            console.log('Usage: ' + args[0] + ' FILE');
+            process.exit(1);
+        }
+        var source = require('fs').readFileSync(require('path').normalize(args[1]), "utf8");
+        return exports.parser.parse(source);
+    };
+    if (typeof module !== 'undefined' && require.main === module) {
+        exports.main(process.argv.slice(1));
     }
-    var source = require('fs').readFileSync(require('path').normalize(args[1]), "utf8");
-    return exports.parser.parse(source);
-};
-if (typeof module !== 'undefined' && require.main === module) {
-  exports.main(process.argv.slice(1));
-}
 }
 // Окно коструктора узлов действия
 var ActionNodeConstructorWindow = function (editorUi, x, y, w, h) {
@@ -4233,38 +4460,38 @@ function fillDataRelationships(tbody, cell, editorUi) {
     var values = cellLabel.split('<br>');
 
     values.forEach((element, index) => {
-        var nameRelationship = element.slice(element.indexOf('<font color="#00cccc">')+22, element.indexOf('</font>'));
-        element = element.slice(element.indexOf('</font>')+7);
+        var nameRelationship = element.slice(element.indexOf('<font color="#00cccc">') + 22, element.indexOf('</font>'));
+        element = element.slice(element.indexOf('</font>') + 7);
 
         var extendRelationship = ""
-        if(element.indexOf(' (<font color="#00cccc">') != -1) {
-            extendRelationship = element.slice(element.indexOf('(<font color="#00cccc">')+23, element.indexOf('</font>)'));
-            element = element.slice(element.indexOf('</font>)')+8);
+        if (element.indexOf(' (<font color="#00cccc">') != -1) {
+            extendRelationship = element.slice(element.indexOf('(<font color="#00cccc">') + 23, element.indexOf('</font>)'));
+            element = element.slice(element.indexOf('</font>)') + 8);
         }
 
-        element = element.slice(element.indexOf('classes:</font>')+15);
-        var valuesStr = element.slice(element.indexOf('<font color="#ff66b3">')+22, element.indexOf('</font>'));
+        element = element.slice(element.indexOf('classes:</font>') + 15);
+        var valuesStr = element.slice(element.indexOf('<font color="#ff66b3">') + 22, element.indexOf('</font>'));
         var classes = valuesStr.split(', ');
-        element = element.slice(element.indexOf('</font>')+7);
+        element = element.slice(element.indexOf('</font>') + 7);
 
         var scale = "";
-        if(element.indexOf('<font color="#6666FF">scale:</font>') != -1) {
-            element = element.slice(element.indexOf('scale:</font>')+13);
-            scale = element.slice(element.indexOf('<font color="#000000">')+22, element.indexOf('</font>'));
-            element = element.slice(element.indexOf('</font>')+7);
+        if (element.indexOf('<font color="#6666FF">scale:</font>') != -1) {
+            element = element.slice(element.indexOf('scale:</font>') + 13);
+            scale = element.slice(element.indexOf('<font color="#000000">') + 22, element.indexOf('</font>'));
+            element = element.slice(element.indexOf('</font>') + 7);
         }
 
-        element = element.slice(element.indexOf('classes:</font>')+15);
-        isBetween = element.slice(element.indexOf('<font color="#000000">')+22, element.indexOf('</font>'));
-        element = element.slice(element.indexOf('</font>')+7);
+        element = element.slice(element.indexOf('classes:</font>') + 15);
+        isBetween = element.slice(element.indexOf('<font color="#000000">') + 22, element.indexOf('</font>'));
+        element = element.slice(element.indexOf('</font>') + 7);
         var type = "";
-        if(isBetween == "true") {
-            element = element.slice(element.indexOf('type:</font>')+12);
-            type = element.slice(element.indexOf('<font color="#000000">')+22, element.indexOf('</font>'));
+        if (isBetween == "true") {
+            element = element.slice(element.indexOf('type:</font>') + 12);
+            type = element.slice(element.indexOf('<font color="#000000">') + 22, element.indexOf('</font>'));
         }
 
-        let namesRels = cellValue.getAttribute('namesRels_'+index);
-        let binFlags = cellValue.getAttribute('binFlags_'+index);
+        let namesRels = cellValue.getAttribute('namesRels_' + index);
+        let binFlags = cellValue.getAttribute('binFlags_' + index);
 
         var row = addRowRelationship(editorUi);
 
@@ -4276,7 +4503,7 @@ function fillDataRelationships(tbody, cell, editorUi) {
 
         let lastIndex = 2;
         classes.forEach(element => {
-            if(lastIndex != 2) {
+            if (lastIndex != 2) {
                 let newTdClass = document.createElement('td');
                 newTdClass.style.minWidth = "200px";
                 var newSelectClass = document.createElement('select');
@@ -4301,8 +4528,8 @@ function fillDataRelationships(tbody, cell, editorUi) {
             }
             var classSelect = row.getElementsByTagName("td").item(lastIndex)
                 .getElementsByTagName("select").item(0);
-            for(let index = 0; index < classSelect.options.length; ++index) {
-                if(classSelect.options[index].value == element) {
+            for (let index = 0; index < classSelect.options.length; ++index) {
+                if (classSelect.options[index].value == element) {
                     classSelect.options[index].selected = true;
                 }
             }
@@ -4313,14 +4540,14 @@ function fillDataRelationships(tbody, cell, editorUi) {
         var scaleSelect = row.getElementsByTagName("td").item(lastIndex)
             .getElementsByTagName("select").item(0);
 
-        for(let index = 0; index < scaleSelect.options.length; ++index) {
-            if(scaleSelect.options[index].value == scale) {
+        for (let index = 0; index < scaleSelect.options.length; ++index) {
+            if (scaleSelect.options[index].value == scale) {
                 scaleSelect.options[index].selected = true;
             }
         }
         checkFlags(row, scale);
         let namesRelsArray = namesRels.split(";");
-        if(scale == "Linear" || scale == "Partially linear") {
+        if (scale == "Linear" || scale == "Partially linear") {
             var tdInputNames = document.createElement('td');
             tdInputNames.classList = "names";
             tdInputNames.style.minWidth = "150px";
@@ -4361,7 +4588,7 @@ function fillDataRelationships(tbody, cell, editorUi) {
 
             lastIndex++;
             namesRelsArray.forEach((element, index) => {
-                if(index != 0) {
+                if (index != 0) {
                     let newTdName = document.createElement('td');
                     newTdName.style.minWidth = "200px";
                     var newNameInput = document.createElement('input');
@@ -4386,20 +4613,20 @@ function fillDataRelationships(tbody, cell, editorUi) {
                 lastIndex++;
             });
         }
-        if(!scale) {
+        if (!scale) {
             fillFlags(row, binFlags);
         }
         lastIndex++;
-        
+
         row.getElementsByTagName("td").item(lastIndex)
             .getElementsByTagName("input").item(0).checked = isBetween == 'true';
-        if(isBetween == 'true') {
+        if (isBetween == 'true') {
             var tdType = document.createElement('td');
             tdType.style.minWidth = "150px";
             var selectType = document.createElement('select');
             selectType = styleSelect(selectType);
             selectType.style.width = '100%';
-            var scales = ["One to one", "One to many"];
+            var scales = ["One to one", "One to many", "Many to one", "Many to many"];
             scales.forEach(element => {
                 var newOption = new Option(element, element);
                 selectType.options[selectType.options.length] = newOption;
@@ -4411,14 +4638,14 @@ function fillDataRelationships(tbody, cell, editorUi) {
 
             var typeSelect = row.getElementsByTagName("td").item(lastIndex)
                 .getElementsByTagName("select").item(0);
-            for(let index = 0; index < typeSelect.options.length; ++index) {
-                if(typeSelect.options[index].value == type) {
+            for (let index = 0; index < typeSelect.options.length; ++index) {
+                if (typeSelect.options[index].value == type) {
                     typeSelect.options[index].selected = true;
                 }
             }
         }
 
-        if(index != 0) {
+        if (index != 0) {
             var tdDelRow = document.createElement('td');
             var btnDelRow = mxUtils.button(getTextByLocale("Delete"), function (evt) {
                 evt.target.parentElement.parentElement.remove();
@@ -7301,7 +7528,7 @@ var toolbox = {
                     "kind": "block",
                     "type": "get_extr_object"
                 },
-                
+
             ]
         },
         {
@@ -7316,6 +7543,14 @@ var toolbox = {
                 {
                     "kind": "block",
                     "type": "assign_value_to_variable_decision_tree"
+                },
+                {
+                    "kind": "block",
+                    "type": "cast_object_to_class"
+                },
+                {
+                    "kind": "block",
+                    "type": "add_relationship_to_object"
                 },
             ]
         },
@@ -7377,17 +7612,37 @@ var toolbox = {
                 },
             ]
         },
+        {
+            "kind": "category",
+            "name": "Block",
+            "colour": "75",
+            "contents": [
+                {
+                    "kind": "block",
+                    "type": "block"
+                },
+                {
+                    "kind": "block",
+                    "type": "if_then_stmt"
+                },
+                {
+                    "kind": "block",
+                    "type": "with_stmt"
+                },
+            ]
+        },
+
     ]
 }
 function exportEnums(jsonEnums) {
     var result = "";
     jsonEnums.forEach(enumItem => {
         result += enumItem.nameEnum + "|" + enumItem.values[0];
-        for(var i = 1; i < enumItem.values.length; i++) {
+        for (var i = 1; i < enumItem.values.length; i++) {
             result += ";" + enumItem.values[i];
         }
-        
-        if(enumItem.isLinear == 'true') {
+
+        if (enumItem.isLinear == 'true') {
             result += "|TRUE|" + enumItem.nameRDF + "\n";
         } else {
             result += "|FALSE|" + enumItem.nameRDF + "\n";
@@ -7400,7 +7655,7 @@ function exportClasses(jsonClasses, workspace) {
     var result = "";
     jsonClasses.forEach(classItem => {
         result += classItem.name + "|" + classItem.extend + "|";
-        if(classItem.expression) {
+        if (classItem.expression) {
             result += codeToXML(workspace, classItem.expression);
         }
         result += "\n";
@@ -7413,22 +7668,22 @@ function exportProperties(jsonProperties) {
     jsonProperties.forEach(propertyItem => {
         result += propertyItem.name + "|";
 
-        if(propertyItem.type != "Integer" && propertyItem.type != "Double" 
-        && propertyItem.type != "Boolean" && propertyItem.type != "String") {
+        if (propertyItem.type != "Integer" && propertyItem.type != "Double"
+            && propertyItem.type != "Boolean" && propertyItem.type != "String") {
             result += "ENUM" + "|" + propertyItem.type.slice(6) + "|";
         } else {
             result += propertyItem.type.toUpperCase() + "||";
         }
 
-        if(propertyItem.isStatic == 'true') {
+        if (propertyItem.isStatic == 'true') {
             result += "TRUE|" + propertyItem.classes[0];
-            for(var i = 1; i < propertyItem.classes.length; i++) {
+            for (var i = 1; i < propertyItem.classes.length; i++) {
                 result += ";" + propertyItem.classes[i];
             }
             result += "|";
         } else {
             result += "FALSE|" + propertyItem.classes[0];
-            for(var i = 1; i < propertyItem.classes.length; i++) {
+            for (var i = 1; i < propertyItem.classes.length; i++) {
                 result += ";" + propertyItem.classes[i];
             }
             result += "|";
@@ -7442,19 +7697,17 @@ function exportProperties(jsonProperties) {
 function exportRelastionships(jsonRelationships) {
     var result = "";
     jsonRelationships.forEach(relationshipItem => {
-        result += relationshipItem.name + "|" + relationshipItem.extend + "|" 
+        result += relationshipItem.name + "|" + relationshipItem.extend + "|"
             + relationshipItem.classes[0];
-        for(var i = 1; i < relationshipItem.classes.length; i++) {
+        for (var i = 1; i < relationshipItem.classes.length; i++) {
             result += ";" + relationshipItem.classes[i];
         }
 
-        result += "|" + relationshipItem.scale + "|";
-        if(relationshipItem.isBetween == "true") {
-            result += "TRUE" + "|" + relationshipItem.type + "|";
-        } else {
-            result += "FALSE||";
+        result += "|" + relationshipItem.scale + "|" + relationshipItem.namesRels + "|";
+        if (relationshipItem.isBetween == "true") {
+            result += relationshipItem.type;
         }
-        result += relationshipItem.namesRels + "|" + relationshipItem.decFlags + "\n";
+        result += "\n";
     });
     return result;
 }
@@ -7606,6 +7859,9 @@ const xslTxt = `<?xml version="1.0"?>
 
     <xsl:template match="block[@type='get_condition_object']">
         <GetByCondition>
+            <xsl:attribute name="type">
+                <xsl:value-of select="field[@name='type_var']" />
+            </xsl:attribute>
             <xsl:attribute name="varName">
                 <xsl:value-of select="field[@name='name_var']" />
             </xsl:attribute>
@@ -7613,10 +7869,30 @@ const xslTxt = `<?xml version="1.0"?>
         </GetByCondition>
     </xsl:template>
 
+    <xsl:template match="block[@type='if_then_stmt']">
+        <IfThen>
+            <xsl:apply-templates select="value[@name='condition']" />
+            <xsl:apply-templates select="value[@name='body']" />
+        </IfThen>
+    </xsl:template>
+
+    <xsl:template match="block[@type='with_stmt']">
+        <With>
+            <xsl:attribute name="varName">
+                <xsl:value-of select="field[@name='name_var']" />
+            </xsl:attribute>
+            <xsl:apply-templates select="value[@name='expression']" />
+            <xsl:apply-templates select="value[@name='body']" />
+        </With>
+    </xsl:template>
+
     <xsl:template match="block[@type='get_extr_object']">
         <GetExtreme>
             <xsl:attribute name="extremeVarName">
                 <xsl:value-of select="field[@name='name_var1']" />
+            </xsl:attribute>
+            <xsl:attribute name="type">
+                <xsl:value-of select="field[@name='type_var2']" />
             </xsl:attribute>
             <xsl:attribute name="varName">
                 <xsl:value-of select="field[@name='name_var2']" />
@@ -7639,6 +7915,19 @@ const xslTxt = `<?xml version="1.0"?>
             <xsl:apply-templates select="value[@name='ref_to_object']" />
             <xsl:apply-templates select="value[@name='new_object']" />
         </AssignToDecisionTreeVar>
+    </xsl:template>
+
+    <xsl:template match="block[@type='add_relationship_to_object']">
+        <AddRelationshipLink>
+            <xsl:apply-templates select="value" />
+        </AddRelationshipLink>
+    </xsl:template>
+
+    <xsl:template match="block[@type='cast_object_to_class']">
+        <Cast>
+            <xsl:apply-templates select="value[@name='object']" />
+            <xsl:apply-templates select="value[@name='class']" />
+        </Cast>
     </xsl:template>
 
     <xsl:template match="block[@type='check_object_class']">
@@ -7693,6 +7982,9 @@ const xslTxt = `<?xml version="1.0"?>
 
     <xsl:template match="block[@type='quantifier_of_existence']">
         <ExistenceQuantifier>
+            <xsl:attribute name="type">
+                <xsl:value-of select="field[@name='type_var']" />
+            </xsl:attribute>
             <xsl:attribute name="varName">
                 <xsl:value-of select="field[@name='name_var']" />
             </xsl:attribute>
@@ -7703,6 +7995,9 @@ const xslTxt = `<?xml version="1.0"?>
 
     <xsl:template match="block[@type='quantifier_of_generality']">
         <ForAllQuantifier>
+            <xsl:attribute name="type">
+                <xsl:value-of select="field[@name='type_var']" />
+            </xsl:attribute>
             <xsl:attribute name="varName">
                 <xsl:value-of select="field[@name='name_var']" />
             </xsl:attribute>
@@ -7711,8 +8006,14 @@ const xslTxt = `<?xml version="1.0"?>
         </ForAllQuantifier>
     </xsl:template>
 
+    <xsl:template match="block[@type='block']">
+        <Block>
+            <xsl:apply-templates select="value" />
+        </Block>
+    </xsl:template>
+
 </xsl:stylesheet>`
-var validator = function(newValue) {
+var validator = function (newValue) {
   if (!/^[a-zA-Z_][A-Za-z0-9_]*$/.test(newValue)) {
     return null;
   }
@@ -7720,273 +8021,300 @@ var validator = function(newValue) {
 };
 
 Blockly.Blocks['object'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("object", validator), "object_name");
+      .appendField(new Blockly.FieldTextInput("object", validator), "object_name");
     this.setOutput(true, "Object");
     this.setColour(120);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['class'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("class", validator), "class_name");
+      .appendField(new Blockly.FieldTextInput("class", validator), "class_name");
     this.setOutput(true, "Class");
     this.setColour(315);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['property'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("property", validator), "property_name");
+      .appendField(new Blockly.FieldTextInput("property", validator), "property_name");
     this.setOutput(true, "Property");
     this.setColour(60);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['relationship'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("relationship", validator), "relationship_name");
+      .appendField(new Blockly.FieldTextInput("relationship", validator), "relationship_name");
     this.setOutput(true, "Relationship");
     this.setColour(180);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['string'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("string"), "value");
+      .appendField(new Blockly.FieldTextInput("string"), "value");
     this.setOutput(true, "String");
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['boolean'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldCheckbox("TRUE"), "value");
+      .appendField(new Blockly.FieldCheckbox("TRUE"), "value");
     this.setOutput(true, "Boolean");
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['integer'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldNumber(0, -Infinity, Infinity, 1), "value");
+      .appendField(new Blockly.FieldNumber(0, -Infinity, Infinity, 1), "value");
     this.setOutput(true, "Integer");
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['double'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldNumber(0), "value");
+      .appendField(new Blockly.FieldNumber(0), "value");
     this.setOutput(true, "Double");
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['get_class'] = {
-  init: function() {
+  init: function () {
     this.appendValueInput("object")
-        .setCheck("Object")
-        .appendField("get class");
+      .setCheck("Object")
+      .appendField("get class");
     this.setOutput(true, "Class");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['get_property_value'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("get property value");
+      .appendField("get property value");
     this.appendValueInput("object")
-        .setCheck("Object")
-        .appendField("object");
+      .setCheck("Object")
+      .appendField("object");
     this.appendValueInput("property")
-        .setCheck("Property")
-        .appendField("property");
+      .setCheck("Property")
+      .appendField("property");
     this.setOutput(true, ["Boolean", "String", "Integer", "Double", "Enum"]);
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['if_then_stmt'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("If Then");
+    this.appendValueInput("condition")
+      .setCheck("Boolean")
+      .appendField("condition");
+    this.appendValueInput("body")
+      .setCheck(["Object", "Class", "Relationship", "Property", "Boolean", "String", "Integer", "Double", "Enum", "Statement"])
+      .appendField("body");
+    this.setInputsInline(false);
+    this.setOutput(true, "Statement");
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['with_stmt'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("With");
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldTextInput("var", validator), "name_var");
+    this.appendValueInput("expression")
+      .setCheck("Object")
+      .appendField("expression");
+    this.appendValueInput("body")
+      .setCheck(["Object", "Class", "Relationship", "Property", "Boolean", "String", "Integer", "Double", "Enum", "Statement"])
+      .appendField("body");
+    this.setInputsInline(false);
+    this.setOutput(true, "Statement");
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['get_relationship_object'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("get relationship object");
+      .appendField("get relationship object");
     this.appendValueInput("object")
-        .setCheck("Object")
-        .appendField("subject");
+      .setCheck("Object")
+      .appendField("subject");
     this.appendValueInput("relationship")
-        .setCheck("Relationship")
-        .appendField("relationship");
+      .setCheck("Relationship")
+      .appendField("relationship");
     this.setInputsInline(false);
     this.setOutput(true, ["Object"]);
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['get_condition_object'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("get object by condition");
+      .appendField("get object by condition");
     this.appendValueInput("condition")
-        .setCheck("Boolean")
-        .appendField("condition");
+      .setCheck("Boolean")
+      .appendField("condition");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("var", validator), "name_var");
+      .appendField(new Blockly.FieldTextInput("type", validator), "type_var");
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldTextInput("var", validator), "name_var");
     this.setInputsInline(false);
     this.setOutput(true, ["Object"]);
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['get_extr_object'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("get extreme object");
+      .appendField("get extreme object");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("var1", validator), "name_var1");
+      .appendField(new Blockly.FieldTextInput("var1", validator), "name_var1");
     this.appendValueInput("extreme_condition")
-        .setCheck("Boolean")
-        .appendField("extreme condition");
+      .setCheck("Boolean")
+      .appendField("extreme condition");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("var2", validator), "name_var2");
+      .appendField(new Blockly.FieldTextInput("type2", validator), "type_var2");
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldTextInput("var2", validator), "name_var2");
     this.appendValueInput("general_condition")
-        .setCheck("Boolean")
-        .appendField("general condition");
+      .setCheck("Boolean")
+      .appendField("general condition");
     this.setInputsInline(false);
     this.setOutput(true, ["Object"]);
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['assign_value_to_property'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("Assign a value to a property");
+      .appendField("Assign a value to a property");
     this.appendValueInput("object")
-        .setCheck("Object")
-        .appendField("object");
+      .setCheck("Object")
+      .appendField("object");
     this.appendValueInput("property")
-        .setCheck("Property")
-        .appendField("property");
+      .setCheck("Property")
+      .appendField("property");
     this.appendValueInput("new_value")
-        .setCheck(["Boolean", "String", "Integer", "Double", "Enum"])
-        .appendField("new value");
+      .setCheck(["Boolean", "String", "Integer", "Double", "Enum"])
+      .appendField("new value");
+    this.setOutput(true, "Statement");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['assign_value_to_variable_decision_tree'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("Assign a value to a variable decision tree");
+      .appendField("Assign a value to a variable decision tree");
     this.appendValueInput("ref_to_object")
-        .setCheck("VarObject")
-        .appendField("reference to object");
+      .setCheck("VarObject")
+      .appendField("reference to object");
     this.appendValueInput("new_object")
-        .setCheck("Object")
-        .appendField("new object");
+      .setCheck("Object")
+      .appendField("new object");
+    this.setOutput(true, "Statement");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
-Blockly.Blocks['check_object_class'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Check the object class");
-    this.appendValueInput("object")
-        .setCheck("Object")
-        .appendField("object");
-    this.appendValueInput("class")
-        .setCheck("Class")
-        .appendField("class");
-    this.setOutput(true, "Boolean");
-    this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['check_relationship'] = {
-  init: function() {
+Blockly.Blocks['add_relationship_to_object'] = {
+  init: function () {
     this.itemCount_ = 2;
     this.appendDummyInput()
-        .appendField("Check for a relationship");
+      .appendField("Add relationship to object");
     this.appendValueInput("relationship")
-        .setCheck("Relationship")
-        .appendField("relationship");
+      .setCheck("Relationship")
+      .appendField("relationship");
     this.appendValueInput("object")
-        .setCheck("Object")
-        .appendField("subject");
+      .setCheck("Object")
+      .appendField("subject");
     this.setInputsInline(false);
-    this.setOutput(true, "Boolean");
+    this.setOutput(true, "Statement");
     this.setMutator(new Blockly.Mutator(['check_relationship_item']));
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   },
 
-  mutationToDom: function() {
+  mutationToDom: function () {
     const container = Blockly.utils.xml.createElement('mutation');
     container.setAttribute('items', this.itemCount_);
     return container;
   },
 
-  domToMutation: function(xmlElement) {
+  domToMutation: function (xmlElement) {
     this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
     this.updateShape_();
   },
 
-  saveExtraState: function() {
+  saveExtraState: function () {
     return {
       'itemCount': this.itemCount_,
     };
   },
-  
-  loadExtraState: function(state) {
+
+  loadExtraState: function (state) {
     this.itemCount_ = state['itemCount'];
     this.updateShape_();
   },
-  
-  decompose: function(workspace) {
+
+  decompose: function (workspace) {
     //TODO: сделать рефакторинг
     const containerBlock = workspace.newBlock('check_relationship_container');
     containerBlock.initSvg();
@@ -7999,8 +8327,8 @@ Blockly.Blocks['check_relationship'] = {
     }
     return containerBlock;
   },
-  
-  compose: function(containerBlock) {
+
+  compose: function (containerBlock) {
     //TODO: сделать рефакторинг
     let itemBlock = containerBlock.getInputTargetBlock('STACK');
     // Count number of inputs.
@@ -8008,7 +8336,7 @@ Blockly.Blocks['check_relationship'] = {
     while (itemBlock && !itemBlock.isInsertionMarker()) {
       connections.push(itemBlock.valueConnection_);
       itemBlock =
-          itemBlock.nextConnection && itemBlock.nextConnection.targetBlock();
+        itemBlock.nextConnection && itemBlock.nextConnection.targetBlock();
     }
     // Disconnect any children that don't belong.
     for (let i = 0; i < this.itemCount_; i++) {
@@ -8024,8 +8352,8 @@ Blockly.Blocks['check_relationship'] = {
       Blockly.Mutator.reconnect(connections[i], this, "object" + i);
     }
   },
-  
-  saveConnections: function(containerBlock) {
+
+  saveConnections: function (containerBlock) {
     //TODO: сделать рефакторинг
     let itemBlock = containerBlock.getInputTargetBlock('STACK');
     let i = 0;
@@ -8033,12 +8361,12 @@ Blockly.Blocks['check_relationship'] = {
       const input = this.getInput("object" + i);
       itemBlock.valueConnection_ = input && input.connection.targetConnection;
       itemBlock =
-          itemBlock.nextConnection && itemBlock.nextConnection.targetBlock();
+        itemBlock.nextConnection && itemBlock.nextConnection.targetBlock();
       i++;
     }
   },
-  
-  updateShape_: function() {
+
+  updateShape_: function () {
     //TODO: сделать рефакторинг
     if (this.itemCount_ && this.getInput('EMPTY')) {
       this.removeInput('EMPTY');
@@ -8048,7 +8376,154 @@ Blockly.Blocks['check_relationship'] = {
     // Add new inputs.
     for (let i = 0; i < this.itemCount_; i++) {
       if (!this.getInput("object" + i)) {
-        const input = this.appendValueInput("object" + i).setCheck("Object").appendField("object"+i);
+        const input = this.appendValueInput("object" + i).setCheck("Object").appendField("object" + i);
+      }
+    }
+    // Remove deleted inputs.
+    for (let i = this.itemCount_; this.getInput("object" + i); i++) {
+      this.removeInput("object" + i);
+    }
+  },
+};
+
+Blockly.Blocks['cast_object_to_class'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Cast the object to class");
+    this.appendValueInput("class")
+      .setCheck("Class")
+      .appendField("class");
+    this.appendValueInput("object")
+      .setCheck("Object")
+      .appendField("object");
+    this.setOutput(true, "Object");
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['check_object_class'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Check the object class");
+    this.appendValueInput("object")
+      .setCheck("Object")
+      .appendField("object");
+    this.appendValueInput("class")
+      .setCheck("Class")
+      .appendField("class");
+    this.setOutput(true, "Boolean");
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['check_relationship'] = {
+  init: function () {
+    this.itemCount_ = 2;
+    this.appendDummyInput()
+      .appendField("Check for a relationship");
+    this.appendValueInput("relationship")
+      .setCheck("Relationship")
+      .appendField("relationship");
+    this.appendValueInput("object")
+      .setCheck("Object")
+      .appendField("subject");
+    this.setInputsInline(false);
+    this.setOutput(true, "Boolean");
+    this.setMutator(new Blockly.Mutator(['check_relationship_item']));
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+
+  mutationToDom: function () {
+    const container = Blockly.utils.xml.createElement('mutation');
+    container.setAttribute('items', this.itemCount_);
+    return container;
+  },
+
+  domToMutation: function (xmlElement) {
+    this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
+    this.updateShape_();
+  },
+
+  saveExtraState: function () {
+    return {
+      'itemCount': this.itemCount_,
+    };
+  },
+
+  loadExtraState: function (state) {
+    this.itemCount_ = state['itemCount'];
+    this.updateShape_();
+  },
+
+  decompose: function (workspace) {
+    //TODO: сделать рефакторинг
+    const containerBlock = workspace.newBlock('check_relationship_container');
+    containerBlock.initSvg();
+    let connection = containerBlock.getInput('STACK').connection;
+    for (let i = 0; i < this.itemCount_; i++) {
+      const itemBlock = workspace.newBlock('check_relationship_item');
+      itemBlock.initSvg();
+      connection.connect(itemBlock.previousConnection);
+      connection = itemBlock.nextConnection;
+    }
+    return containerBlock;
+  },
+
+  compose: function (containerBlock) {
+    //TODO: сделать рефакторинг
+    let itemBlock = containerBlock.getInputTargetBlock('STACK');
+    // Count number of inputs.
+    const connections = [];
+    while (itemBlock && !itemBlock.isInsertionMarker()) {
+      connections.push(itemBlock.valueConnection_);
+      itemBlock =
+        itemBlock.nextConnection && itemBlock.nextConnection.targetBlock();
+    }
+    // Disconnect any children that don't belong.
+    for (let i = 0; i < this.itemCount_; i++) {
+      const connection = this.getInput("object" + i).connection.targetConnection;
+      if (connection && connections.indexOf(connection) === -1) {
+        connection.disconnect();
+      }
+    }
+    this.itemCount_ = connections.length;
+    this.updateShape_();
+    // Reconnect any child blocks.
+    for (let i = 0; i < this.itemCount_; i++) {
+      Blockly.Mutator.reconnect(connections[i], this, "object" + i);
+    }
+  },
+
+  saveConnections: function (containerBlock) {
+    //TODO: сделать рефакторинг
+    let itemBlock = containerBlock.getInputTargetBlock('STACK');
+    let i = 0;
+    while (itemBlock) {
+      const input = this.getInput("object" + i);
+      itemBlock.valueConnection_ = input && input.connection.targetConnection;
+      itemBlock =
+        itemBlock.nextConnection && itemBlock.nextConnection.targetBlock();
+      i++;
+    }
+  },
+
+  updateShape_: function () {
+    //TODO: сделать рефакторинг
+    if (this.itemCount_ && this.getInput('EMPTY')) {
+      this.removeInput('EMPTY');
+    } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
+      this.appendDummyInput("EMPTY").appendField("objects");
+    }
+    // Add new inputs.
+    for (let i = 0; i < this.itemCount_; i++) {
+      if (!this.getInput("object" + i)) {
+        const input = this.appendValueInput("object" + i).setCheck("Object").appendField("object" + i);
       }
     }
     // Remove deleted inputs.
@@ -8060,7 +8535,7 @@ Blockly.Blocks['check_relationship'] = {
 };
 
 Blockly.Blocks['check_relationship_item'] = {
-  init: function() {
+  init: function () {
     this.setColour(240);
     this.appendDummyInput().appendField("Object");
     this.setPreviousStatement(true);
@@ -8071,7 +8546,7 @@ Blockly.Blocks['check_relationship_item'] = {
 };
 
 Blockly.Blocks['check_relationship_container'] = {
-  init: function() {
+  init: function () {
     this.setColour(240);
     this.appendDummyInput().appendField("list objects");
     this.appendStatementInput('STACK');
@@ -8081,188 +8556,323 @@ Blockly.Blocks['check_relationship_container'] = {
 };
 
 Blockly.Blocks['and'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("And");
+      .appendField("And");
     this.appendValueInput("operand1")
-        .setCheck("Boolean")
-        .appendField("operand1");
+      .setCheck("Boolean")
+      .appendField("operand1");
     this.appendValueInput("operand2")
-        .setCheck("Boolean")
-        .appendField("operand2");
+      .setCheck("Boolean")
+      .appendField("operand2");
     this.setOutput(true, "Boolean");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['or'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("Or");
+      .appendField("Or");
     this.appendValueInput("operand1")
-        .setCheck("Boolean")
-        .appendField("operand1");
+      .setCheck("Boolean")
+      .appendField("operand1");
     this.appendValueInput("operand2")
-        .setCheck("Boolean")
-        .appendField("operand2");
+      .setCheck("Boolean")
+      .appendField("operand2");
     this.setOutput(true, "Boolean");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['not'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("Not");
+      .appendField("Not");
     this.appendValueInput("operand")
-        .setCheck("Boolean")
-        .appendField("operand");
+      .setCheck("Boolean")
+      .appendField("operand");
     this.setOutput(true, "Boolean");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['comparison'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("comparison");
+      .appendField("comparison");
     this.appendValueInput("operand1")
-        .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean"])
-        .appendField("operand1");
+      .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean"])
+      .appendField("operand1");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["greater","GREATER"], ["less","LESS"], ["equal","EQUAL"], ["not equal","NOT_EQUAL"], ["greater or equal","GE"], ["less or equal","LE"]]), "operator");
+      .appendField(new Blockly.FieldDropdown([["greater", "GREATER"], ["less", "LESS"], ["equal", "EQUAL"], ["not equal", "NOT_EQUAL"], ["greater or equal", "GE"], ["less or equal", "LE"]]), "operator");
     this.appendValueInput("operand2")
-        .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean"])
-        .appendField("operand1");
+      .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean"])
+      .appendField("operand1");
     this.setInputsInline(false);
     this.setOutput(true, "Boolean");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['three_digit_comparison'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("three-digit comparison");
+      .appendField("three-digit comparison");
     this.appendValueInput("operand1")
-        .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean"])
-        .appendField("operand1");
+      .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean"])
+      .appendField("operand1");
     this.appendValueInput("operand2")
-        .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean"])
-        .appendField("operand2");
+      .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean"])
+      .appendField("operand2");
     this.setOutput(true, "Enum");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['quantifier_of_existence'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("∃");
+      .appendField("∃");
     this.appendValueInput("definition_area")
-        .setCheck("Boolean")
-        .appendField("definition area");
+      .setCheck("Boolean")
+      .appendField("definition area");
     this.appendValueInput("verification_condition")
-        .setCheck("Boolean")
-        .appendField("verification condition");
+      .setCheck("Boolean")
+      .appendField("verification condition");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("var", validator), "name_var");
+      .appendField(new Blockly.FieldTextInput("type", validator), "type_var");
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldTextInput("var", validator), "name_var");
     this.setInputsInline(false);
     this.setOutput(true, "Boolean");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['quantifier_of_generality'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField("∀");
+      .appendField("∀");
     this.appendValueInput("definition_area")
-        .setCheck("Boolean")
-        .appendField("definition area");
+      .setCheck("Boolean")
+      .appendField("definition area");
     this.appendValueInput("verification_condition")
-        .setCheck("Boolean")
-        .appendField("verification condition");
+      .setCheck("Boolean")
+      .appendField("verification condition");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("var", validator), "name_var");
+      .appendField(new Blockly.FieldTextInput("type", validator), "type_var");
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldTextInput("var", validator), "name_var");
     this.setInputsInline(false);
     this.setOutput(true, "Boolean");
     this.setColour(240);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['ref_to_decision_tree_var'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("decision_tree_var", validator), "var_name");
+      .appendField(new Blockly.FieldTextInput("decision_tree_var", validator), "var_name");
     this.setOutput(true, ["Object", "VarObject"]);
     this.setColour(60);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['variable'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("variable", validator), "var_name");
+      .appendField(new Blockly.FieldTextInput("variable", validator), "var_name");
     this.setOutput(true, "Object");
     this.setColour(45);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
 };
 
 Blockly.Blocks['enum'] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("owner", validator), "owner_name");
+      .appendField(new Blockly.FieldTextInput("owner", validator), "owner_name");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldTextInput("value", validator), "value");
+      .appendField(new Blockly.FieldTextInput("value", validator), "value");
     this.setOutput(true, "Enum");
     this.setColour(0);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setTooltip("");
+    this.setHelpUrl("");
   }
-};Blockly.JavaScript['object'] = function(block) {
+};
+
+Blockly.Blocks['block'] = {
+  init: function () {
+    this.itemCount_ = 2;
+    this.appendDummyInput()
+      .appendField("Block");
+    this.appendValueInput("statement0")
+      .setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean", "Statement"])
+      .appendField("statement0");
+    this.setInputsInline(false);
+    this.setMutator(new Blockly.Mutator(['check_statement_item']));
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+
+  mutationToDom: function () {
+    const container = Blockly.utils.xml.createElement('mutation');
+    container.setAttribute('items', this.itemCount_);
+    return container;
+  },
+
+  domToMutation: function (xmlElement) {
+    this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
+    this.updateShape_();
+  },
+
+  saveExtraState: function () {
+    return {
+      'itemCount': this.itemCount_,
+    };
+  },
+
+  loadExtraState: function (state) {
+    this.itemCount_ = state['itemCount'];
+    this.updateShape_();
+  },
+
+  decompose: function (workspace) {
+    //TODO: сделать рефакторинг
+    const containerBlock = workspace.newBlock('check_statement_container');
+    containerBlock.initSvg();
+    let connection = containerBlock.getInput('STACK').connection;
+    for (let i = 0; i < this.itemCount_; i++) {
+      const itemBlock = workspace.newBlock('check_statement_item');
+      itemBlock.initSvg();
+      connection.connect(itemBlock.previousConnection);
+      connection = itemBlock.nextConnection;
+    }
+    return containerBlock;
+  },
+
+  compose: function (containerBlock) {
+    //TODO: сделать рефакторинг
+    let itemBlock = containerBlock.getInputTargetBlock('STACK');
+    // Count number of inputs.
+    const connections = [];
+    while (itemBlock && !itemBlock.isInsertionMarker()) {
+      connections.push(itemBlock.valueConnection_);
+      itemBlock =
+        itemBlock.nextConnection && itemBlock.nextConnection.targetBlock();
+    }
+    // Disconnect any children that don't belong.
+    for (let i = 0; i < this.itemCount_; i++) {
+      const connection = this.getInput("statement" + i).connection.targetConnection;
+      if (connection && connections.indexOf(connection) === -1) {
+        connection.disconnect();
+      }
+    }
+    this.itemCount_ = connections.length;
+    this.updateShape_();
+    // Reconnect any child blocks.
+    for (let i = 0; i < this.itemCount_; i++) {
+      Blockly.Mutator.reconnect(connections[i], this, "statement" + i);
+    }
+  },
+
+  saveConnections: function (containerBlock) {
+    //TODO: сделать рефакторинг
+    let itemBlock = containerBlock.getInputTargetBlock('STACK');
+    let i = 0;
+    while (itemBlock) {
+      const input = this.getInput("statement" + i);
+      itemBlock.valueConnection_ = input && input.connection.targetConnection;
+      itemBlock =
+        itemBlock.nextConnection && itemBlock.nextConnection.targetBlock();
+      i++;
+    }
+  },
+
+  updateShape_: function () {
+    //TODO: сделать рефакторинг
+    if (this.itemCount_ && this.getInput('EMPTY')) {
+      this.removeInput('EMPTY');
+    } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
+      this.appendDummyInput("EMPTY").appendField("statements");
+    }
+    // Add new inputs.
+    for (let i = 0; i < this.itemCount_; i++) {
+      if (!this.getInput("statement" + i)) {
+        const input = this.appendValueInput("statement" + i).setCheck(["String", "Integer", "Double", "Enum", "Object", "Boolean", "Statement"]).appendField("statement" + i);
+      }
+    }
+    // Remove deleted inputs.
+    for (let i = this.itemCount_; this.getInput("statement" + i); i++) {
+      this.removeInput("statement" + i);
+    }
+  },
+
+};
+
+Blockly.Blocks['check_statement_item'] = {
+  init: function () {
+    this.setColour(240);
+    this.appendDummyInput().appendField("Statement");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip("");
+    this.contextMenu = false;
+  },
+};
+
+Blockly.Blocks['check_statement_container'] = {
+  init: function () {
+    this.setColour(240);
+    this.appendDummyInput().appendField("list statements");
+    this.appendStatementInput('STACK');
+    this.setTooltip("");
+    this.contextMenu = false;
+  },
+};Blockly.JavaScript['object'] = function (block) {
   var text_object_name = block.getFieldValue('object_name');
   var code = text_object_name;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['class'] = function(block) {
+Blockly.JavaScript['class'] = function (block) {
   var text_class_name = block.getFieldValue('class_name');
   var code = text_class_name;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['property'] = function(block) {
+Blockly.JavaScript['property'] = function (block) {
   var text_property_name = block.getFieldValue('property_name');
   var code = text_property_name;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['relationship'] = function(block) {
+Blockly.JavaScript['relationship'] = function (block) {
   var text_relationship_name = block.getFieldValue('relationship_name');
   var code = text_relationship_name;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['string'] = function(block) {
+Blockly.JavaScript['string'] = function (block) {
   var text_value = block.getFieldValue('value');
   var newTextValue = text_value
     .replaceAll("\\", '\\\\')
@@ -8273,92 +8883,102 @@ Blockly.JavaScript['string'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['boolean'] = function(block) {
+Blockly.JavaScript['boolean'] = function (block) {
   var checkbox_value = block.getFieldValue('value') === 'TRUE';
   var code = checkbox_value;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['integer'] = function(block) {
+Blockly.JavaScript['integer'] = function (block) {
   var number_value = block.getFieldValue('value');
   var code = number_value;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['double'] = function(block) {
+Blockly.JavaScript['double'] = function (block) {
   var number_value = block.getFieldValue('value');
   var code = number_value;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['get_class'] = function(block) {
+Blockly.JavaScript['get_class'] = function (block) {
   var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_NONE);
   var code = value_object + ".getClass()";
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['get_property_value'] = function(block) {
+Blockly.JavaScript['get_property_value'] = function (block) {
   var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_NONE);
   var value_property = Blockly.JavaScript.valueToCode(block, 'property', Blockly.JavaScript.ORDER_NONE);
   var code = value_object + "." + value_property;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['get_relationship_object'] = function(block) {
+Blockly.JavaScript['if_then_stmt'] = function (block) {
+  var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_NONE);
+  var value_body = Blockly.JavaScript.valueToCode(block, 'body', Blockly.JavaScript.ORDER_NONE);
+  var code = "if ( " + value_condition + " ) " + value_body;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['with_stmt'] = function (block) {
+  var text_name_var = block.getFieldValue('name_var');
+  var value_expression = Blockly.JavaScript.valueToCode(block, 'expression', Blockly.JavaScript.ORDER_NONE);
+  var value_body = Blockly.JavaScript.valueToCode(block, 'body', Blockly.JavaScript.ORDER_NONE);
+  var code = "with ( " + text_name_var + " = " + value_expression + " ) " + value_body;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['get_relationship_object'] = function (block) {
   var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_NONE);
   var value_relationship = Blockly.JavaScript.valueToCode(block, 'relationship', Blockly.JavaScript.ORDER_NONE);
   var code = value_object + "->" + value_relationship;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['get_condition_object'] = function(block) {
+Blockly.JavaScript['get_condition_object'] = function (block) {
   var value_condition = Blockly.JavaScript.valueToCode(block, 'condition', Blockly.JavaScript.ORDER_NONE);
   var text_name_var = block.getFieldValue('name_var');
-  var code = "find " + text_name_var + " { " + value_condition + " } ";
+  var text_type_var = block.getFieldValue('type_var');
+  var code = "find " + text_type_var + " " + text_name_var + " { " + value_condition + " } ";
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['get_extr_object'] = function(block) {
+Blockly.JavaScript['get_extr_object'] = function (block) {
 
   var text_name_var1 = block.getFieldValue('name_var1');
   var value_extreme_condition = Blockly.JavaScript.valueToCode(block, 'extreme_condition', Blockly.JavaScript.ORDER_NONE);
+  var text_type_var2 = block.getFieldValue('type_var2');
   var text_name_var2 = block.getFieldValue('name_var2');
   var value_general_condition = Blockly.JavaScript.valueToCode(block, 'general_condition', Blockly.JavaScript.ORDER_NONE);
-  var code = "findExtreme " + text_name_var1 + " [ " + value_extreme_condition + " ] " + " where " + text_name_var2 + " { " + value_general_condition + " } ";
+  var code = "findExtreme " + text_name_var1 + " [ " + value_extreme_condition + " ] among " + text_type_var2 + " " + text_name_var2 + " { " + value_general_condition + " } ";
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['assign_value_to_property'] = function(block) {
+Blockly.JavaScript['assign_value_to_property'] = function (block) {
   var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ASSIGNMENT);
   var value_property = Blockly.JavaScript.valueToCode(block, 'property', Blockly.JavaScript.ORDER_ASSIGNMENT);
   var value_new_value = Blockly.JavaScript.valueToCode(block, 'new_value', Blockly.JavaScript.ORDER_ASSIGNMENT);
   var code = value_object + "." + value_property + " = " + value_new_value;
-  return code;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['assign_value_to_variable_decision_tree'] = function(block) {
+Blockly.JavaScript['assign_value_to_variable_decision_tree'] = function (block) {
   var value_ref_to_object = Blockly.JavaScript.valueToCode(block, 'ref_to_object', Blockly.JavaScript.ORDER_ASSIGNMENT);
   var value_new_object = Blockly.JavaScript.valueToCode(block, 'new_object', Blockly.JavaScript.ORDER_ASSIGNMENT);
   var code = value_ref_to_object + " = " + value_new_object;
-  return code;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['check_object_class'] = function(block) {
-  var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_INSTANCEOF);
-  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_INSTANCEOF);
-  var code = value_object + " is " + value_class;
-  return [code, Blockly.JavaScript.ORDER_INSTANCEOF];
-};
-
-Blockly.JavaScript['check_relationship'] = function(block) {
+Blockly.JavaScript['add_relationship_to_object'] = function (block) {
   var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_NONE);
   var value_relationship = Blockly.JavaScript.valueToCode(block, 'relationship', Blockly.JavaScript.ORDER_NONE);
 
-  var code = value_object + "->" + value_relationship + "("; 
+  var code = value_object + " +=> " + value_relationship + " (";
   let values = [];
   for (var i = 0; i < block.itemCount_; i++) {
     let valueCode = Blockly.JavaScript.valueToCode(block, 'object' + i, Blockly.JavaScript.ORDER_NONE);
-    if(valueCode) {
+    if (valueCode) {
       values.push(valueCode);
     }
   }
@@ -8367,77 +8987,120 @@ Blockly.JavaScript['check_relationship'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['and'] = function(block) {
+Blockly.JavaScript['cast_object_to_class'] = function (block) {
+  var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_INSTANCEOF);
+  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_INSTANCEOF);
+  var code = value_object + " as " + value_class;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['check_object_class'] = function (block) {
+  var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_INSTANCEOF);
+  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_INSTANCEOF);
+  var code = value_object + " is " + value_class;
+  return [code, Blockly.JavaScript.ORDER_INSTANCEOF];
+};
+
+Blockly.JavaScript['check_relationship'] = function (block) {
+  var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_NONE);
+  var value_relationship = Blockly.JavaScript.valueToCode(block, 'relationship', Blockly.JavaScript.ORDER_NONE);
+
+  var code = value_object + "->" + value_relationship + "(";
+  let values = [];
+  for (var i = 0; i < block.itemCount_; i++) {
+    let valueCode = Blockly.JavaScript.valueToCode(block, 'object' + i, Blockly.JavaScript.ORDER_NONE);
+    if (valueCode) {
+      values.push(valueCode);
+    }
+  }
+  let valueString = values.join(", ");
+  code += valueString + ")";
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['and'] = function (block) {
   var value_operand1 = Blockly.JavaScript.valueToCode(block, 'operand1', Blockly.JavaScript.ORDER_LOGICAL_AND);
   var value_operand2 = Blockly.JavaScript.valueToCode(block, 'operand2', Blockly.JavaScript.ORDER_LOGICAL_AND);
   var code = value_operand1 + " and " + value_operand2;
   return [code, Blockly.JavaScript.ORDER_LOGICAL_AND];
 };
 
-Blockly.JavaScript['or'] = function(block) {
+Blockly.JavaScript['or'] = function (block) {
   var value_operand1 = Blockly.JavaScript.valueToCode(block, 'operand1', Blockly.JavaScript.ORDER_LOGICAL_OR);
   var value_operand2 = Blockly.JavaScript.valueToCode(block, 'operand2', Blockly.JavaScript.ORDER_LOGICAL_OR);
   var code = value_operand1 + " or " + value_operand2;
   return [code, Blockly.JavaScript.ORDER_LOGICAL_OR];
 };
 
-Blockly.JavaScript['not'] = function(block) {
+Blockly.JavaScript['not'] = function (block) {
   var value_operand = Blockly.JavaScript.valueToCode(block, 'operand', Blockly.JavaScript.ORDER_LOGICAL_NOT);
   var code = "not " + value_operand;
   return [code, Blockly.JavaScript.ORDER_LOGICAL_NOT];
 };
 
-Blockly.JavaScript['comparison'] = function(block) {
+Blockly.JavaScript['comparison'] = function (block) {
   var value_operand1 = Blockly.JavaScript.valueToCode(block, 'operand1', Blockly.JavaScript.ORDER_RELATIONAL);
   var dropdown_operator = block.getFieldValue('operator');
-  var operators = {GREATER: ">", LESS: "<", EQUAL: "==", NOT_EQUAL: "!=", GE: ">=", LE: "<="};
+  var operators = { GREATER: ">", LESS: "<", EQUAL: "==", NOT_EQUAL: "!=", GE: ">=", LE: "<=" };
   var value_operand2 = Blockly.JavaScript.valueToCode(block, 'operand2', Blockly.JavaScript.ORDER_RELATIONAL);
   var code = value_operand1 + " " + operators[dropdown_operator] + " " + value_operand2;
   return [code, Blockly.JavaScript.ORDER_RELATIONAL];
 };
 
-Blockly.JavaScript['three_digit_comparison'] = function(block) {
+Blockly.JavaScript['three_digit_comparison'] = function (block) {
   var value_operand1 = Blockly.JavaScript.valueToCode(block, 'operand1', Blockly.JavaScript.ORDER_NONE);
   var value_operand2 = Blockly.JavaScript.valueToCode(block, 'operand2', Blockly.JavaScript.ORDER_NONE);
   var code = value_operand1 + ".compare(" + value_operand2 + ")";
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['quantifier_of_existence'] = function(block) {
+Blockly.JavaScript['quantifier_of_existence'] = function (block) {
   var value_definition_area = Blockly.JavaScript.valueToCode(block, 'definition_area', Blockly.JavaScript.ORDER_NONE);
   var value_verification_condition = Blockly.JavaScript.valueToCode(block, 'verification_condition', Blockly.JavaScript.ORDER_NONE);
-  var dropdown_type = block.getFieldValue('type');
+  var text_type_var = block.getFieldValue('type_var');
   var text_name_var = block.getFieldValue('name_var');
-  // TODO: Как тут указать тип переменной??
-  var code = "exist " + text_name_var + " [ " + value_definition_area + " ] { " + value_verification_condition + " }";
+  var code = "exist " + text_type_var + " " + text_name_var + " [ " + value_definition_area + " ] { " + value_verification_condition + " }";
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['quantifier_of_generality'] = function(block) {
+Blockly.JavaScript['quantifier_of_generality'] = function (block) {
   var value_definition_area = Blockly.JavaScript.valueToCode(block, 'definition_area', Blockly.JavaScript.ORDER_NONE);
   var value_verification_condition = Blockly.JavaScript.valueToCode(block, 'verification_condition', Blockly.JavaScript.ORDER_NONE);
+  var text_type_var = block.getFieldValue('type_var');
   var text_name_var = block.getFieldValue('name_var');
-  var code = "forall " + text_name_var + " [ " + value_definition_area + " ] { " + value_verification_condition + " } ";
+  var code = "forall " + text_type_var + " " + text_name_var + " [ " + value_definition_area + " ] { " + value_verification_condition + " } ";
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['ref_to_decision_tree_var'] = function(block) {
+Blockly.JavaScript['ref_to_decision_tree_var'] = function (block) {
   var text_var_name = block.getFieldValue('var_name');
   var code = 'var:' + text_var_name;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['variable'] = function(block) {
+Blockly.JavaScript['variable'] = function (block) {
   var text_name_variable = block.getFieldValue('var_name');
-  var code = "$"+text_name_variable;
+  var code = "$" + text_name_variable;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['enum'] = function(block) {
+Blockly.JavaScript['enum'] = function (block) {
   var text_owner_name = block.getFieldValue('owner_name');
   var text_value = block.getFieldValue('value');
   var code = text_owner_name + "::" + text_value;
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['block'] = function (block) {
+  var code = "{\n";
+  for (var i = 0; i < block.itemCount_; i++) {
+    let valueCode = Blockly.JavaScript.valueToCode(block, 'statement' + i, Blockly.JavaScript.ORDER_NONE);
+    if (valueCode) {
+      code += valueCode + ";\n";
+    }
+  }
+  code += "}";
+  return code;
 };// Окно создание логических узлов
 var LogicNodeConstructorWindow = function (editorUi, x, y, w, h) {
 
@@ -8477,12 +9140,29 @@ var LogicNodeConstructorWindow = function (editorUi, x, y, w, h) {
         }
         win.destroy();
     });
+
+    var btnCreateHYPNode = mxUtils.button('HYP', function () {
+        var theGraph = editorUi.editor.graph;
+        if (theGraph.isEnabled() && !theGraph.isCellLocked(theGraph.getDefaultParent())) {
+            var pos = theGraph.getInsertPoint();
+            var newElement = new mxCell("", new mxGeometry(pos.x, pos.y, 120, 80), "shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fontColor=#000000;align=center;editable=0;");
+            newElement.value = "HYP";
+            newElement.vertex = !0;
+            theGraph.setSelectionCell(theGraph.addCell(newElement));
+            theGraph.setAttributeForCell(newElement, 'type', "HYP");
+        }
+        win.destroy();
+    });
+
     btnCreateANDNode = styleBtn(btnCreateANDNode);
-    btnCreateANDNode.style.minWidth = "50%";
+    btnCreateANDNode.style.minWidth = "32%";
     btnCreateORNode = styleBtn(btnCreateORNode);
-    btnCreateORNode.style.minWidth = "50%";
+    btnCreateORNode.style.minWidth = "32%";
+    btnCreateHYPNode = styleBtn(btnCreateHYPNode);
+    btnCreateHYPNode.style.minWidth = "32%";
     div.appendChild(btnCreateANDNode);
     div.appendChild(btnCreateORNode);
+    div.appendChild(btnCreateHYPNode);
 
     // Настройки окна
     var win = new mxWindow(getTextByLocale("TitleLogicNodeConstructorWindow"), div, x, y, w, h, true, true);
@@ -8696,7 +9376,7 @@ var CycleNodeConstructorWindow = function (editorUi, x, y, w, h) {
     divBlockly.style.height = "100%";
     divBlockly.style.display = "none";
 
-    var operators = [ "And", "Or" ];
+    var operators = ["And", "Or", "Mutex", "HYP"];
 
     //Экран с текстом
     var text = document.createElement('textarea');
@@ -8707,33 +9387,33 @@ var CycleNodeConstructorWindow = function (editorUi, x, y, w, h) {
     var btnCreateNodeInText = mxUtils.button(getTextByLocale("Create"), function () {
 
         var expression = divText.getElementsByTagName("textarea").item(0).value;
-        if(expression) {
+        if (expression) {
             //TODO: Возможно сделать обработку ошибок и выводить свои ошибки
             parser.parse(expression)
         } else {
             throw new Error(getTextByLocale("ExpressionIsMissing"));
         }
         error = "";
-        if(!nameVarInText.value) {
+        if (!nameVarInText.value) {
             error += getTextByLocale("NameVariableIsMissing");
-        } else if(!checkValidID(nameVarInText.value)) {
+        } else if (!checkValidID(nameVarInText.value)) {
             error += getTextByLocale("NameVariableIsIncorrect");
         }
-        if(typeof (selectClassInText.options[selectClassInText.options.selectedIndex]) == "undefined" || !selectClassInText.options[selectClassInText.options.selectedIndex].value) {
+        if (typeof (selectClassInText.options[selectClassInText.options.selectedIndex]) == "undefined" || !selectClassInText.options[selectClassInText.options.selectedIndex].value) {
             error += getTextByLocale("TypeVariableIsMissing");
         }
-        if(error) {
+        if (error) {
             throw new Error(error);
         }
 
         var selectedOperatorInText = selectOperatorInText.options[selectOperatorInText.options.selectedIndex].value;
 
-        
+
         var theGraph = editorUi.editor.graph;
         if (theGraph.isEnabled() && !theGraph.isCellLocked(theGraph.getDefaultParent())) {
             var pos = theGraph.getInsertPoint();
             var newElement = new mxCell("", new mxGeometry(pos.x, pos.y, 120, 80), "shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fontColor=#000000;align=center;editable=0;");
-            
+
             //TODO: Возможно сделать подсветку в самом узле 
 
             newElement.vertex = !0;
@@ -8752,7 +9432,7 @@ var CycleNodeConstructorWindow = function (editorUi, x, y, w, h) {
     // Кнопка переключение на Blockly
     var btnSwitchToBlockly = mxUtils.button(getTextByLocale("SwitchBlockly"), function () {
         var expression = divText.getElementsByTagName("textarea").item(0).value;
-        if(expression) {
+        if (expression) {
             parser.parse(expression)
         }
         divText.style.display = "none";
@@ -8760,7 +9440,7 @@ var CycleNodeConstructorWindow = function (editorUi, x, y, w, h) {
         nestedDiv.innerHTML = "";
         workspace = Blockly.inject('cycleCreateBlocklyDiv', { toolbox: toolbox });
         workspace.clear();
-        if(expression) {
+        if (expression) {
             parser.parse(expression)
             toBlock(root, workspace);
         }
@@ -8812,39 +9492,39 @@ var CycleNodeConstructorWindow = function (editorUi, x, y, w, h) {
     var nestedDiv = document.createElement('div');
     nestedDiv.id = "cycleCreateBlocklyDiv";
     nestedDiv = styleBlocklyAreaExp(nestedDiv, w, h);
-    nestedDiv.style.height = h*0.72+'px';
+    nestedDiv.style.height = h * 0.72 + 'px';
 
     // Кнопка создания узла
     var btnCreateNodeInBlockly = mxUtils.button(getTextByLocale("Create"), function () {
         var code = generateCode(workspace);
-        if(!code) {
+        if (!code) {
             throw new Error(getTextByLocale("ExpressionIsMissing"));
         } else {
-            try { 
+            try {
                 parser.parse(code);
-            } catch(e) {
+            } catch (e) {
                 throw new Error(getTextByLocale("EmptyConnection"));
             }
         }
         error = "";
-        if(!nameVarInBlockly.value) {
+        if (!nameVarInBlockly.value) {
             error += getTextByLocale("NameVariableIsMissing");
-        } else if(!checkValidID(nameVarInBlockly.value)) {
+        } else if (!checkValidID(nameVarInBlockly.value)) {
             error += getTextByLocale("NameVariableIsIncorrect");
         }
-        if(typeof (selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex]) == "undefined" || !selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value) {
+        if (typeof (selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex]) == "undefined" || !selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value) {
             error += getTextByLocale("TypeVariableIsMissing");
         }
-        if(error) {
+        if (error) {
             throw new Error(error);
         }
         var selectedOperatorInBlockly = selectOperatorInBlockly.options[selectOperatorInBlockly.options.selectedIndex].value;
-        
+
         var theGraph = editorUi.editor.graph;
         if (theGraph.isEnabled() && !theGraph.isCellLocked(theGraph.getDefaultParent())) {
             var pos = theGraph.getInsertPoint();
             var newElement = new mxCell("", new mxGeometry(pos.x, pos.y, 120, 80), "shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fontColor=#000000;align=center;editable=0;");
-            
+
 
             newElement.vertex = !0;
             theGraph.setSelectionCell(theGraph.addCell(newElement));
@@ -8907,6 +9587,239 @@ var CycleNodeConstructorWindow = function (editorUi, x, y, w, h) {
 
     // Настройки окна
     var win = new mxWindow(getTextByLocale("TitleCycleNodeConstructorWindow"), div, x, y, w, h, true, true);
+    this.window = win;
+    this.window.contentWrapper.style.height = "100%";
+    this.window.destroyOnClose = true;
+    this.window.setMaximizable(false);
+    this.window.setResizable(false);
+    this.window.setClosable(true);
+    this.window.setVisible(true);
+};
+// Окно коструктора узлов действия
+var WhileNodeConstructorWindow = function (editorUi, x, y, w, h) {
+
+    // Верстка окна
+    var div = document.createElement('div');
+    div.style.height = "100%";
+    var divText = document.createElement('div');
+    divText.style.height = "100%";
+    var divBlockly = document.createElement('div');
+    divBlockly.style.height = "100%";
+    divBlockly.style.display = "none";
+
+    var operators = ["And", "Or"];
+
+    //Экран с текстом
+    var text = document.createElement('textarea');
+    text = styleTextAreaExp(text);
+    text.style.height = "74%";
+
+    // Кнопка создания узла
+    var btnCreateNodeInText = mxUtils.button(getTextByLocale("Create"), function () {
+
+        var expression = divText.getElementsByTagName("textarea").item(0).value;
+        if (expression) {
+            //TODO: Возможно сделать обработку ошибок и выводить свои ошибки
+            parser.parse(expression)
+        } else {
+            throw new Error(getTextByLocale("ExpressionIsMissing"));
+        }
+        error = "";
+        if (!nameVarInText.value) {
+            error += getTextByLocale("NameVariableIsMissing");
+        } else if (!checkValidID(nameVarInText.value)) {
+            error += getTextByLocale("NameVariableIsIncorrect");
+        }
+        if (typeof (selectClassInText.options[selectClassInText.options.selectedIndex]) == "undefined" || !selectClassInText.options[selectClassInText.options.selectedIndex].value) {
+            error += getTextByLocale("TypeVariableIsMissing");
+        }
+        if (error) {
+            throw new Error(error);
+        }
+
+        var selectedOperatorInText = selectOperatorInText.options[selectOperatorInText.options.selectedIndex].value;
+
+
+        var theGraph = editorUi.editor.graph;
+        if (theGraph.isEnabled() && !theGraph.isCellLocked(theGraph.getDefaultParent())) {
+            var pos = theGraph.getInsertPoint();
+            var newElement = new mxCell("", new mxGeometry(pos.x, pos.y, 120, 80), "shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fontColor=#000000;align=center;editable=0;");
+
+            //TODO: Возможно сделать подсветку в самом узле 
+
+            newElement.vertex = !0;
+            theGraph.setSelectionCell(theGraph.addCell(newElement));
+            var typeInText = selectClassInText.options[selectClassInText.options.selectedIndex].value;
+            theGraph.setAttributeForCell(newElement, 'expression', expression);
+            theGraph.setAttributeForCell(newElement, 'typeVar', typeInText);
+            theGraph.setAttributeForCell(newElement, 'nameVar', nameVarInText.value);
+            theGraph.setAttributeForCell(newElement, 'operator', selectedOperatorInText);
+            theGraph.setAttributeForCell(newElement, 'typeCycle', 'while');
+        }
+        win.destroy();
+    });
+
+    var workspace;
+
+    // Кнопка переключение на Blockly
+    var btnSwitchToBlockly = mxUtils.button(getTextByLocale("SwitchBlockly"), function () {
+        var expression = divText.getElementsByTagName("textarea").item(0).value;
+        if (expression) {
+            parser.parse(expression)
+        }
+        divText.style.display = "none";
+        divBlockly.style.display = "block";
+        nestedDiv.innerHTML = "";
+        workspace = Blockly.inject('cycleCreateBlocklyDiv', { toolbox: toolbox });
+        workspace.clear();
+        if (expression) {
+            parser.parse(expression)
+            toBlock(root, workspace);
+        }
+        nameVarInBlockly.value = nameVarInText.value;
+        selectOperatorInBlockly.options.selectedIndex = selectOperatorInText.options.selectedIndex;
+        selectClassInBlockly.options.selectedIndex = selectClassInText.options.selectedIndex;
+    });
+
+    var nameVarInText = document.createElement('input');
+    nameVarInText.type = "text";
+    nameVarInText = styleInput(nameVarInText);
+    nameVarInText.style.height = '5%';
+    nameVarInText.placeholder = "New variable";
+
+    var jsonClasses = getClasses(editorUi);
+
+    var selectClassInText = document.createElement('select');
+    selectClassInText = styleSelect(selectClassInText);
+    selectClassInText.style.height = '5%';
+    jsonClasses.forEach(classItem => {
+        var newOption = new Option(classItem.name, classItem.name);
+        selectClassInText.options[selectClassInText.options.length] = newOption;
+    });
+
+    var selectOperatorInText = document.createElement('select');
+    selectOperatorInText = styleSelect(selectOperatorInText);
+    selectOperatorInText.style.height = '5%';
+    operators.forEach(item => {
+        var newOption = new Option(item, item.toUpperCase());
+        selectOperatorInText.options[selectOperatorInText.options.length] = newOption;
+    });
+
+    divText.appendChild(text);
+    var btnTextDiv = document.createElement('div');
+    btnTextDiv = styleDivBtn(btnTextDiv);
+    btnTextDiv.style.height = "10%";
+    btnCreateNodeInText = styleBtn(btnCreateNodeInText);
+    btnSwitchToBlockly = styleBtn(btnSwitchToBlockly);
+    divText.appendChild(nameVarInText);
+    divText.appendChild(selectClassInText);
+    divText.appendChild(selectOperatorInText);
+    btnTextDiv.appendChild(btnCreateNodeInText);
+    btnTextDiv.appendChild(btnSwitchToBlockly);
+    divText.appendChild(btnTextDiv);
+    div.appendChild(divText);
+
+
+    //Экран с blockly
+    var nestedDiv = document.createElement('div');
+    nestedDiv.id = "cycleCreateBlocklyDiv";
+    nestedDiv = styleBlocklyAreaExp(nestedDiv, w, h);
+    nestedDiv.style.height = h * 0.72 + 'px';
+
+    // Кнопка создания узла
+    var btnCreateNodeInBlockly = mxUtils.button(getTextByLocale("Create"), function () {
+        var code = generateCode(workspace);
+        if (!code) {
+            throw new Error(getTextByLocale("ExpressionIsMissing"));
+        } else {
+            try {
+                parser.parse(code);
+            } catch (e) {
+                throw new Error(getTextByLocale("EmptyConnection"));
+            }
+        }
+        error = "";
+        if (!nameVarInBlockly.value) {
+            error += getTextByLocale("NameVariableIsMissing");
+        } else if (!checkValidID(nameVarInBlockly.value)) {
+            error += getTextByLocale("NameVariableIsIncorrect");
+        }
+        if (typeof (selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex]) == "undefined" || !selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value) {
+            error += getTextByLocale("TypeVariableIsMissing");
+        }
+        if (error) {
+            throw new Error(error);
+        }
+        var selectedOperatorInBlockly = selectOperatorInBlockly.options[selectOperatorInBlockly.options.selectedIndex].value;
+
+        var theGraph = editorUi.editor.graph;
+        if (theGraph.isEnabled() && !theGraph.isCellLocked(theGraph.getDefaultParent())) {
+            var pos = theGraph.getInsertPoint();
+            var newElement = new mxCell("", new mxGeometry(pos.x, pos.y, 120, 80), "shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fontColor=#000000;align=center;editable=0;");
+
+
+            newElement.vertex = !0;
+            theGraph.setSelectionCell(theGraph.addCell(newElement));
+            var typeInBlockly = selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value;
+            theGraph.setAttributeForCell(newElement, 'expression', code);
+            theGraph.setAttributeForCell(newElement, 'typeVar', typeInBlockly);
+            theGraph.setAttributeForCell(newElement, 'nameVar', nameVarInBlockly.value);
+            theGraph.setAttributeForCell(newElement, 'operator', selectedOperatorInBlockly);
+            theGraph.setAttributeForCell(newElement, 'typeCycle', 'while');
+        }
+        win.destroy();
+    });
+
+    //кнопка переключения на текстовый вариант
+    var btnSwitchToText = mxUtils.button(getTextByLocale("SwitchText"), function () {
+        var code = generateCode(workspace);
+        divBlockly.style.display = "none";
+        divText.style.display = "block";
+        divText.getElementsByTagName("textarea").item(0).value = code;
+        nameVarInText.value = nameVarInBlockly.value;
+        selectOperatorInText.options.selectedIndex = selectOperatorInBlockly.options.selectedIndex;
+        selectClassInText.options.selectedIndex = selectClassInBlockly.options.selectedIndex;
+    });
+
+    var nameVarInBlockly = document.createElement('input');
+    nameVarInBlockly.type = "text";
+    nameVarInBlockly = styleInput(nameVarInBlockly);
+    nameVarInBlockly.style.height = '5%';
+    nameVarInBlockly.placeholder = "New variable";
+
+    var selectClassInBlockly = document.createElement('select');
+    selectClassInBlockly = styleSelect(selectClassInBlockly);
+    selectClassInBlockly.style.height = '5%';
+    jsonClasses.forEach(classItem => {
+        var newOption = new Option(classItem.name, classItem.name);
+        selectClassInBlockly.options[selectClassInBlockly.options.length] = newOption;
+    });
+
+    var selectOperatorInBlockly = document.createElement('select');
+    selectOperatorInBlockly = styleSelect(selectOperatorInBlockly);
+    selectOperatorInBlockly.style.height = '5%';
+    operators.forEach(item => {
+        var newOption = new Option(item, item.toUpperCase());
+        selectOperatorInBlockly.options[selectOperatorInBlockly.options.length] = newOption;
+    });
+
+    divBlockly.appendChild(nestedDiv);
+    var btnBlockDiv = document.createElement('div');
+    btnBlockDiv = styleDivBtn(btnBlockDiv);
+    btnBlockDiv.style.height = "8%";
+    btnCreateNodeInBlockly = styleBtn(btnCreateNodeInBlockly);
+    btnSwitchToText = styleBtn(btnSwitchToText);
+    divBlockly.appendChild(nameVarInBlockly);
+    divBlockly.appendChild(selectClassInBlockly);
+    divBlockly.appendChild(selectOperatorInBlockly);
+    btnBlockDiv.appendChild(btnCreateNodeInBlockly);
+    btnBlockDiv.appendChild(btnSwitchToText);
+    divBlockly.appendChild(btnBlockDiv);
+    div.appendChild(divBlockly);
+
+
+    // Настройки окна
+    var win = new mxWindow(getTextByLocale("TitleWhileNodeConstructorWindow"), div, x, y, w, h, true, true);
     this.window = win;
     this.window.contentWrapper.style.height = "100%";
     this.window.destroyOnClose = true;
@@ -9462,7 +10375,7 @@ var CycleNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
     divBlockly.style.height = "100%";
     divBlockly.style.display = "none";
 
-    var operators = [ "And", "Or" ];
+    var operators = ["And", "Or", "Mutex", "HYP"];
 
     //Экран с текстом
     var text = document.createElement('textarea');
@@ -9474,29 +10387,29 @@ var CycleNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
     var btnCreateNodeInText = mxUtils.button(getTextByLocale("Apply"), function () {
 
         var expression = divText.getElementsByTagName("textarea").item(0).value;
-        if(expression) {
+        if (expression) {
             //TODO: Возможно сделать обработку ошибок и выводить свои ошибки
             parser.parse(expression)
         } else {
             throw new Error(getTextByLocale("ExpressionIsMissing"));
         }
         error = "";
-        if(!nameVarInText.value) {
+        if (!nameVarInText.value) {
             error += getTextByLocale("NameVariableIsMissing");
-        } else if(!checkValidID(nameVarInText.value)) {
+        } else if (!checkValidID(nameVarInText.value)) {
             error += getTextByLocale("NameVariableIsIncorrect");
         }
-        if(typeof (selectClassInText.options[selectClassInText.options.selectedIndex]) == "undefined" || !selectClassInText.options[selectClassInText.options.selectedIndex].value) {
+        if (typeof (selectClassInText.options[selectClassInText.options.selectedIndex]) == "undefined" || !selectClassInText.options[selectClassInText.options.selectedIndex].value) {
             error += getTextByLocale("TypeVariableIsMissing");
         }
-        if(error) {
+        if (error) {
             throw new Error(error);
         }
 
         var selectedOperatorInText = selectOperatorInText.options[selectOperatorInText.options.selectedIndex].value;
         var typeInText = selectClassInText.options[selectClassInText.options.selectedIndex].value;
 
-        
+
         var theGraph = editorUi.editor.graph;
 
         theGraph.getModel().beginUpdate();
@@ -9515,7 +10428,7 @@ var CycleNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
     // Кнопка переключение на Blockly
     var btnSwitchToBlockly = mxUtils.button(getTextByLocale("SwitchBlockly"), function () {
         var expression = divText.getElementsByTagName("textarea").item(0).value;
-        if(expression) {
+        if (expression) {
             parser.parse(expression)
         }
         divText.style.display = "none";
@@ -9523,7 +10436,7 @@ var CycleNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
         nestedDiv.innerHTML = "";
         workspace = Blockly.inject('cycleUpdateBlocklyDiv', { toolbox: toolbox });
         workspace.clear();
-        if(expression) {
+        if (expression) {
             parser.parse(expression)
             toBlock(root, workspace);
         }
@@ -9549,8 +10462,8 @@ var CycleNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
         selectClassInText.options[selectClassInText.options.length] = newOption;
     });
     let type = cell.value.getAttribute('typeVar');
-    for(let index = 0; index < selectClassInText.options.length; ++index) {
-        if(selectClassInText.options[index].value == type) {
+    for (let index = 0; index < selectClassInText.options.length; ++index) {
+        if (selectClassInText.options[index].value == type) {
             selectClassInText.options[index].selected = true;
         }
     }
@@ -9563,8 +10476,8 @@ var CycleNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
         selectOperatorInText.options[selectOperatorInText.options.length] = newOption;
     });
     let operator = cell.value.getAttribute('operator');
-    for(let index = 0; index < selectOperatorInText.options.length; ++index) {
-        if(selectOperatorInText.options[index].value == operator) {
+    for (let index = 0; index < selectOperatorInText.options.length; ++index) {
+        if (selectOperatorInText.options[index].value == operator) {
             selectOperatorInText.options[index].selected = true;
         }
     }
@@ -9588,35 +10501,35 @@ var CycleNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
     var nestedDiv = document.createElement('div');
     nestedDiv.id = "cycleUpdateBlocklyDiv";
     nestedDiv = styleBlocklyAreaExp(nestedDiv, w, h);
-    nestedDiv.style.height = h*0.72+'px';
+    nestedDiv.style.height = h * 0.72 + 'px';
 
     // Кнопка создания узла
     var btnCreateNodeInBlockly = mxUtils.button(getTextByLocale("Apply"), function () {
         var code = generateCode(workspace);
-        if(!code) {
+        if (!code) {
             throw new Error(getTextByLocale("ExpressionIsMissing"));
         } else {
-            try { 
+            try {
                 parser.parse(code);
-            } catch(e) {
+            } catch (e) {
                 throw new Error(getTextByLocale("EmptyConnection"));
             }
         }
         error = "";
-        if(!nameVarInBlockly.value) {
+        if (!nameVarInBlockly.value) {
             error += getTextByLocale("NameVariableIsMissing");
-        } else if(!checkValidID(nameVarInBlockly.value)) {
+        } else if (!checkValidID(nameVarInBlockly.value)) {
             error += getTextByLocale("NameVariableIsIncorrect");
         }
-        if(typeof (selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex]) == "undefined" || !selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value) {
+        if (typeof (selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex]) == "undefined" || !selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value) {
             error += getTextByLocale("TypeVariableIsMissing");
         }
-        if(error) {
+        if (error) {
             throw new Error(error);
         }
         var selectedOperatorInBlockly = selectOperatorInBlockly.options[selectOperatorInBlockly.options.selectedIndex].value;
         var typeInBlockly = selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value;
-        
+
         var theGraph = editorUi.editor.graph;
 
         theGraph.getModel().beginUpdate();
@@ -9680,6 +10593,244 @@ var CycleNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
 
     // Настройки окна
     var win = new mxWindow(getTextByLocale("TitleCycleNodeEditorWindow"), div, x, y, w, h, true, true);
+    this.window = win;
+    this.window.contentWrapper.style.height = "100%";
+    this.window.destroyOnClose = true;
+    this.window.setMaximizable(false);
+    this.window.setResizable(false);
+    this.window.setClosable(true);
+    this.window.setVisible(true);
+};
+// Окно редактирования узлов действия
+var WhileNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
+
+    // Верстка окна
+    var div = document.createElement('div');
+    div.style.height = "100%";
+    var divText = document.createElement('div');
+    divText.style.height = "100%";
+    var divBlockly = document.createElement('div');
+    divBlockly.style.height = "100%";
+    divBlockly.style.display = "none";
+
+    var operators = ["And", "Or"];
+
+    //Экран с текстом
+    var text = document.createElement('textarea');
+    text = styleTextAreaExp(text);
+    text.style.height = "74%";
+    text.value = cell.value.getAttribute('expression');
+
+    // Кнопка создания узла
+    var btnCreateNodeInText = mxUtils.button(getTextByLocale("Apply"), function () {
+
+        var expression = divText.getElementsByTagName("textarea").item(0).value;
+        if (expression) {
+            //TODO: Возможно сделать обработку ошибок и выводить свои ошибки
+            parser.parse(expression)
+        } else {
+            throw new Error(getTextByLocale("ExpressionIsMissing"));
+        }
+        error = "";
+        if (!nameVarInText.value) {
+            error += getTextByLocale("NameVariableIsMissing");
+        } else if (!checkValidID(nameVarInText.value)) {
+            error += getTextByLocale("NameVariableIsIncorrect");
+        }
+        if (typeof (selectClassInText.options[selectClassInText.options.selectedIndex]) == "undefined" || !selectClassInText.options[selectClassInText.options.selectedIndex].value) {
+            error += getTextByLocale("TypeVariableIsMissing");
+        }
+        if (error) {
+            throw new Error(error);
+        }
+
+        var selectedOperatorInText = selectOperatorInText.options[selectOperatorInText.options.selectedIndex].value;
+        var typeInText = selectClassInText.options[selectClassInText.options.selectedIndex].value;
+
+
+        var theGraph = editorUi.editor.graph;
+
+        theGraph.getModel().beginUpdate();
+        cell.value.setAttribute("expression", expression);
+        cell.value.setAttribute("typeVar", typeInText);
+        cell.value.setAttribute("nameVar", nameVarInText.value);
+        cell.value.setAttribute("operator", selectedOperatorInText);
+
+        theGraph.getModel().endUpdate();
+        theGraph.refresh(); // update the graph
+        win.destroy();
+    });
+
+    var workspace;
+
+    // Кнопка переключение на Blockly
+    var btnSwitchToBlockly = mxUtils.button(getTextByLocale("SwitchBlockly"), function () {
+        var expression = divText.getElementsByTagName("textarea").item(0).value;
+        if (expression) {
+            parser.parse(expression)
+        }
+        divText.style.display = "none";
+        divBlockly.style.display = "block";
+        nestedDiv.innerHTML = "";
+        workspace = Blockly.inject('cycleUpdateBlocklyDiv', { toolbox: toolbox });
+        workspace.clear();
+        if (expression) {
+            parser.parse(expression)
+            toBlock(root, workspace);
+        }
+        nameVarInBlockly.value = nameVarInText.value;
+        selectOperatorInBlockly.options.selectedIndex = selectOperatorInText.options.selectedIndex;
+        selectClassInBlockly.options.selectedIndex = selectClassInText.options.selectedIndex;
+    });
+
+    var nameVarInText = document.createElement('input');
+    nameVarInText.type = "text";
+    nameVarInText = styleInput(nameVarInText);
+    nameVarInText.style.height = '5%';
+    nameVarInText.placeholder = "New variable";
+    nameVarInText.value = cell.value.getAttribute('nameVar');
+
+    var jsonClasses = getClasses(editorUi);
+
+    var selectClassInText = document.createElement('select');
+    selectClassInText = styleSelect(selectClassInText);
+    selectClassInText.style.height = '5%';
+    jsonClasses.forEach(classItem => {
+        var newOption = new Option(classItem.name, classItem.name);
+        selectClassInText.options[selectClassInText.options.length] = newOption;
+    });
+    let type = cell.value.getAttribute('typeVar');
+    for (let index = 0; index < selectClassInText.options.length; ++index) {
+        if (selectClassInText.options[index].value == type) {
+            selectClassInText.options[index].selected = true;
+        }
+    }
+
+    var selectOperatorInText = document.createElement('select');
+    selectOperatorInText = styleSelect(selectOperatorInText);
+    selectOperatorInText.style.height = '5%';
+    operators.forEach(item => {
+        var newOption = new Option(item, item.toUpperCase());
+        selectOperatorInText.options[selectOperatorInText.options.length] = newOption;
+    });
+    let operator = cell.value.getAttribute('operator');
+    for (let index = 0; index < selectOperatorInText.options.length; ++index) {
+        if (selectOperatorInText.options[index].value == operator) {
+            selectOperatorInText.options[index].selected = true;
+        }
+    }
+
+    divText.appendChild(text);
+    var btnTextDiv = document.createElement('div');
+    btnTextDiv = styleDivBtn(btnTextDiv);
+    btnTextDiv.style.height = "10%";
+    btnCreateNodeInText = styleBtn(btnCreateNodeInText);
+    btnSwitchToBlockly = styleBtn(btnSwitchToBlockly);
+    divText.appendChild(nameVarInText);
+    divText.appendChild(selectClassInText);
+    divText.appendChild(selectOperatorInText);
+    btnTextDiv.appendChild(btnCreateNodeInText);
+    btnTextDiv.appendChild(btnSwitchToBlockly);
+    divText.appendChild(btnTextDiv);
+    div.appendChild(divText);
+
+
+    //Экран с blockly
+    var nestedDiv = document.createElement('div');
+    nestedDiv.id = "cycleUpdateBlocklyDiv";
+    nestedDiv = styleBlocklyAreaExp(nestedDiv, w, h);
+    nestedDiv.style.height = h * 0.72 + 'px';
+
+    // Кнопка создания узла
+    var btnCreateNodeInBlockly = mxUtils.button(getTextByLocale("Apply"), function () {
+        var code = generateCode(workspace);
+        if (!code) {
+            throw new Error(getTextByLocale("ExpressionIsMissing"));
+        } else {
+            try {
+                parser.parse(code);
+            } catch (e) {
+                throw new Error(getTextByLocale("EmptyConnection"));
+            }
+        }
+        error = "";
+        if (!nameVarInBlockly.value) {
+            error += getTextByLocale("NameVariableIsMissing");
+        } else if (!checkValidID(nameVarInBlockly.value)) {
+            error += getTextByLocale("NameVariableIsIncorrect");
+        }
+        if (typeof (selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex]) == "undefined" || !selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value) {
+            error += getTextByLocale("TypeVariableIsMissing");
+        }
+        if (error) {
+            throw new Error(error);
+        }
+        var selectedOperatorInBlockly = selectOperatorInBlockly.options[selectOperatorInBlockly.options.selectedIndex].value;
+        var typeInBlockly = selectClassInBlockly.options[selectClassInBlockly.options.selectedIndex].value;
+
+        var theGraph = editorUi.editor.graph;
+
+        theGraph.getModel().beginUpdate();
+        cell.value.setAttribute("expression", code);
+        cell.value.setAttribute("typeVar", typeInBlockly);
+        cell.value.setAttribute("nameVar", nameVarInBlockly.value);
+        cell.value.setAttribute("operator", selectedOperatorInBlockly);
+
+        theGraph.getModel().endUpdate();
+        theGraph.refresh(); // update the graph
+        win.destroy();
+    });
+
+    //кнопка переключения на текстовый вариант
+    var btnSwitchToText = mxUtils.button(getTextByLocale("SwitchText"), function () {
+        var code = generateCode(workspace);
+        divBlockly.style.display = "none";
+        divText.style.display = "block";
+        divText.getElementsByTagName("textarea").item(0).value = code;
+        nameVarInText.value = nameVarInBlockly.value;
+        selectOperatorInText.options.selectedIndex = selectOperatorInBlockly.options.selectedIndex;
+        selectClassInText.options.selectedIndex = selectClassInBlockly.options.selectedIndex;
+    });
+
+    var nameVarInBlockly = document.createElement('input');
+    nameVarInBlockly.type = "text";
+    nameVarInBlockly = styleInput(nameVarInBlockly);
+    nameVarInBlockly.style.height = '5%';
+    nameVarInBlockly.placeholder = "New variable";
+
+    var selectClassInBlockly = document.createElement('select');
+    selectClassInBlockly = styleSelect(selectClassInBlockly);
+    selectClassInBlockly.style.height = '5%';
+    jsonClasses.forEach(classItem => {
+        var newOption = new Option(classItem.name, classItem.name);
+        selectClassInBlockly.options[selectClassInBlockly.options.length] = newOption;
+    });
+
+    var selectOperatorInBlockly = document.createElement('select');
+    selectOperatorInBlockly = styleSelect(selectOperatorInBlockly);
+    selectOperatorInBlockly.style.height = '5%';
+    operators.forEach(item => {
+        var newOption = new Option(item, item.toUpperCase());
+        selectOperatorInBlockly.options[selectOperatorInBlockly.options.length] = newOption;
+    });
+
+    divBlockly.appendChild(nestedDiv);
+    var btnBlockDiv = document.createElement('div');
+    btnBlockDiv = styleDivBtn(btnBlockDiv);
+    btnBlockDiv.style.height = "8%";
+    btnCreateNodeInBlockly = styleBtn(btnCreateNodeInBlockly);
+    btnSwitchToText = styleBtn(btnSwitchToText);
+    divBlockly.appendChild(nameVarInBlockly);
+    divBlockly.appendChild(selectClassInBlockly);
+    divBlockly.appendChild(selectOperatorInBlockly);
+    btnBlockDiv.appendChild(btnCreateNodeInBlockly);
+    btnBlockDiv.appendChild(btnSwitchToText);
+    divBlockly.appendChild(btnBlockDiv);
+    div.appendChild(divBlockly);
+
+
+    // Настройки окна
+    var win = new mxWindow(getTextByLocale("TitleWhileNodeEditorWindow"), div, x, y, w, h, true, true);
     this.window = win;
     this.window.contentWrapper.style.height = "100%";
     this.window.destroyOnClose = true;
@@ -10003,12 +11154,27 @@ var LogicNodeEditorWindow = function (cell, editorUi, x, y, w, h) {
         theGraph.refresh(); // update the graph
         win.destroy();
     });
+
+    var btnCreateHYPNode = mxUtils.button('HYP', function () {
+        var theGraph = editorUi.editor.graph;
+
+        theGraph.getModel().beginUpdate();
+        cell.value.setAttribute("label", "HYP");
+        cell.value.setAttribute("type", "HYP");
+        theGraph.getModel().endUpdate();
+        theGraph.refresh(); // update the graph
+        win.destroy();
+    });
+
     btnCreateANDNode = styleBtn(btnCreateANDNode);
-    btnCreateANDNode.style.minWidth = "50%";
+    btnCreateANDNode.style.minWidth = "32%";
     btnCreateORNode = styleBtn(btnCreateORNode);
-    btnCreateORNode.style.minWidth = "50%";
+    btnCreateORNode.style.minWidth = "32%";
+    btnCreateHYPNode = styleBtn(btnCreateHYPNode);
+    btnCreateHYPNode.style.minWidth = "32%";
     div.appendChild(btnCreateANDNode);
     div.appendChild(btnCreateORNode);
+    div.appendChild(btnCreateHYPNode);
 
     // Настройки окна
     var win = new mxWindow(getTextByLocale("TitleLogicNodeEditorWindow"), div, x, y, w, h, true, true);
@@ -10039,13 +11205,13 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
     divText.appendChild(labelText);
 
     let outNode = cell.source;
-    if(outNode == null) {
+    if (outNode == null) {
         throw new Error(getTextByLocale("sourceNodeIsMissing"));
     }
     let typeValue = "";
-    if(typeof outNode.value == "object" && outNode.value.getAttribute('expression')) {
+    if (typeof outNode.value == "object" && outNode.value.getAttribute('expression')) {
         let typeNode = getTypeFromCode(outNode.value.getAttribute('expression'), editorUi);
-        if(outNode.style == "rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;editable=0;") {
+        if (outNode.style == "rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;editable=0;") {
             let labelValue = document.createElement('label');
             labelValue.innerHTML = getTextByLocale("value");
             labelValue.style.fontSize = '20px';
@@ -10060,7 +11226,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             });
             labelValue.appendChild(selectValue);
             divText.appendChild(labelValue);
-        } else if(typeNode.type == "int" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR") {
+        } else if (typeNode.type == "int" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR" && outNode.value.getAttribute('operator') != "HYP") {
             typeValue = "int";
             var labelType = document.createElement('label');
             labelType.innerHTML = getTextByLocale("value");
@@ -10069,7 +11235,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             numberInt = styleInput(numberInt);
             numberInt.id = "value_input";
             numberInt.type = "number";
-            if(typeNode.range) {
+            if (typeNode.range) {
                 let ranges = typeNode.range.split('-')
                 numberInt.min = ranges[0];
                 numberInt.max = ranges[1];
@@ -10077,7 +11243,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             numberInt.style.width = '100%';
             labelType.appendChild(numberInt);
             divText.appendChild(labelType);
-        } else if(typeNode.type == "bool" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR") {
+        } else if (typeNode.type == "bool" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR" && outNode.value.getAttribute('operator') != "HYP") {
             typeValue = "bool";
             let labelValue = document.createElement('label');
             labelValue.innerHTML = getTextByLocale("value");
@@ -10086,13 +11252,13 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             selectValue = styleSelect(selectValue);
             selectValue.id = "value_input";
             selectValue.style.width = '100%';
-            let optionTrue = new Option("True", "True");
+            let optionTrue = new Option("Correct", "Correct");
             selectValue.options[selectValue.options.length] = optionTrue;
-            let optionFalse = new Option("False", "False");
+            let optionFalse = new Option("Error", "Error");
             selectValue.options[selectValue.options.length] = optionFalse;
             labelValue.appendChild(selectValue);
             divText.appendChild(labelValue);
-        } else if(typeNode.type == "class" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR") {
+        } else if (typeNode.type == "class" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR" && outNode.value.getAttribute('operator') != "HYP") {
             typeValue = "class";
             let labelValue = document.createElement('label');
             labelValue.innerHTML = getTextByLocale("value");
@@ -10108,7 +11274,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             });
             labelValue.appendChild(selectValue);
             divText.appendChild(labelValue);
-        } else if(typeNode.type == "double" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR") {
+        } else if (typeNode.type == "double" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR" && outNode.value.getAttribute('operator') != "HYP") {
             typeValue = "double";
             var labelType = document.createElement('label');
             labelType.innerHTML = getTextByLocale("value");
@@ -10118,7 +11284,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             numberInt.id = "value_input";
             numberInt.type = "number";
             numberInt.step = "0.01";
-            if(typeNode.range) {
+            if (typeNode.range) {
                 let ranges = typeNode.range.split('-')
                 numberInt.min = ranges[0];
                 numberInt.max = ranges[1];
@@ -10126,7 +11292,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             numberInt.style.width = '100%';
             labelType.appendChild(numberInt);
             divText.appendChild(labelType);
-        } else if(typeNode.type == "string" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR") {
+        } else if (typeNode.type == "string" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR" && outNode.value.getAttribute('operator') != "HYP") {
             typeValue = "string";
             var labelType = document.createElement('label');
             labelType.innerHTML = getTextByLocale("value");
@@ -10139,7 +11305,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             textValue.placeholder = "value string";
             labelType.appendChild(textValue);
             divText.appendChild(labelType);
-        } else if(typeNode.type == "enum" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR") {
+        } else if (typeNode.type == "enum" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR" && outNode.value.getAttribute('operator') != "HYP") {
             typeValue = "enum";
             let labelValue = document.createElement('label');
             labelValue.innerHTML = getTextByLocale("value");
@@ -10150,9 +11316,9 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             selectValue.style.width = '100%';
             let enumsList = getEnums(editorUi);
             let findEnum = enumsList.filter(el => el.nameEnum == typeNode.enum);
-            if(findEnum[0] != undefined) {
+            if (findEnum[0] != undefined) {
                 findEnum[0].values.forEach(enumValue => {
-                    var newOption = new Option(typeNode.enum+":"+enumValue, typeNode.enum+":"+enumValue);
+                    var newOption = new Option(typeNode.enum + ":" + enumValue, typeNode.enum + ":" + enumValue);
                     selectValue.options[selectValue.options.length] = newOption;
                 });
             } else {
@@ -10160,12 +11326,12 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
             }
             labelValue.appendChild(selectValue);
             divText.appendChild(labelValue);
-        } else if(typeNode.type == "assign" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR") {
+        } else if (typeNode.type == "assign" && outNode.value.getAttribute('operator') != "AND" && outNode.value.getAttribute('operator') != "OR" && outNode.value.getAttribute('operator') != "HYP") {
             throw new Error(getTextByLocale("AssignInNode"));
         }
     }
 
-    if(typeof outNode.value == "object" && outNode.value.getAttribute('type') == "START") {
+    if (typeof outNode.value == "object" && outNode.value.getAttribute('type') == "START") {
         let labelType = document.createElement('label');
         labelType.innerHTML = getTextByLocale("type");
         labelType.style.fontSize = '20px';
@@ -10180,7 +11346,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
         });
         labelType.appendChild(selectTypes);
         divText.appendChild(labelType);
-    } else if(typeof outNode.value == "object" && outNode.value.getAttribute('type') == "predetermining") {
+    } else if (typeof outNode.value == "object" && outNode.value.getAttribute('type') == "predetermining") {
         let labelType = document.createElement('label');
         labelType.innerHTML = getTextByLocale("type");
         labelType.style.fontSize = '20px';
@@ -10188,14 +11354,14 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
         selectTypes = styleSelect(selectTypes);
         selectTypes.id = "type_input";
         selectTypes.style.width = '100%';
-        let types = ["predeterminingBranch", "undetermined"];
+        let types = ["Branch", "Correct", "Error", "Null"];
         types.forEach(type => {
             var newOption = new Option(type, type);
             selectTypes.options[selectTypes.options.length] = newOption;
         });
         labelType.appendChild(selectTypes);
         divText.appendChild(labelType);
-    } else if(typeof outNode.value == "object" && (outNode.value.getAttribute('type') == "AND" || outNode.value.getAttribute('type') == "OR")) {
+    } else if (typeof outNode.value == "object" && (outNode.value.getAttribute('type') == "AND" || outNode.value.getAttribute('type') == "OR" || outNode.value.getAttribute('type') == "HYP")) {
         let labelType = document.createElement('label');
         labelType.innerHTML = getTextByLocale("type");
         labelType.style.fontSize = '20px';
@@ -10203,14 +11369,14 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
         selectTypes = styleSelect(selectTypes);
         selectTypes.id = "type_input";
         selectTypes.style.width = '100%';
-        let types = ["Branch", "True", "False"];
+        let types = ["Branch", "Correct", "Error", "Null"];
         types.forEach(type => {
             var newOption = new Option(type, type);
             selectTypes.options[selectTypes.options.length] = newOption;
         });
         labelType.appendChild(selectTypes);
         divText.appendChild(labelType);
-    } else if(typeof outNode.value == "object" && (outNode.value.getAttribute('operator') == "AND" || outNode.value.getAttribute('operator') == "OR")) {
+    } else if (typeof outNode.value == "object" && (outNode.value.getAttribute('operator') == "AND" || outNode.value.getAttribute('operator') == "OR" || outNode.value.getAttribute('operator') == "HYP")) {
         let labelType = document.createElement('label');
         labelType.innerHTML = getTextByLocale("type");
         labelType.style.fontSize = '20px';
@@ -10218,7 +11384,7 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
         selectTypes = styleSelect(selectTypes);
         selectTypes.id = "type_input";
         selectTypes.style.width = '100%';
-        let types = ["Body", "True", "False"];
+        let types = ["Body", "Correct", "Error", "Null"];
         types.forEach(type => {
             var newOption = new Option(type, type);
             selectTypes.options[selectTypes.options.length] = newOption;
@@ -10235,22 +11401,22 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
         graph.setAttributeForCell(cell, 'label', textInOutcome);
         let vin = document.getElementById("value_input");
         let valInOutcome = "";
-        if(vin != null && vin.tagName == "SELECT") {
+        if (vin != null && vin.tagName == "SELECT") {
             valInOutcome = vin.options[vin.options.selectedIndex].value;
             graph.setAttributeForCell(cell, 'typeValue', typeValue);
-        } else if(vin != null && vin.tagName == "INPUT") {
+        } else if (vin != null && vin.tagName == "INPUT") {
             valInOutcome = vin.value;
             graph.setAttributeForCell(cell, 'typeValue', typeValue);
         }
         graph.setAttributeForCell(cell, 'value', valInOutcome);
 
         let typeOutcome = document.getElementById("type_input");
-        if(typeOutcome) {
+        if (typeOutcome) {
             let typeInOutcome = typeOutcome.options[typeOutcome.options.selectedIndex].value;
             graph.setAttributeForCell(cell, 'type', typeInOutcome);
         }
 
-        if(!cell.style.includes("editable=0;")) {
+        if (!cell.style.includes("editable=0;")) {
             cell.style += "editable=0;";
         }
         cell.style = cell.style.replace("strokeColor=#FF0000;", "");
@@ -10265,12 +11431,12 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
         let vin = document.getElementById("value_input");
         let typeSelect = document.getElementById("type_input");
         var humanStr = "";
-        if(vin != null && vin.tagName == "SELECT") {
+        if (vin != null && vin.tagName == "SELECT") {
             var valSelect = vin.options[vin.options.selectedIndex].value;
             humanStr = getTextFromValueInOutcome(valSelect);
-        } else if(vin != null && vin.tagName == "INPUT") {
+        } else if (vin != null && vin.tagName == "INPUT") {
             humanStr = getTextFromValueInOutcome(vin.value);
-        } else if(vin == null && typeof cell.source.value == "object" && cell.source.value.getAttribute('type') != "START" && typeSelect) {
+        } else if (vin == null && typeof cell.source.value == "object" && cell.source.value.getAttribute('type') != "START" && typeSelect) {
             humanStr = typeSelect.options[typeSelect.options.selectedIndex].value;
         }
         text.value = humanStr;
@@ -10295,24 +11461,24 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
     this.window.setClosable(true);
     this.window.setVisible(true);
 
-    if(cell.value != null && typeof cell.value == "object") {
+    if (cell.value != null && typeof cell.value == "object") {
         text.value = cell.value.getAttribute("label");
         let vin = document.getElementById("value_input");
-        if(vin != null && vin.tagName == "SELECT") {
+        if (vin != null && vin.tagName == "SELECT") {
             let valInCell = cell.value.getAttribute("value");
-            for(let index = 0; index < vin.options.length; ++index) {
-                if(vin.options[index].value == valInCell) {
+            for (let index = 0; index < vin.options.length; ++index) {
+                if (vin.options[index].value == valInCell) {
                     vin.options[index].selected = true;
                 }
             }
-        } else if(vin != null && vin.tagName == "INPUT") {
+        } else if (vin != null && vin.tagName == "INPUT") {
             vin.value = cell.value.getAttribute("value");
         }
         let type = cell.value.getAttribute("type");
         let typeInput = document.getElementById("type_input");
-        if(type && typeInput) {
-            for(let index = 0; index < typeInput.options.length; ++index) {
-                if(typeInput.options[index].value == type) {
+        if (type && typeInput) {
+            for (let index = 0; index < typeInput.options.length; ++index) {
+                if (typeInput.options[index].value == type) {
                     typeInput.options[index].selected = true;
                 }
             }
@@ -10322,14 +11488,14 @@ var EditValueInOutcomeWindow = function (cell, editorUi, x, y, w, h) {
 
 function checkAllInputsOutcome(div, outNodeValue) {
     errors = "";
-    if(div.getElementsByTagName("input").item(0).value == "" && typeof outNodeValue == "object" && outNodeValue.getAttribute('type') != "START") {
+    if (div.getElementsByTagName("input").item(0).value == "" && typeof outNodeValue == "object" && outNodeValue.getAttribute('type') != "START") {
         errors += getTextByLocale("HumanReadableTextIsMissing");
     }
-    if(document.getElementById("value_input") != null 
-    && document.getElementById("value_input").value == "") {
+    if (document.getElementById("value_input") != null
+        && document.getElementById("value_input").value == "") {
         errors += getTextByLocale("ValueOutcomeIsMissing");
     }
-    if(errors != "") {
+    if (errors != "") {
         throw new Error(errors);
     }
 }
@@ -11534,8 +12700,7 @@ var ConvertToCycleNode = function (cell, editorUi, x, y, w, h) {
         theGraph.refresh();
     }
 };
-function treeToXml(editorUi)
-{
+function treeToXml(editorUi) {
     var serializer = new XMLSerializer();
     const resultDoc = document.implementation.createDocument("", "", null);
 
@@ -11545,7 +12710,7 @@ function treeToXml(editorUi)
     Object.keys(cells).forEach(function (key) {
 
         var node = cells[key];
-        
+
         if (node.value != null && typeof node.value == "object" && node.value.getAttribute("type") == "START") {
             countStartNode++;
             // CheckCycleInTree(node, editorUi);
@@ -11553,30 +12718,29 @@ function treeToXml(editorUi)
             return;
         }
     });
-    if(countStartNode != 1) {
+    if (countStartNode != 1) {
         throw new Error(getTextByLocale("StartNodeOnlyOne"));
     }
     return '<?xml version="1.0"?>' + serializer.serializeToString(resultDoc);
 }
 
-function startNodeToXml(doc, startNode, editorUi)
-{
+function startNodeToXml(doc, startNode, editorUi) {
     let resultNode = doc.createElement("StartNode");
     resultNode.appendChild(getVariables(doc, startNode.value.getAttribute("label")));
-    if(startNode.edges) {
-        for(let i = 0; i < startNode.edges.length; i++) {
-            if(startNode.edges[i].target == startNode) {
+    if (startNode.edges) {
+        for (let i = 0; i < startNode.edges.length; i++) {
+            if (startNode.edges[i].target == startNode) {
                 throw new Error(getTextByLocale("StartNodeIsTarget"));
             }
-            if(startNode.edges[i].value == null || typeof startNode.edges[i].value != "object" || !startNode.edges[i].value.getAttribute("type")) {
+            if (startNode.edges[i].value == null || typeof startNode.edges[i].value != "object" || !startNode.edges[i].value.getAttribute("type")) {
                 markOutcome(editorUi.editor.graph, startNode.edges[i])
                 throw new Error(getTextByLocale("typeOutcomeStartNodeIsMissing"));
             }
             let thoughtBranchNode = doc.createElement("ThoughtBranch");
             thoughtBranchNode.setAttribute("type", startNode.edges[i].value.getAttribute("type"));
             thoughtBranchNode = getQuestionInfoThoughtBranch(thoughtBranchNode, startNode.edges[i]); //TODO: проверить мб присваивать не нужно
-            if(startNode.edges[i].target != startNode) {
-                thoughtBranchNode.appendChild(switchCaseNodes(doc, startNode.edges[i].target, editorUi, false));
+            if (startNode.edges[i].target != startNode) {
+                thoughtBranchNode.appendChild(switchCaseNodes(doc, startNode.edges[i].target, editorUi, null));
             }
             resultNode.appendChild(thoughtBranchNode);
         }
@@ -11584,8 +12748,7 @@ function startNodeToXml(doc, startNode, editorUi)
     return resultNode;
 }
 
-function getVariables(doc, nodeValue)
-{
+function getVariables(doc, nodeValue) {
     let inputVariablesNode = doc.createElement("InputVariables");
     let vars = nodeValue.split("\n");
     vars.forEach(element => {
@@ -11598,63 +12761,53 @@ function getVariables(doc, nodeValue)
     return inputVariablesNode;
 }
 
-function switchCaseNodes(doc, node, editorUi, isPredetermining)
-{
+function switchCaseNodes(doc, node, editorUi) {
     let resultNode = null;
     //Узел истина
-    if(node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;editable=0;") {
-        if(isPredetermining) {
-            //TODO: возможно тут лучше вызывать функцию создания узла результата
-            resultNode = doc.createElement("BranchResultNode");
-            resultNode.setAttribute("value", "true");
-        } else {
-            resultNode = branchResultNodeToXml(doc, node, true);
-        }
+    if (node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;editable=0;") {
+        resultNode = branchResultNodeToXml(doc, node, true);
     }
     //Узел ложь
-    else if(node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;editable=0;") {
-        if(isPredetermining) {
-            //TODO: возможно тут лучше вызывать функцию создания узла результата
-            resultNode = doc.createElement("BranchResultNode");
-            resultNode.setAttribute("value", "true");
-        } else {
-            resultNode = branchResultNodeToXml(doc, node, false);
-        }
+    else if (node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;editable=0;") {
+        resultNode = branchResultNodeToXml(doc, node, false);
     }
     //Узел вопрос
-    else if(node.style == "ellipse;whiteSpace=wrap;html=1;rounded=0;editable=0;") {
-        resultNode = questionNodeToXml(doc, node, false, editorUi, isPredetermining);
+    else if (node.style == "ellipse;whiteSpace=wrap;html=1;rounded=0;editable=0;") {
+        resultNode = questionNodeToXml(doc, node, false, editorUi);
     }
     //Узел свитч кейс
-    else if(node.style == "rhombus;whiteSpace=wrap;html=1;editable=0;") {
-        resultNode = questionNodeToXml(doc, node, true, editorUi, isPredetermining);
+    else if (node.style == "rhombus;whiteSpace=wrap;html=1;editable=0;") {
+        resultNode = questionNodeToXml(doc, node, true, editorUi);
     }
     //Узел действия
-    else if(node.style == "rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;editable=0;") {
-        resultNode = actionNodeToXml(doc, node, editorUi, isPredetermining);
+    else if (node.style == "rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;editable=0;") {
+        resultNode = actionNodeToXml(doc, node, editorUi);
     }
     //Узел логическая агрегация
-    else if(typeof node.value == "object" 
-    && (node.value.getAttribute("type") == "AND" || node.value.getAttribute("type") == "OR")) {
-        resultNode = logicNodeToXml(doc, node, editorUi, isPredetermining);
+    else if (typeof node.value == "object"
+        && (node.value.getAttribute("type") == "AND" || node.value.getAttribute("type") == "OR" || node.value.getAttribute("type") == "HYP")) {
+        resultNode = logicNodeToXml(doc, node, editorUi);
     }
     //Узел предрешающий фактор
-    else if(typeof node.value == "object" && node.value.getAttribute("type") == "predetermining") {
+    else if (typeof node.value == "object" && node.value.getAttribute("type") == "predetermining") {
         resultNode = predeterminingNodeToXml(doc, node, editorUi);
     }
-    //Узел цикла
-    else if(typeof node.value == "object" 
-    && (node.value.getAttribute("operator") == "AND" || node.value.getAttribute("operator") == "OR")) {
-        resultNode = cycleNodeToXml(doc, node, editorUi, isPredetermining);
+    //Узел "пока"
+    else if (typeof node.value == "object"
+        && (node.value.getAttribute("operator") == "AND" || node.value.getAttribute("operator") == "OR" || node.value.getAttribute("type") == "HYP")
+        && node.value.getAttribute("typeCycle") == "while") {
+        resultNode = whileNodeToXml(doc, node, editorUi);
     }
-    //Узел неопределенность предрешающего фактора
-    else if(node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;editable=0;") {
-        if(isPredetermining) {
-            resultNode = doc.createElement("BranchResultNode");
-            resultNode.setAttribute("value", "false");
-        } else {
-            resultNode = doc.createElement("UndeterminedNode");
-        }
+    //Узел цикла
+    else if (typeof node.value == "object"
+        && (node.value.getAttribute("operator") == "AND" || node.value.getAttribute("operator") == "OR" || node.value.getAttribute("type") == "HYP")
+        && node.value.getAttribute("typeCycle") == null) {
+        resultNode = cycleNodeToXml(doc, node, editorUi);
+    }
+    //Узел Null
+    else if (node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;editable=0;") {
+        resultNode = doc.createElement("BranchResultNode");
+        resultNode.setAttribute("value", "null");
     }
     return resultNode;
 }
@@ -11662,16 +12815,20 @@ function switchCaseNodes(doc, node, editorUi, isPredetermining)
 function branchResultNodeToXml(doc, node, resultBranch) {
     let resultNode = doc.createElement("BranchResultNode");
 
-    if(node.value.getAttribute("label")) {
+    if (node.value.getAttribute("label")) {
         resultNode.setAttribute("_alias", node.value.getAttribute("label"));
     }
-    resultNode.setAttribute("value", resultBranch)
+    if (resultBranch) {
+        resultNode.setAttribute("value", "correct")
+    } else {
+        resultNode.setAttribute("value", "error")
+    }
 
-    if(node.value.getAttribute("expression") != "") {
+    if (node.value.getAttribute("expression") != "") {
         let expressionNode = doc.createElement("Expression");
         try {
             expressionNode.innerHTML = codeToXML(globalWS, node.value.getAttribute("expression"));
-        } catch(e) {
+        } catch (e) {
             throw new Error(e.message + "\nУзел с текстом: " + node.value.getAttribute("label"))
         }
         resultNode.appendChild(expressionNode);
@@ -11679,15 +12836,14 @@ function branchResultNodeToXml(doc, node, resultBranch) {
     return resultNode;
 }
 
-function questionNodeToXml(doc, node, isSwitch, editorUi, isPredetermining)
-{
+function questionNodeToXml(doc, node, isSwitch, editorUi) {
     let resultNode = doc.createElement("QuestionNode");
-    if(node.value.getAttribute("label")) {
+    if (node.value.getAttribute("label")) {
         resultNode.setAttribute("_alias", node.value.getAttribute("label"))
     }
     try {
         resultNode.setAttribute("type", specialChars(getTypeFromCode(node.value.getAttribute("expression"), editorUi).type));
-    } catch(e) {
+    } catch (e) {
         throw new Error(e.message + "\nУзел с текстом: " + node.value.getAttribute("label"))
     }
     resultNode.setAttribute("isSwitch", isSwitch);
@@ -11696,21 +12852,20 @@ function questionNodeToXml(doc, node, isSwitch, editorUi, isPredetermining)
     let expressionNode = doc.createElement("Expression");
     try {
         expressionNode.innerHTML = codeToXML(globalWS, node.value.getAttribute("expression"));
-    } catch(e) {
+    } catch (e) {
         throw new Error(e.message + "\nУзел с текстом: " + node.value.getAttribute("label"))
     }
     resultNode.appendChild(expressionNode);
 
     //Следующие ветки
-    resultNode = outcomeToXml(doc, resultNode, node, editorUi, isPredetermining);
+    resultNode = outcomeToXml(doc, resultNode, node, editorUi);
 
     return resultNode;
 }
 
-function actionNodeToXml(doc, node, editorUi, isPredetermining)
-{
+function actionNodeToXml(doc, node, editorUi) {
     let resultNode = doc.createElement("FindActionNode");
-    if(node.value.getAttribute("label")) {
+    if (node.value.getAttribute("label")) {
         resultNode.setAttribute("_alias", node.value.getAttribute("label"));
     }
     resultNode = getQuestionInfoNode(resultNode, node, false);
@@ -11718,7 +12873,7 @@ function actionNodeToXml(doc, node, editorUi, isPredetermining)
     let expressionNode = doc.createElement("Expression");
     try {
         expressionNode.innerHTML = codeToXML(globalWS, node.value.getAttribute("expression"));
-    } catch(e) {
+    } catch (e) {
         throw new Error(e.message + "\nУзел с текстом: " + node.value.getAttribute("label"))
     }
     resultNode.appendChild(expressionNode);
@@ -11731,15 +12886,14 @@ function actionNodeToXml(doc, node, editorUi, isPredetermining)
     resultNode.appendChild(decisionTreeVarDeclNode);
 
     //Следующие ветки
-    resultNode = outcomeToXml(doc, resultNode, node, editorUi, isPredetermining);
+    resultNode = outcomeToXml(doc, resultNode, node, editorUi);
 
     return resultNode;
 }
 
-function cycleNodeToXml(doc, node, editorUi, isPredetermining)
-{
-    let resultNode = doc.createElement("CycleAggregationNode");
-    if(node.value.getAttribute("label")) {
+function whileNodeToXml(doc, node, editorUi) {
+    let resultNode = doc.createElement("WhileCycleNode");
+    if (node.value.getAttribute("label")) {
         resultNode.setAttribute("_alias", node.value.getAttribute("label"));
     }
     resultNode.setAttribute("operator", node.value.getAttribute("operator"));
@@ -11748,7 +12902,7 @@ function cycleNodeToXml(doc, node, editorUi, isPredetermining)
     let selectorExpressionNode = doc.createElement("SelectorExpression");
     try {
         selectorExpressionNode.innerHTML = codeToXML(globalWS, node.value.getAttribute("expression"));
-    } catch(e) {
+    } catch (e) {
         throw new Error(e.message + "\nУзел с текстом: " + node.value.getAttribute("label"))
     }
     resultNode.appendChild(selectorExpressionNode);
@@ -11763,39 +12917,40 @@ function cycleNodeToXml(doc, node, editorUi, isPredetermining)
     let bodyCount = 0;
     let trueCount = 0;
     let falseCount = 0;
-    if(node.edges) {
-        for(let i = 0; i < node.edges.length; i++) {
-            if(node.edges[i].target != node) {
+    if (node.edges) {
+        for (let i = 0; i < node.edges.length; i++) {
+            if (node.edges[i].target != node) {
                 valueEdge = node.edges[i].value;
-                if(valueEdge == null || typeof valueEdge != "object" 
-                || !valueEdge.getAttribute("type") 
-                || (valueEdge.getAttribute("type") != "True" 
-                && valueEdge.getAttribute("type") != "False" 
-                && valueEdge.getAttribute("type") != "Body")) {
+                if (valueEdge == null || typeof valueEdge != "object"
+                    || !valueEdge.getAttribute("type")
+                    || (valueEdge.getAttribute("type") != "Correct"
+                        && valueEdge.getAttribute("type") != "Error"
+                        && valueEdge.getAttribute("type") != "Null"
+                        && valueEdge.getAttribute("type") != "Body")) {
                     markOutcome(editorUi.editor.graph, node.edges[i])
-                    throw new Error(getTextByLocale("typeOutcomeCycleIsMissing") 
-                    + "\nУзел с текстом: " + node.value.getAttribute("label"));
+                    throw new Error(getTextByLocale("typeOutcomeCycleIsMissing")
+                        + "\nУзел с текстом: " + node.value.getAttribute("label"));
                 }
-                if(valueEdge.getAttribute("type") == "True" || valueEdge.getAttribute("type") == "False") {
-                    if(valueEdge.getAttribute("type") == "True") {
-                        trueCount++;
-                    } else {
-                        falseCount++;
-                    }
+                if (valueEdge.getAttribute("type") == "Correct" || valueEdge.getAttribute("type") == "Error" || valueEdge.getAttribute("type") == "Null") {
+                    // if (valueEdge.getAttribute("type") == "Correct") {
+                    //     trueCount++;
+                    // } else {
+                    //     falseCount++;
+                    // }
 
                     let outcomeNode = doc.createElement("Outcome");
                     outcomeNode.setAttribute("value", specialChars(valueEdge.getAttribute("type")));
                     outcomeNode = getQuestionInfoOutcome(outcomeNode, node.edges[i]);
-                    outcomeNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, isPredetermining));
+                    outcomeNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
                     resultNode.appendChild(outcomeNode);
 
-                } else if(valueEdge.getAttribute("type") == "Body") {
+                } else if (valueEdge.getAttribute("type") == "Body") {
 
                     let thoughtBranchNode = doc.createElement("ThoughtBranch");
                     thoughtBranchNode.setAttribute("type", "bool");
                     thoughtBranchNode.setAttribute("paramName", specialChars(node.value.getAttribute("nameVar")));
                     thoughtBranchNode = getQuestionInfoThoughtBranch(thoughtBranchNode, node.edges[i]); //TODO: проверить мб присваивать не нужно
-                    thoughtBranchNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, isPredetermining));
+                    thoughtBranchNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
                     resultNode.appendChild(thoughtBranchNode);
 
                     bodyCount++;
@@ -11804,16 +12959,16 @@ function cycleNodeToXml(doc, node, editorUi, isPredetermining)
         }
     }
     let errorCycle = "";
-    if(bodyCount != 1) {
+    if (bodyCount > 1) {
         errorCycle += getTextByLocale("bodyOnlyOne");
     }
-    if(trueCount != 1) {
+    if (trueCount > 1) {
         errorCycle += getTextByLocale("trueCycleOnlyOne");
     }
-    if(falseCount != 1) {
+    if (falseCount > 1) {
         errorCycle += getTextByLocale("falseCycleOnlyOne");
     }
-    if(errorCycle) {
+    if (errorCycle) {
         throw new Error(errorCycle + "\nУзел с текстом: " + node.value.getAttribute("label"));
     }
 
@@ -11821,10 +12976,94 @@ function cycleNodeToXml(doc, node, editorUi, isPredetermining)
     return resultNode;
 }
 
-function logicNodeToXml(doc, node, editorUi, isPredetermining)
-{
-    let resultNode = doc.createElement("LogicAggregationNode");
-    if(node.value.getAttribute("label")) {
+function cycleNodeToXml(doc, node, editorUi) {
+    let resultNode = doc.createElement("CycleAggregationNode");
+    if (node.value.getAttribute("label")) {
+        resultNode.setAttribute("_alias", node.value.getAttribute("label"));
+    }
+    resultNode.setAttribute("operator", node.value.getAttribute("operator"));
+    resultNode = getQuestionInfoNode(resultNode, node, false);
+
+    let selectorExpressionNode = doc.createElement("SelectorExpression");
+    try {
+        selectorExpressionNode.innerHTML = codeToXML(globalWS, node.value.getAttribute("expression"));
+    } catch (e) {
+        throw new Error(e.message + "\nУзел с текстом: " + node.value.getAttribute("label"))
+    }
+    resultNode.appendChild(selectorExpressionNode);
+
+    let typeVar = node.value.getAttribute("typeVar");
+
+    let decisionTreeVarDeclNode = doc.createElement("DecisionTreeVarDecl");
+    decisionTreeVarDeclNode.setAttribute("name", specialChars(node.value.getAttribute("nameVar")));
+    decisionTreeVarDeclNode.setAttribute("type", specialChars(typeVar));
+    resultNode.appendChild(decisionTreeVarDeclNode);
+
+    let bodyCount = 0;
+    let trueCount = 0;
+    let falseCount = 0;
+    if (node.edges) {
+        for (let i = 0; i < node.edges.length; i++) {
+            if (node.edges[i].target != node) {
+                valueEdge = node.edges[i].value;
+                if (valueEdge == null || typeof valueEdge != "object"
+                    || !valueEdge.getAttribute("type")
+                    || (valueEdge.getAttribute("type") != "Correct"
+                        && valueEdge.getAttribute("type") != "Error"
+                        && valueEdge.getAttribute("type") != "Null"
+                        && valueEdge.getAttribute("type") != "Body")) {
+                    markOutcome(editorUi.editor.graph, node.edges[i])
+                    throw new Error(getTextByLocale("typeOutcomeCycleIsMissing")
+                        + "\nУзел с текстом: " + node.value.getAttribute("label"));
+                }
+                if (valueEdge.getAttribute("type") == "Correct" || valueEdge.getAttribute("type") == "Error" || valueEdge.getAttribute("type") == "Null") {
+                    // if (valueEdge.getAttribute("type") == "Correct") {
+                    //     trueCount++;
+                    // } else {
+                    //     falseCount++;
+                    // }
+
+                    let outcomeNode = doc.createElement("Outcome");
+                    outcomeNode.setAttribute("value", specialChars(valueEdge.getAttribute("type")));
+                    outcomeNode = getQuestionInfoOutcome(outcomeNode, node.edges[i]);
+                    outcomeNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
+                    resultNode.appendChild(outcomeNode);
+
+                } else if (valueEdge.getAttribute("type") == "Body") {
+
+                    let thoughtBranchNode = doc.createElement("ThoughtBranch");
+                    thoughtBranchNode.setAttribute("type", "bool");
+                    thoughtBranchNode.setAttribute("paramName", specialChars(node.value.getAttribute("nameVar")));
+                    thoughtBranchNode = getQuestionInfoThoughtBranch(thoughtBranchNode, node.edges[i]); //TODO: проверить мб присваивать не нужно
+                    thoughtBranchNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
+                    resultNode.appendChild(thoughtBranchNode);
+
+                    bodyCount++;
+                }
+            }
+        }
+    }
+    let errorCycle = "";
+    if (bodyCount > 1) {
+        errorCycle += getTextByLocale("bodyOnlyOne");
+    }
+    if (trueCount > 1) {
+        errorCycle += getTextByLocale("trueCycleOnlyOne");
+    }
+    if (falseCount > 1) {
+        errorCycle += getTextByLocale("falseCycleOnlyOne");
+    }
+    if (errorCycle) {
+        throw new Error(errorCycle + "\nУзел с текстом: " + node.value.getAttribute("label"));
+    }
+
+
+    return resultNode;
+}
+
+function logicNodeToXml(doc, node, editorUi) {
+    let resultNode = doc.createElement("BranchAggregationNode");
+    if (node.value.getAttribute("label")) {
         resultNode.setAttribute("_alias", node.value.getAttribute("label"));
     }
     resultNode.setAttribute("operator", node.value.getAttribute("type").toLowerCase());
@@ -11833,36 +13072,37 @@ function logicNodeToXml(doc, node, editorUi, isPredetermining)
     let branchCount = 0;
     let trueCount = 0;
     let falseCount = 0;
-    if(node.edges) {
-        for(let i = 0; i < node.edges.length; i++) {
-            if(node.edges[i].target != node) {
+    if (node.edges) {
+        for (let i = 0; i < node.edges.length; i++) {
+            if (node.edges[i].target != node) {
                 valueEdge = node.edges[i].value;
-                if(valueEdge == null || typeof valueEdge != "object" 
-                || !valueEdge.getAttribute("type") 
-                || (valueEdge.getAttribute("type") != "True" 
-                && valueEdge.getAttribute("type") != "False" 
-                && valueEdge.getAttribute("type") != "Branch")) {
+                if (valueEdge == null || typeof valueEdge != "object"
+                    || !valueEdge.getAttribute("type")
+                    || (valueEdge.getAttribute("type") != "Correct"
+                        && valueEdge.getAttribute("type") != "Error"
+                        && valueEdge.getAttribute("type") != "Null"
+                        && valueEdge.getAttribute("type") != "Branch")) {
                     markOutcome(editorUi.editor.graph, node.edges[i])
-                    throw new Error(getTextByLocale("typeOutcomeLogicNodeIsMissing") 
-                    + "\nУзел с текстом: " + node.value.getAttribute("label"));
+                    throw new Error(getTextByLocale("typeOutcomeLogicNodeIsMissing")
+                        + "\nУзел с текстом: " + node.value.getAttribute("label"));
                 }
-                if(valueEdge.getAttribute("type") == "True" || valueEdge.getAttribute("type") == "False") {
-                    if(valueEdge.getAttribute("type") == "True") {
-                        trueCount++;
-                    } else {
-                        falseCount++;
-                    }
+                if (valueEdge.getAttribute("type") == "Correct" || valueEdge.getAttribute("type") == "Error" || valueEdge.getAttribute("type") == "Null") {
+                    // if (valueEdge.getAttribute("type") == "Correct") {
+                    //     trueCount++;
+                    // } else {
+                    //     falseCount++;
+                    // }
                     let outcomeNode = doc.createElement("Outcome");
                     outcomeNode.setAttribute("value", specialChars(valueEdge.getAttribute("type")));
                     outcomeNode = getQuestionInfoOutcome(outcomeNode, node.edges[i]);
-                    outcomeNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, isPredetermining));
+                    outcomeNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
                     resultNode.appendChild(outcomeNode);
 
-                } else if(valueEdge.getAttribute("type") == "Branch") {
+                } else if (valueEdge.getAttribute("type") == "Branch") {
                     let thoughtBranchNode = doc.createElement("ThoughtBranch");
                     thoughtBranchNode.setAttribute("type", "bool");
                     thoughtBranchNode = getQuestionInfoThoughtBranch(thoughtBranchNode, node.edges[i]); //TODO: проверить мб присваивать не нужно
-                    thoughtBranchNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, isPredetermining));
+                    thoughtBranchNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
                     resultNode.appendChild(thoughtBranchNode);
                     branchCount++;
                 }
@@ -11870,154 +13110,197 @@ function logicNodeToXml(doc, node, editorUi, isPredetermining)
         }
     }
     let errorLogic = "";
-    if(branchCount < 2) {
+    if (branchCount < 2) {
         errorLogic += getTextByLocale("OutcomeLogicNodeOnlyTwo");
     }
-    if(trueCount != 1) {
+    if (trueCount > 1) {
         errorLogic += getTextByLocale("trueLogicNodeOnlyOne");
     }
-    if(falseCount != 1) {
+    if (falseCount > 1) {
         errorLogic += getTextByLocale("falseLogicNodeOnlyOne");
     }
-    if(errorLogic) {
+    if (errorLogic) {
         throw new Error(errorLogic + "\nУзел с текстом: " + node.value.getAttribute("label"));
     }
 
     return resultNode;
 }
 
-function predeterminingNodeToXml(doc, node, editorUi)
-{
-    let resultNode = doc.createElement("PredeterminingFactorsNode");
-    if(node.value.getAttribute("label")) {
+function predeterminingNodeToXml(doc, node, editorUi) {
+    let resultNode = doc.createElement("BranchAggregationNode");
+    if (node.value.getAttribute("label")) {
         resultNode.setAttribute("_alias", node.value.getAttribute("label"));
     }
+    resultNode.setAttribute("operator", "MUTEX");
     resultNode = getQuestionInfoNode(resultNode, node, false);
 
     //Следующие ветки
     let predCount = 0;
     let undertermCount = 0;
-    if(node.edges) {
-        for(let i = 0; i < node.edges.length; i++) {
-            valueEdge = node.edges[i].value;
-            if(node.edges[i].target != node && (valueEdge == null || typeof valueEdge != "object" 
-            || !valueEdge.getAttribute("type") 
-            || (valueEdge.getAttribute("type") != "predeterminingBranch" 
-            && valueEdge.getAttribute("type") != "undetermined"))) {
-                markOutcome(editorUi.editor.graph, node.edges[i])
-                throw new Error(getTextByLocale("typeOutcomePredIsMissing") 
-                + "\nУзел с текстом: " + node.value.getAttribute("label"));
-            }
+    let branchCount = 0;
+    let trueCount = 0;
+    let falseCount = 0;
+    if (node.edges) {
+        for (let i = 0; i < node.edges.length; i++) {
+            if (node.edges[i].target != node) {
+                valueEdge = node.edges[i].value;
+                if (valueEdge == null || typeof valueEdge != "object"
+                    || !valueEdge.getAttribute("type")
+                    || (valueEdge.getAttribute("type") != "Correct"
+                        && valueEdge.getAttribute("type") != "Error"
+                        && valueEdge.getAttribute("type") != "Null"
+                        && valueEdge.getAttribute("type") != "Branch")) {
+                    markOutcome(editorUi.editor.graph, node.edges[i])
+                    throw new Error(getTextByLocale("typeOutcomeLogicNodeIsMissing")
+                        + "\nУзел с текстом: " + node.value.getAttribute("label"));
+                }
+                if (valueEdge.getAttribute("type") == "Correct" || valueEdge.getAttribute("type") == "Error" || valueEdge.getAttribute("type") == "Null") {
+                    // if (valueEdge.getAttribute("type") == "Correct") {
+                    //     trueCount++;
+                    // } else {
+                    //     falseCount++;
+                    // }
+                    let outcomeNode = doc.createElement("Outcome");
+                    outcomeNode.setAttribute("value", specialChars(valueEdge.getAttribute("type")));
+                    outcomeNode = getQuestionInfoOutcome(outcomeNode, node.edges[i]);
+                    outcomeNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
+                    resultNode.appendChild(outcomeNode);
 
-            if(node.edges[i].target != node && node.edges[i].value.getAttribute("type") == "predeterminingBranch") {
-                let correctNode = checkCorrectPredeterminingBranch(node.edges[i].target);
-                predCount++;
-                let outcomeNode = doc.createElement("Outcome");
-                outcomeNode.setAttribute("value", specialChars(node.edges[i].value.getAttribute("label")));
-                let thoughtBranchNode = doc.createElement("ThoughtBranch");
-                thoughtBranchNode.setAttribute("type", "bool");
-
-                let questionInfo = getQuestionInfoPredetermining(outcomeNode, thoughtBranchNode, node.edges[i]);
-                outcomeNode = questionInfo[0];
-                thoughtBranchNode = questionInfo[1];
-
-                outcomeNode.appendChild(switchCaseNodes(doc, correctNode, editorUi, false));
-                
-                
-                thoughtBranchNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, true));
-                
-                outcomeNode.appendChild(thoughtBranchNode);
-                
-                resultNode.appendChild(outcomeNode);
-            }
-        }
-    }
-
-    if(node.edges) {
-        for(let i = 0; i < node.edges.length; i++) {
-            if(node.edges[i].target != node && node.edges[i] && node.edges[i].value.getAttribute("type") == "undetermined") {
-                undertermCount++;
-                let outcomeNode = doc.createElement("Outcome");
-                outcomeNode.setAttribute("value", "undetermined");
-                outcomeNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, false));
-                resultNode.appendChild(outcomeNode);
+                } else if (valueEdge.getAttribute("type") == "Branch") {
+                    let thoughtBranchNode = doc.createElement("ThoughtBranch");
+                    thoughtBranchNode.setAttribute("type", "bool");
+                    thoughtBranchNode = getQuestionInfoThoughtBranch(thoughtBranchNode, node.edges[i]); //TODO: проверить мб присваивать не нужно
+                    thoughtBranchNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
+                    resultNode.appendChild(thoughtBranchNode);
+                    branchCount++;
+                }
             }
         }
     }
+
+    // if (node.edges) {
+    //     for (let i = 0; i < node.edges.length; i++) {
+    //         valueEdge = node.edges[i].value;
+    //         if (node.edges[i].target != node && (valueEdge == null || typeof valueEdge != "object"
+    //             || !valueEdge.getAttribute("type")
+    //             || (valueEdge.getAttribute("type") != "predeterminingBranch"
+    //                 && valueEdge.getAttribute("type") != "undetermined"))) {
+    //             markOutcome(editorUi.editor.graph, node.edges[i])
+    //             throw new Error(getTextByLocale("typeOutcomePredIsMissing")
+    //                 + "\nУзел с текстом: " + node.value.getAttribute("label"));
+    //         }
+
+    //         if (node.edges[i].target != node && node.edges[i].value.getAttribute("type") == "predeterminingBranch") {
+    //             let resultNodes = checkCorrectPredeterminingBranch(node.edges[i].target);
+    //             for (let j = 0; j < resultNodes.length; j++) {
+    //                 let resultBranchNode = resultNodes[j];
+    //                 predCount++;
+    //                 let outcomeNode = doc.createElement("Outcome");
+    //                 outcomeNode.setAttribute("value", specialChars(node.edges[i].value.getAttribute("label")));
+    //                 let thoughtBranchNode = doc.createElement("ThoughtBranch");
+    //                 thoughtBranchNode.setAttribute("type", "bool");
+
+    //                 let questionInfo = getQuestionInfoPredetermining(outcomeNode, thoughtBranchNode, node.edges[i]);
+    //                 outcomeNode = questionInfo[0];
+    //                 thoughtBranchNode = questionInfo[1];
+
+    //                 outcomeNode.appendChild(switchCaseNodes(doc, resultBranchNode, editorUi, null));
+
+
+    //                 thoughtBranchNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, resultBranchNode));
+
+    //                 outcomeNode.appendChild(thoughtBranchNode);
+
+    //                 resultNode.appendChild(outcomeNode);
+    //             }
+    //         }
+    //     }
+    // }
+
+    // if (node.edges) {
+    //     for (let i = 0; i < node.edges.length; i++) {
+    //         if (node.edges[i].target != node && node.edges[i] && node.edges[i].value.getAttribute("type") == "undetermined") {
+    //             undertermCount++;
+    //             let outcomeNode = doc.createElement("Outcome");
+    //             outcomeNode.setAttribute("value", "undetermined");
+    //             outcomeNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, null));
+    //             resultNode.appendChild(outcomeNode);
+    //         }
+    //     }
+    // }
     let errorPred = "";
-    if(predCount == 0) {
-        errorPred += getTextByLocale("predOutcomeIsMissing");
-    }
-    if(undertermCount != 1) {
-        errorPred += getTextByLocale("undeterminedOnlyOne");
-    }
-    if(errorPred) {
-        throw new Error(errorPred + "\nУзел с текстом: " + node.value.getAttribute("label"));
-    }
+    // if (predCount == 0) {
+    //     errorPred += getTextByLocale("predOutcomeIsMissing");
+    // }
+    // if (undertermCount != 1) {
+    //     errorPred += getTextByLocale("undeterminedOnlyOne");
+    // }
+    // if (errorPred) {
+    //     throw new Error(errorPred + "\nУзел с текстом: " + node.value.getAttribute("label"));
+    // }
 
     return resultNode;
 }
 
-function outcomeToXml(doc, parentNode, node, editorUi, isPredetermining)
-{
+function outcomeToXml(doc, parentNode, node, editorUi) {
     let prevValues = new Set();
-    if(node.edges) {
-        for(let i = 0; i < node.edges.length; i++) {
-            if(node.edges[i].target != node) {
+    if (node.edges) {
+        for (let i = 0; i < node.edges.length; i++) {
+            if (node.edges[i].target != node) {
                 valueEdge = node.edges[i].value;
-                if(valueEdge == null || typeof valueEdge != "object" || !valueEdge.getAttribute("value")) {
+                if (valueEdge == null || typeof valueEdge != "object" || !valueEdge.getAttribute("value")) {
                     markOutcome(editorUi.editor.graph, node.edges[i])
-                    throw new Error(getTextByLocale("valueInOutcomeIsMissing") 
-                    + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
+                    throw new Error(getTextByLocale("valueInOutcomeIsMissing")
+                        + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
                 }
                 let typeNode;
                 try {
                     typeNode = getTypeFromCode(node.value.getAttribute('expression'), editorUi);
-                } catch(e) {
-                    throw new Error(e.message + "\nУзел с текстом: " + node.value.getAttribute("label") 
-                    + "\nСтрелка с текстом: " + valueEdge.getAttribute("value"))
+                } catch (e) {
+                    throw new Error(e.message + "\nУзел с текстом: " + node.value.getAttribute("label")
+                        + "\nСтрелка с текстом: " + valueEdge.getAttribute("value"))
                 }
-                if(typeNode.type == valueEdge.getAttribute("typeValue")) {
-                    if(valueEdge.getAttribute("typeValue") == "enum") {
+                if (typeNode.type == valueEdge.getAttribute("typeValue")) {
+                    if (valueEdge.getAttribute("typeValue") == "enum") {
                         let enumsList = getEnums(editorUi);
                         let findEnum = enumsList.filter(el => el.nameEnum == typeNode.enum);
                         let valueEnumInOutcome = valueEdge.getAttribute("value").split(":");
-                        if(findEnum[0] != undefined) {
-                            if(findEnum[0].values.indexOf(valueEnumInOutcome[1]) == -1) {
+                        if (findEnum[0] != undefined) {
+                            if (findEnum[0].values.indexOf(valueEnumInOutcome[1]) == -1) {
                                 markOutcome(editorUi.editor.graph, node.edges[i])
                                 throw new Error(getTextByLocale("valueEnumIsMissing")
-                                + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
+                                    + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
                             }
                         } else {
                             throw new Error(getTextByLocale("EnumIsMissing")
-                            + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
+                                + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
                         }
-                    } else if(valueEdge.getAttribute("typeValue") == "class") {
+                    } else if (valueEdge.getAttribute("typeValue") == "class") {
                         let jsonClasses = getClasses(editorUi);
                         let findClass = jsonClasses.filter(el => el.name == valueEdge.getAttribute("value"));
-                        if(findClass.length == 0) {
+                        if (findClass.length == 0) {
                             markOutcome(editorUi.editor.graph, node.edges[i])
                             throw new Error(getTextByLocale("ClassInDictIsMissing")
-                            + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
+                                + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
                         }
                     }
-                } else if(valueEdge.getAttribute("typeValue") && typeNode.type != valueEdge.getAttribute("typeValue")) {
+                } else if (valueEdge.getAttribute("typeValue") && typeNode.type != valueEdge.getAttribute("typeValue")) {
                     markOutcome(editorUi.editor.graph, node.edges[i])
                     throw new Error(getTextByLocale("TypesDontMatch")
-                    + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
+                        + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
                 }
-                if(prevValues.has(valueEdge.getAttribute("value"))) {
+                if (prevValues.has(valueEdge.getAttribute("value"))) {
                     markOutcome(editorUi.editor.graph, node.edges[i])
                     throw new Error(getTextByLocale("OutcomesHasSameValues")
-                    + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
+                        + "\nИсходит из узла с текстом: " + node.value.getAttribute("label"));
                 }
                 prevValues.add(valueEdge.getAttribute("value"));
                 let resultNode = doc.createElement("Outcome");
 
                 resultNode = getQuestionInfoOutcome(resultNode, node.edges[i]);
-                
+
                 resultNode.setAttribute("value", specialChars(valueEdge.getAttribute("value")));
-                resultNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi, isPredetermining));
+                resultNode.appendChild(switchCaseNodes(doc, node.edges[i].target, editorUi));
                 parentNode.appendChild(resultNode);
             }
         }
@@ -12027,7 +13310,7 @@ function outcomeToXml(doc, parentNode, node, editorUi, isPredetermining)
 
 function markOutcome(graph, cell) {
     graph.getModel().beginUpdate();
-    if(!cell.style.includes("strokeColor=#FF0000;")) {
+    if (!cell.style.includes("strokeColor=#FF0000;")) {
         cell.style += "strokeColor=#FF0000;";
     }
     graph.getModel().endUpdate();
@@ -12035,81 +13318,81 @@ function markOutcome(graph, cell) {
 }
 
 function getQuestionInfoThoughtBranch(thoughtBranchNode, edge) {
-    if(edge.value.getAttribute("_description")) {
+    if (edge.value.getAttribute("_description")) {
         thoughtBranchNode.setAttribute("_description", specialChars(edge.value.getAttribute("_description")));
     }
-    if(edge.value.getAttribute("_nextStepQuestion")) {
+    if (edge.value.getAttribute("_nextStepQuestion")) {
         thoughtBranchNode.setAttribute("_nextStepQuestion", specialChars(edge.value.getAttribute("_nextStepQuestion")));
     }
-    if(edge.value.getAttribute("_nextStepExplanation")) {
+    if (edge.value.getAttribute("_nextStepExplanation")) {
         thoughtBranchNode.setAttribute("_nextStepExplanation", specialChars(edge.value.getAttribute("_nextStepExplanation")));
     }
     return thoughtBranchNode;
 }
 
 function getQuestionInfoOutcome(resultNode, edge) {
-    if(edge.value.getAttribute("_text")) {
+    if (edge.value.getAttribute("_text")) {
         resultNode.setAttribute("_text", specialChars(edge.value.getAttribute("_text")));
     }
-    if(edge.value.getAttribute("_explanation")) {
+    if (edge.value.getAttribute("_explanation")) {
         resultNode.setAttribute("_explanation", specialChars(edge.value.getAttribute("_explanation")));
     }
-    if(edge.value.getAttribute("_nextStepBranchResult")) {
+    if (edge.value.getAttribute("_nextStepBranchResult")) {
         resultNode.setAttribute("_nextStepBranchResult", specialChars(edge.value.getAttribute("_nextStepBranchResult")));
     }
-    if(edge.value.getAttribute("_nextStepQuestion")) {
+    if (edge.value.getAttribute("_nextStepQuestion")) {
         resultNode.setAttribute("_nextStepQuestion", specialChars(edge.value.getAttribute("_nextStepQuestion")));
     }
-    if(edge.value.getAttribute("_nextStepExplanation")) {
+    if (edge.value.getAttribute("_nextStepExplanation")) {
         resultNode.setAttribute("_nextStepExplanation", specialChars(edge.value.getAttribute("_nextStepExplanation")));
     }
     return resultNode;
 }
 
 function getQuestionInfoNode(resultNode, node, isLogic) {
-    if(isLogic) {
-        if(node.value.getAttribute("_description")) {
+    if (isLogic) {
+        if (node.value.getAttribute("_description")) {
             resultNode.setAttribute("_description", specialChars(node.value.getAttribute("_description")));
         }
     } else {
-        if(node.value.getAttribute("_question")) {
+        if (node.value.getAttribute("_question")) {
             resultNode.setAttribute("_question", specialChars(node.value.getAttribute("_question")));
         }
     }
-    if(node.value.getAttribute("_asNextStep")) {
+    if (node.value.getAttribute("_asNextStep")) {
         resultNode.setAttribute("_asNextStep", specialChars(node.value.getAttribute("_asNextStep")));
     }
-    if(node.value.getAttribute("_endingCause")) {
+    if (node.value.getAttribute("_endingCause")) {
         resultNode.setAttribute("_endingCause", specialChars(node.value.getAttribute("_endingCause")));
     }
     return resultNode;
 }
 
 function getQuestionInfoPredetermining(outcomeNode, thoughtBranchNode, edge) {
-    
-    if(edge.value.getAttribute("_text")) {
+
+    if (edge.value.getAttribute("_text")) {
         outcomeNode.setAttribute("_text", specialChars(edge.value.getAttribute("_text")));
     }
-    if(edge.value.getAttribute("_explanation")) {
+    if (edge.value.getAttribute("_explanation")) {
         outcomeNode.setAttribute("_explanation", specialChars(edge.value.getAttribute("_explanation")));
     }
-    if(edge.value.getAttribute("_nextStepBranchResult")) {
+    if (edge.value.getAttribute("_nextStepBranchResult")) {
         outcomeNode.setAttribute("_nextStepBranchResult", specialChars(edge.value.getAttribute("_nextStepBranchResult")));
     }
-    if(edge.value.getAttribute("_nextStepQuestionOutcome")) {
+    if (edge.value.getAttribute("_nextStepQuestionOutcome")) {
         outcomeNode.setAttribute("_nextStepQuestion", specialChars(edge.value.getAttribute("_nextStepQuestionOutcome")));
     }
-    if(edge.value.getAttribute("_nextStepExplanationOutcome")) {
+    if (edge.value.getAttribute("_nextStepExplanationOutcome")) {
         outcomeNode.setAttribute("_nextStepExplanation", specialChars(edge.value.getAttribute("_nextStepExplanationOutcome")));
     }
 
-    if(edge.value.getAttribute("_description")) {
+    if (edge.value.getAttribute("_description")) {
         thoughtBranchNode.setAttribute("_description", specialChars(edge.value.getAttribute("_description")));
     }
-    if(edge.value.getAttribute("_nextStepQuestionThoughtBranch")) {
+    if (edge.value.getAttribute("_nextStepQuestionThoughtBranch")) {
         thoughtBranchNode.setAttribute("_nextStepQuestion", specialChars(edge.value.getAttribute("_nextStepQuestionThoughtBranch")));
     }
-    if(edge.value.getAttribute("_nextStepExplanationThoughtBranch")) {
+    if (edge.value.getAttribute("_nextStepExplanationThoughtBranch")) {
         thoughtBranchNode.setAttribute("_nextStepExplanation", specialChars(edge.value.getAttribute("_nextStepExplanationThoughtBranch")));
     }
 
@@ -12117,20 +13400,23 @@ function getQuestionInfoPredetermining(outcomeNode, thoughtBranchNode, edge) {
 }
 
 function checkCorrectPredeterminingBranch(node) {
-    let countResultNode = 0;
-    let resultNode = null;
+    let resultNodes = [];
 
     function branchBypass(node) {
-        if ((node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;editable=0;" 
-        || node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;editable=0;")
-        && (!resultNode || resultNode && (resultNode.style != node.style || 
-        resultNode.value.getAttribute("expression") != node.value.getAttribute("expression")))) {
-            countResultNode++;
-            resultNode = node;
+        if (node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;editable=0;"
+            || node.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;editable=0;") {
+            let isNewNode = true;
+            for (let i = 0; i < resultNodes.length; i++) {
+                let resultNode = resultNodes[i];
+                isNewNode &= isNotEqualResultNode(resultNode, node);
+            }
+            if (isNewNode) {
+                resultNodes.push(node);
+            }
             return true;
         }
         let countChildNodes = 0;
-        for(let i = 0; i < node.edges.length; i++) {
+        for (let i = 0; i < node.edges.length; i++) {
             let child = node.edges[i].target;
             if (child != node) {
                 countChildNodes++;
@@ -12140,7 +13426,7 @@ function checkCorrectPredeterminingBranch(node) {
             return true;
         }
         // Рекурсивно обходим потомков текущего узла
-        for(let i = 0; i < node.edges.length; i++) {
+        for (let i = 0; i < node.edges.length; i++) {
             let child = node.edges[i].target;
             if (child != node) {
                 branchBypass(child);
@@ -12149,42 +13435,55 @@ function checkCorrectPredeterminingBranch(node) {
         return true;
     }
     branchBypass(node);
-    if(countResultNode != 1) {
-        throw new Error(getTextByLocale("ResultOutcomeForPredNode"));
-    }
-    return resultNode;
+    // if (countResultNode != 1) {
+    //     throw new Error(getTextByLocale("ResultOutcomeForPredNode"));
+    // }
+    return resultNodes;
 }
-const SemanticType = { 
+
+function isNotEqualResultNode(node1, node2) {
+    return (node1.style != node2.style ||
+        node1.value.getAttribute("expression") != node2.value.getAttribute("expression") ||
+        node1.value.getAttribute("label") != node2.value.getAttribute("label"));
+}
+const SemanticType = {
     OBJECT: 'object',
     CLASS: 'class',
-    STRING: 'string', 
+    STRING: 'string',
     BOOLEAN: 'bool',
     INT: 'int',
     DOUBLE: 'double',
     COMPARISON_RESULT: 'comparison',
     ENUM: 'enum',
     ASSIGN: 'assign',
-    PROPERTY_VALUE: 'propertyValue'
+    PROPERTY_VALUE: 'propertyValue',
+    BLOCK: 'block',
 };
 
 
 function getType(root) {
-    if(root.stmt) {
+    if (root.isBlock && root.block) {
+        return SemanticType.BLOCK;
+    } else if (!root.isBlock && root.stmt) {
         return getType(root.stmt);
-    } else if(!root.secondExpr && root.firstExpr) {
+    } else if (!root.secondExpr && root.firstExpr) {
         return getType(root.firstExpr);
-    } else if(root.secondExpr && root.firstExpr) {
+    } else if (root.secondExpr && root.firstExpr) {
         return SemanticType.ASSIGN;
-    } else if(root.type && root.type == ExprType.STRING) {
+    } else if (root.type && root.type == ExprType.IF) {
+        return SemanticType.ASSIGN;
+    } else if (root.type && root.type == ExprType.WITH) {
+        return SemanticType.ASSIGN;
+    } else if (root.type && root.type == ExprType.STRING) {
         return SemanticType.STRING;
-    } else if(root.type && root.type == ExprType.INT) {
+    } else if (root.type && root.type == ExprType.INT) {
         return SemanticType.INT;
-    } else if(root.type && root.type == ExprType.DOUBLE) {
+    } else if (root.type && root.type == ExprType.DOUBLE) {
         return SemanticType.DOUBLE;
-    } else if(root.type && root.type == ExprType.ENUM) {
+    } else if (root.type && root.type == ExprType.ENUM) {
         return SemanticType.ENUM;
-    } else if(root.type && (root.type == ExprType.BOOLEAN 
-        || root.type == ExprType.IS 
+    } else if (root.type && (root.type == ExprType.BOOLEAN
+        || root.type == ExprType.IS
         || root.type == ExprType.CHECK_REL
         || root.type == ExprType.AND
         || root.type == ExprType.OR
@@ -12198,18 +13497,19 @@ function getType(root) {
         || root.type == ExprType.EXIST
         || root.type == ExprType.FORALL)) {
         return SemanticType.BOOLEAN;
-    } else if(root.type && (root.type == ExprType.VAR 
-        || root.type == ExprType.ID 
-        || root.type == ExprType.GET_BY_RELATIONSHIP 
+    } else if (root.type && (root.type == ExprType.VAR
+        || root.type == ExprType.ID
+        || root.type == ExprType.GET_BY_RELATIONSHIP
         || root.type == ExprType.FIND
         || root.type == ExprType.FIND_EXTREM
-        || root.type == ExprType.TREE_VAR)) {
+        || root.type == ExprType.TREE_VAR
+        || root.type == ExprType.CAST)) {
         return SemanticType.OBJECT;
-    } else if(root.type && root.type == ExprType.GET_CLASS) {
+    } else if (root.type && root.type == ExprType.GET_CLASS) {
         return SemanticType.CLASS;
-    } else if(root.type && root.type == ExprType.PROPERTY) {
+    } else if (root.type && root.type == ExprType.PROPERTY) {
         return SemanticType.PROPERTY_VALUE;
-    } else if(root.type && root.type == ExprType.COMPARE) {
+    } else if (root.type && root.type == ExprType.COMPARE) {
         return SemanticType.COMPARISON_RESULT;
     } else {
         alert("Error: " + root.type);
@@ -12217,11 +13517,11 @@ function getType(root) {
 }
 
 function generateCode(workspace) {
-    if(workspace.getTopBlocks().length > 1) {
+    if (workspace.getTopBlocks().length > 1) {
         throw new Error(getTextByLocale("moreBlocksInWorkspace"));
     }
     let code = Blockly.JavaScript.workspaceToCode(workspace);
-    if(code.slice(-1) == "\n") {
+    if (code.slice(-1) == "\n") {
         code = code.slice(0, -2);
     }
     return code;
@@ -12230,107 +13530,107 @@ function generateCode(workspace) {
 function getTypeFromCode(code, editorUi) {
     root = null
     parser.parse(code)
-    let obj = {type: getType(root)};
-    if(obj.type == SemanticType.PROPERTY_VALUE) {
+    let obj = { type: getType(root) };
+    if (obj.type == SemanticType.PROPERTY_VALUE) {
         let propertyName = root.stmt.firstExpr.ident;
         let properties = getProperties(editorUi);
         let foundProp = properties.filter(el => el.name == propertyName);
-        if(typeof foundProp[0] == "undefined") {
+        if (typeof foundProp[0] == "undefined") {
             throw new Error(getTextByLocale("propertyIsMissingInDict").replace("%propertyName", propertyName));
         }
         obj = foundProp[0];
         let propType = obj.type;
 
-        if(propType != "Integer" && propType != "Double" 
-        && propType != "Boolean" && propType != "String") {
+        if (propType != "Integer" && propType != "Double"
+            && propType != "Boolean" && propType != "String") {
             obj.enum = propType.slice(6);
-            propType = propType.slice(0,4)
+            propType = propType.slice(0, 4)
         }
-        if(propType == "Integer") {
+        if (propType == "Integer") {
             propType = "int"
         }
-        if(propType == "Boolean") {
+        if (propType == "Boolean") {
             propType = "bool"
         }
         obj.type = propType.toLowerCase();
-    } else if(obj.type == SemanticType.COMPARISON_RESULT) {
+    } else if (obj.type == SemanticType.COMPARISON_RESULT) {
         obj.enum = "comparisonResult";
         obj.type = "enum";
-    } else if(obj.type == SemanticType.ENUM && root.stmt.firstExpr.type == ExprType.ENUM) {
+    } else if (obj.type == SemanticType.ENUM && root.stmt.firstExpr.type == ExprType.ENUM) {
         obj.enum = root.stmt.firstExpr.ident;
     }
     return obj;
 }
 
 function getTextFromCode(code, editorUi) {
-    if(code == "") {
+    if (code == "") {
         return "";
     }
     let type = getTypeFromCode(code, editorUi);
-    if(type.type == "int" || type.type == "double") {
+    if (type.type == "int" || type.type == "double") {
         return "How many ";
-    } else if(type.type == "bool") {
+    } else if (type.type == "bool") {
         return "Is ";
-    } else if(type.type == "enum" && type.enum != "comparisonResult") {
+    } else if (type.type == "enum" && type.enum != "comparisonResult") {
         return "What is ";
-    } else if(type.type == "enum" && type.enum == "comparisonResult") {
+    } else if (type.type == "enum" && type.enum == "comparisonResult") {
         return "Compare ";
     }
     return "";
 }
 
 function getTextFromValueInOutcome(value) {
-    if(value == "") {
+    if (value == "") {
         return "";
-    } else if(value == "True") {
+    } else if (value == "True") {
         return "Yes";
-    } else if(value == "False") {
+    } else if (value == "False") {
         return "No";
-    } 
+    }
     else {
         return value;
     }
 }
 
 function CheckCycleInTree(startNode, editorUi) {
-    if(hasCycle(startNode, editorUi)) {
+    if (hasCycle(startNode, editorUi)) {
         throw new Error(getTextByLocale("hasCycleInTree"));
     }
 }
 
 function hasCycle(root, editorUi) {
     const visited = new Set(); // Список посещенных узлов
-  
-    function dfs(node) {
-      if (!node.edges) return false; // Достигнут конец дерева
-      if (visited.has(node)) return true; // Найден цикл
 
-      visited.add(node); // Добавляем текущий узел в список посещенных
-  
-      // Рекурсивно обходим потомков текущего узла
-      for(let i = 0; i < node.edges.length; i++) {
-        let child = node.edges[i].target;
-        if(!child) {
-            markOutcome(editorUi.editor.graph, node.edges[i])
-            throw new Error(getTextByLocale("TargetNodeIsMissing"));
+    function dfs(node) {
+        if (!node.edges) return false; // Достигнут конец дерева
+        if (visited.has(node)) return true; // Найден цикл
+
+        visited.add(node); // Добавляем текущий узел в список посещенных
+
+        // Рекурсивно обходим потомков текущего узла
+        for (let i = 0; i < node.edges.length; i++) {
+            let child = node.edges[i].target;
+            if (!child) {
+                markOutcome(editorUi.editor.graph, node.edges[i])
+                throw new Error(getTextByLocale("TargetNodeIsMissing"));
+            }
+            if (child != node && dfs(child)) {
+                return true; // Найден цикл
+            }
         }
-        if (child != node && dfs(child)) {
-            return true; // Найден цикл
-        }
-      }
-  
-      return false; // Нет цикла
+
+        return false; // Нет цикла
     }
-  
+
     return dfs(root);
 }
 
 function specialChars(str) {
     return str.replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 function checkValidID(str) {
@@ -12372,6 +13672,7 @@ Draw.loadPlugin(function (ui) {
         ui.menus.addMenuItem(menu, 'UncertaintyNodeCreate');
         ui.menus.addMenuItem(menu, 'actionNodeConstructor');
         ui.menus.addMenuItem(menu, 'cycleNodeConstructor');
+        ui.menus.addMenuItem(menu, 'whileNodeConstructor');
         ui.menus.addMenuItem(menu, 'conditionNodeConstructor');
         ui.menus.addMenuItem(menu, 'switchCaseNodeConstructor');
     }, ui.menubar.editorUi.statusContainer);
@@ -12405,74 +13706,76 @@ Draw.loadPlugin(function (ui) {
 
 
     // Привязывание действий к разделам меню
-    mxResources.parse('classesConstructor='+getTextByLocale("classesConstructor"));
+    mxResources.parse('classesConstructor=' + getTextByLocale("classesConstructor"));
 
-    mxResources.parse('classPropertiesConstructor='+getTextByLocale("classPropertiesConstructor"));
+    mxResources.parse('classPropertiesConstructor=' + getTextByLocale("classPropertiesConstructor"));
 
-    mxResources.parse('relationshipsConstructor='+getTextByLocale("relationshipsConstructor"));
+    mxResources.parse('relationshipsConstructor=' + getTextByLocale("relationshipsConstructor"));
 
-    mxResources.parse('enumConstructor='+getTextByLocale("enumConstructor"));
+    mxResources.parse('enumConstructor=' + getTextByLocale("enumConstructor"));
 
-    mxResources.parse('actionNodeConstructor='+getTextByLocale("actionNodeConstructor"));
+    mxResources.parse('actionNodeConstructor=' + getTextByLocale("actionNodeConstructor"));
 
-    mxResources.parse('cycleNodeConstructor='+getTextByLocale("cycleNodeConstructor"));
+    mxResources.parse('cycleNodeConstructor=' + getTextByLocale("cycleNodeConstructor"));
 
-    mxResources.parse('conditionNodeConstructor='+getTextByLocale("conditionNodeConstructor"));
+    mxResources.parse('whileNodeConstructor=' + getTextByLocale("whileNodeConstructor"));
 
-    mxResources.parse('switchCaseNodeConstructor='+getTextByLocale("switchCaseNodeConstructor"));
+    mxResources.parse('conditionNodeConstructor=' + getTextByLocale("conditionNodeConstructor"));
 
-    mxResources.parse('exportEnum='+getTextByLocale("exportEnum"));
+    mxResources.parse('switchCaseNodeConstructor=' + getTextByLocale("switchCaseNodeConstructor"));
 
-    mxResources.parse('exportClass='+getTextByLocale("exportClass"));
+    mxResources.parse('exportEnum=' + getTextByLocale("exportEnum"));
 
-    mxResources.parse('exportProperty='+getTextByLocale("exportProperty"));
+    mxResources.parse('exportClass=' + getTextByLocale("exportClass"));
 
-    mxResources.parse('exportRelationship='+getTextByLocale("exportRelationship"));
+    mxResources.parse('exportProperty=' + getTextByLocale("exportProperty"));
 
-    mxResources.parse('TrueNodeCreate='+getTextByLocale("TrueNodeCreate"));
+    mxResources.parse('exportRelationship=' + getTextByLocale("exportRelationship"));
 
-    mxResources.parse('FalseNodeCreate='+getTextByLocale("FalseNodeCreate"));
+    mxResources.parse('TrueNodeCreate=' + getTextByLocale("TrueNodeCreate"));
 
-    mxResources.parse('LogicNodeCreate='+getTextByLocale("LogicNodeCreate"));
+    mxResources.parse('FalseNodeCreate=' + getTextByLocale("FalseNodeCreate"));
 
-    mxResources.parse('PredeterminingFactorsNodeCreate='+getTextByLocale("PredeterminingFactorsNodeCreate"));
+    mxResources.parse('LogicNodeCreate=' + getTextByLocale("LogicNodeCreate"));
 
-    mxResources.parse('UncertaintyNodeCreate='+getTextByLocale("UncertaintyNodeCreate"));
+    mxResources.parse('PredeterminingFactorsNodeCreate=' + getTextByLocale("PredeterminingFactorsNodeCreate"));
 
-    mxResources.parse('startNodeConstructor='+getTextByLocale("startNodeConstructor"));
+    mxResources.parse('UncertaintyNodeCreate=' + getTextByLocale("UncertaintyNodeCreate"));
 
-    mxResources.parse('exportTree='+getTextByLocale("exportTree"));
+    mxResources.parse('startNodeConstructor=' + getTextByLocale("startNodeConstructor"));
 
-    mxResources.parse('editValue='+getTextByLocale("editValue"));
+    mxResources.parse('exportTree=' + getTextByLocale("exportTree"));
 
-    mxResources.parse('editTextInNode='+getTextByLocale("editTextInNode"));
+    mxResources.parse('editValue=' + getTextByLocale("editValue"));
 
-    mxResources.parse('editQuestionInfo='+getTextByLocale("editQuestionInfo"));
+    mxResources.parse('editTextInNode=' + getTextByLocale("editTextInNode"));
 
-    mxResources.parse('convertStartNode='+getTextByLocale("convertStartNode"));
+    mxResources.parse('editQuestionInfo=' + getTextByLocale("editQuestionInfo"));
 
-    mxResources.parse('convertTrueNode='+getTextByLocale("convertTrueNode"));
+    mxResources.parse('convertStartNode=' + getTextByLocale("convertStartNode"));
 
-    mxResources.parse('convertFalseNode='+getTextByLocale("convertFalseNode"));
+    mxResources.parse('convertTrueNode=' + getTextByLocale("convertTrueNode"));
 
-    mxResources.parse('convertLogicNode='+getTextByLocale("convertLogicNode"));
+    mxResources.parse('convertFalseNode=' + getTextByLocale("convertFalseNode"));
 
-    mxResources.parse('convertPredeterminingFactorsNode='+getTextByLocale("convertPredeterminingFactorsNode"));
+    mxResources.parse('convertLogicNode=' + getTextByLocale("convertLogicNode"));
 
-    mxResources.parse('convertUncertaintyNode='+getTextByLocale("convertUncertaintyNode"));
+    mxResources.parse('convertPredeterminingFactorsNode=' + getTextByLocale("convertPredeterminingFactorsNode"));
 
-    mxResources.parse('convertActionNode='+getTextByLocale("convertActionNode"));
+    mxResources.parse('convertUncertaintyNode=' + getTextByLocale("convertUncertaintyNode"));
 
-    mxResources.parse('convertCycleNode='+getTextByLocale("convertCycleNode"));
+    mxResources.parse('convertActionNode=' + getTextByLocale("convertActionNode"));
 
-    mxResources.parse('convertConditionNode='+getTextByLocale("convertConditionNode"));
+    mxResources.parse('convertCycleNode=' + getTextByLocale("convertCycleNode"));
 
-    mxResources.parse('convertSwitchCaseNode='+getTextByLocale("convertSwitchCaseNode"));
+    mxResources.parse('convertConditionNode=' + getTextByLocale("convertConditionNode"));
+
+    mxResources.parse('convertSwitchCaseNode=' + getTextByLocale("convertSwitchCaseNode"));
 
     // Создание действий для меню
     // Действие на отоброжение конструктора блока с классами
     ui.actions.addAction('classesConstructor', function () {
-        if(!this.classConstructorWindow || !this.classConstructorWindow.window.content) {
+        if (!this.classConstructorWindow || !this.classConstructorWindow.window.content) {
             this.classConstructorWindow = new ClassConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.classConstructorWindow.window.setVisible(true);
         }
@@ -12480,7 +13783,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на отоброжение конструктора блока со свойствами классов
     ui.actions.addAction('classPropertiesConstructor', function () {
-        if(!this.classPropertiesConstructorWindow || !this.classPropertiesConstructorWindow.window.content) {
+        if (!this.classPropertiesConstructorWindow || !this.classPropertiesConstructorWindow.window.content) {
             this.classPropertiesConstructorWindow = new ClassPropertiesConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.classPropertiesConstructorWindow.window.setVisible(true);
         }
@@ -12488,7 +13791,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на отоброжение конструктора enum
     ui.actions.addAction('enumConstructor', function () {
-        if(!this.enumConstructorWindow || !this.enumConstructorWindow.window.content) {
+        if (!this.enumConstructorWindow || !this.enumConstructorWindow.window.content) {
             this.enumConstructorWindow = new EnumConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.enumConstructorWindow.window.setVisible(true);
         }
@@ -12496,7 +13799,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на отоброжение конструктора блока с отношениями для классов
     ui.actions.addAction('relationshipsConstructor', function () {
-        if(!this.relationshipsConstructorWindow || !this.relationshipsConstructorWindow.window.content) {
+        if (!this.relationshipsConstructorWindow || !this.relationshipsConstructorWindow.window.content) {
             this.relationshipsConstructorWindow = new RelationshipsConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.relationshipsConstructorWindow.window.setVisible(true);
         }
@@ -12504,7 +13807,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на отоброжение конструктора начального узла
     ui.actions.addAction('startNodeConstructor', function () {
-        if(!this.startConstructorWindow || !this.startConstructorWindow.window.content) {
+        if (!this.startConstructorWindow || !this.startConstructorWindow.window.content) {
             this.startConstructorWindow = new StartConstructorWindow(ui, (document.body.offsetWidth - 880) / 2, 120, 900, 550);
             this.startConstructorWindow.window.setVisible(true);
         }
@@ -12512,7 +13815,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на создание узла ИСТИНА
     ui.actions.addAction('TrueNodeCreate', function () {
-        if(!this.branchResultNodeConstructorWindow || !this.branchResultNodeConstructorWindow.window.content) {
+        if (!this.branchResultNodeConstructorWindow || !this.branchResultNodeConstructorWindow.window.content) {
             this.branchResultNodeConstructorWindow = new BranchResultNodeConstructorWindow(ui, true, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.branchResultNodeConstructorWindow.window.setVisible(true);
         }
@@ -12520,7 +13823,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на создание узла ЛОЖЬ
     ui.actions.addAction('FalseNodeCreate', function () {
-        if(!this.branchResultNodeConstructorWindow || !this.branchResultNodeConstructorWindow.window.content) {
+        if (!this.branchResultNodeConstructorWindow || !this.branchResultNodeConstructorWindow.window.content) {
             this.branchResultNodeConstructorWindow = new BranchResultNodeConstructorWindow(ui, false, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.branchResultNodeConstructorWindow.window.setVisible(true);
         }
@@ -12528,7 +13831,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на создание логического узла 
     ui.actions.addAction('LogicNodeCreate', function () {
-        if(!this.logicNodeConstructorWindow || !this.logicNodeConstructorWindow.window.content) {
+        if (!this.logicNodeConstructorWindow || !this.logicNodeConstructorWindow.window.content) {
             this.logicNodeConstructorWindow = new LogicNodeConstructorWindow(ui, (document.body.offsetWidth - 880) / 2, 120, 300, 150);
             this.logicNodeConstructorWindow.window.setVisible(true);
         }
@@ -12536,7 +13839,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на создание узла "Предрешающий фактор"
     ui.actions.addAction('PredeterminingFactorsNodeCreate', function () {
-        if(!this.predeterminingFactorsNodeConstructorWindow || !this.predeterminingFactorsNodeConstructorWindow.window.content) {
+        if (!this.predeterminingFactorsNodeConstructorWindow || !this.predeterminingFactorsNodeConstructorWindow.window.content) {
             this.predeterminingFactorsNodeConstructorWindow = new PredeterminingFactorsNodeConstructorWindow(ui, (document.body.offsetWidth - 880) / 2, 120, 600, 150);
             this.predeterminingFactorsNodeConstructorWindow.window.setVisible(true);
         }
@@ -12555,7 +13858,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на отоброжение конструктора узлов действия
     ui.actions.addAction('actionNodeConstructor', function () {
-        if(!this.actionNodeConstructorWindow || !this.actionNodeConstructorWindow.window.content) {
+        if (!this.actionNodeConstructorWindow || !this.actionNodeConstructorWindow.window.content) {
             this.actionNodeConstructorWindow = new ActionNodeConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.actionNodeConstructorWindow.window.setVisible(true);
         }
@@ -12563,15 +13866,23 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на отоброжение конструктора узлов цикла
     ui.actions.addAction('cycleNodeConstructor', function () {
-        if(!this.cycleNodeConstructorWindow || !this.cycleNodeConstructorWindow.window.content) {
+        if (!this.cycleNodeConstructorWindow || !this.cycleNodeConstructorWindow.window.content) {
             this.cycleNodeConstructorWindow = new CycleNodeConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.cycleNodeConstructorWindow.window.setVisible(true);
         }
     });
 
+    // Действие на отоброжение конструктора узлов while
+    ui.actions.addAction('whileNodeConstructor', function () {
+        if (!this.whileNodeConstructorWindow || !this.whileNodeConstructorWindow.window.content) {
+            this.whileNodeConstructorWindow = new WhileNodeConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
+            this.whileNodeConstructorWindow.window.setVisible(true);
+        }
+    });
+
     // Действие на отоброжение конструктора узлов условия
     ui.actions.addAction('conditionNodeConstructor', function () {
-        if(!this.conditionNodeConstructorWindow || !this.conditionNodeConstructorWindow.window.content) {
+        if (!this.conditionNodeConstructorWindow || !this.conditionNodeConstructorWindow.window.content) {
             this.conditionNodeConstructorWindow = new ConditionNodeConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.conditionNodeConstructorWindow.window.setVisible(true);
         }
@@ -12579,7 +13890,7 @@ Draw.loadPlugin(function (ui) {
 
     // Действие на отоброжение конструктора узлов "switch case"
     ui.actions.addAction('switchCaseNodeConstructor', function () {
-        if(!this.switchCaseNodeConstructorWindow || !this.switchCaseNodeConstructorWindow.window.content) {
+        if (!this.switchCaseNodeConstructorWindow || !this.switchCaseNodeConstructorWindow.window.content) {
             this.switchCaseNodeConstructorWindow = new SwitchCaseNodeConstructorWindow(ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
             this.switchCaseNodeConstructorWindow.window.setVisible(true);
         }
@@ -12591,7 +13902,7 @@ Draw.loadPlugin(function (ui) {
 
         function downloadAsFile(data) {
             let a = document.createElement("a");
-            let file = new Blob([data], {type: 'text/csv'});
+            let file = new Blob([data], { type: 'text/csv' });
             a.href = URL.createObjectURL(file);
             a.download = "enums.csv";
             a.click();
@@ -12599,13 +13910,13 @@ Draw.loadPlugin(function (ui) {
     });
 
     ui.actions.addAction('exportClass', function () {
-        
+
         let text = exportClasses(getClasses(ui), globalWS);
         downloadAsFile(text);
 
         function downloadAsFile(data) {
             let a = document.createElement("a");
-            let file = new Blob([data], {type: 'text/csv'});
+            let file = new Blob([data], { type: 'text/csv' });
             a.href = URL.createObjectURL(file);
             a.download = "classes.csv";
             a.click();
@@ -12613,13 +13924,13 @@ Draw.loadPlugin(function (ui) {
     });
 
     ui.actions.addAction('exportProperty', function () {
-        
+
         let text = exportProperties(getProperties(ui));
         downloadAsFile(text);
 
         function downloadAsFile(data) {
             let a = document.createElement("a");
-            let file = new Blob([data], {type: 'text/csv'});
+            let file = new Blob([data], { type: 'text/csv' });
             a.href = URL.createObjectURL(file);
             a.download = "properties.csv";
             a.click();
@@ -12627,13 +13938,13 @@ Draw.loadPlugin(function (ui) {
     });
 
     ui.actions.addAction('exportRelationship', function () {
-        
+
         let text = exportRelastionships(getRelationships(ui));
         downloadAsFile(text);
 
         function downloadAsFile(data) {
             let a = document.createElement("a");
-            let file = new Blob([data], {type: 'text/csv'});
+            let file = new Blob([data], { type: 'text/csv' });
             a.href = URL.createObjectURL(file);
             a.download = "relationships.csv";
             a.click();
@@ -12641,13 +13952,13 @@ Draw.loadPlugin(function (ui) {
     });
 
     ui.actions.addAction('exportTree', function () {
-        
+
         let text = treeToXml(ui);
         downloadAsFile(text);
 
         function downloadAsFile(data) {
             let a = document.createElement("a");
-            let file = new Blob([data], {type: 'application/xml'});
+            let file = new Blob([data], { type: 'application/xml' });
             a.href = URL.createObjectURL(file);
             a.download = "tree.xml";
             a.click();
@@ -12657,72 +13968,78 @@ Draw.loadPlugin(function (ui) {
     ui.actions.addAction('editValue', function () {
         if (graph.isEnabled() && graph.getSelectionCount() == 1) {
             var selectedcell = graph.getSelectionCell();
-            if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.style == "ellipse;whiteSpace=wrap;html=1;rounded=0;editable=0;"
-            && (!this.conditionNodeEditorWindow || !this.conditionNodeEditorWindow.window.content)) {
+            if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.style == "ellipse;whiteSpace=wrap;html=1;rounded=0;editable=0;"
+                && (!this.conditionNodeEditorWindow || !this.conditionNodeEditorWindow.window.content)) {
                 this.conditionNodeEditorWindow = new ConditionNodeEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.conditionNodeEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.style == "rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;editable=0;"
-            && (!this.actionNodeEditorWindow || !this.actionNodeEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.style == "rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;editable=0;"
+                && (!this.actionNodeEditorWindow || !this.actionNodeEditorWindow.window.content)) {
                 this.actionNodeEditorWindow = new ActionNodeEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.actionNodeEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.value.getAttribute('operator')
-            && (!this.cycleNodeEditorWindow || !this.cycleNodeEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.value.getAttribute('operator')
+                && selectedcell.value.getAttribute('typeCycle')
+                && (!this.whileNodeEditorWindow || !this.whileNodeEditorWindow.window.content)) {
+                this.whileNodeEditorWindow = new WhileNodeEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
+                this.whileNodeEditorWindow.window.setVisible(true);
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.value.getAttribute('operator')
+                && (!this.cycleNodeEditorWindow || !this.cycleNodeEditorWindow.window.content)) {
                 this.cycleNodeEditorWindow = new CycleNodeEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.cycleNodeEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.style == "rhombus;whiteSpace=wrap;html=1;editable=0;"
-            && (!this.switchCaseNodeEditorWindow || !this.switchCaseNodeEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.style == "rhombus;whiteSpace=wrap;html=1;editable=0;"
+                && (!this.switchCaseNodeEditorWindow || !this.switchCaseNodeEditorWindow.window.content)) {
                 this.switchCaseNodeEditorWindow = new SwitchCaseNodeEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.switchCaseNodeEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.value.getAttribute('type') == "START"
-            && (!this.startEditorWindow || !this.startEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.value.getAttribute('type') == "START"
+                && (!this.startEditorWindow || !this.startEditorWindow.window.content)) {
                 this.startEditorWindow = new StartEditorWindow(selectedcell, ui, (document.body.offsetWidth - 880) / 2, 120, 900, 550);
                 this.startEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.value.getAttribute('type') == "predetermining"
-            && (!this.predeterminingFactorsNodeEditorWindow || !this.predeterminingFactorsNodeEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.value.getAttribute('type') == "predetermining"
+                && (!this.predeterminingFactorsNodeEditorWindow || !this.predeterminingFactorsNodeEditorWindow.window.content)) {
                 this.predeterminingFactorsNodeEditorWindow = new PredeterminingFactorsNodeEditorWindow(selectedcell, ui, (document.body.offsetWidth - 880) / 2, 120, 600, 150);
                 this.predeterminingFactorsNodeEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && (selectedcell.value.getAttribute('type') == "AND" || selectedcell.value.getAttribute('type') == "OR")
-            && (!this.logicNodeEditorWindow || !this.logicNodeEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && (selectedcell.value.getAttribute('type') == "AND" || selectedcell.value.getAttribute('type') == "OR")
+                && (!this.logicNodeEditorWindow || !this.logicNodeEditorWindow.window.content)) {
                 this.logicNodeEditorWindow = new LogicNodeEditorWindow(selectedcell, ui, (document.body.offsetWidth - 880) / 2, 120, 300, 150);
                 this.logicNodeEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;editable=0;"
-            && (!this.branchResultNodeEditorWindow || !this.branchResultNodeEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;editable=0;"
+                && (!this.branchResultNodeEditorWindow || !this.branchResultNodeEditorWindow.window.content)) {
                 this.branchResultNodeEditorWindow = new BranchResultNodeEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.branchResultNodeEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;editable=0;"
-            && (!this.branchResultNodeEditorWindow || !this.branchResultNodeEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.style == "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;editable=0;"
+                && (!this.branchResultNodeEditorWindow || !this.branchResultNodeEditorWindow.window.content)) {
                 this.branchResultNodeEditorWindow = new BranchResultNodeEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.branchResultNodeEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.value.getAttribute('label').startsWith('<font color="#000000"><b>Classes</b></font>')
-            && (!this.classEditorWindow || !this.classEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.value.getAttribute('label').startsWith('<font color="#000000"><b>Classes</b></font>')
+                && (!this.classEditorWindow || !this.classEditorWindow.window.content)) {
                 this.classEditorWindow = new ClassEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.classEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "string"
-            && selectedcell.value.startsWith('<font color="#000000"><b>Enum</b></font>')
-            && (!this.enumEditorWindow || !this.enumEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "string"
+                && selectedcell.value.startsWith('<font color="#000000"><b>Enum</b></font>')
+                && (!this.enumEditorWindow || !this.enumEditorWindow.window.content)) {
                 this.enumEditorWindow = new EnumEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.enumEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "string"
-            && selectedcell.value.startsWith('<b><font color="#000000">Class and Object properties</font></b>')
-            && (!this.classPropertiesEditorWindow || !this.classPropertiesEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "string"
+                && selectedcell.value.startsWith('<b><font color="#000000">Class and Object properties</font></b>')
+                && (!this.classPropertiesEditorWindow || !this.classPropertiesEditorWindow.window.content)) {
                 this.classPropertiesEditorWindow = new ClassPropertiesEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.classPropertiesEditorWindow.window.setVisible(true);
-            } else if(selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.value.getAttribute('label').startsWith('<b><font color="#000000">Relationships between objects</font></b>')
-            && (!this.relationshipsEditorWindow || !this.relationshipsEditorWindow.window.content)) {
+            } else if (selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.value.getAttribute('label').startsWith('<b><font color="#000000">Relationships between objects</font></b>')
+                && (!this.relationshipsEditorWindow || !this.relationshipsEditorWindow.window.content)) {
                 this.relationshipsEditorWindow = new RelationshipsEditorWindow(selectedcell, ui, document.body.offsetLeft + 100, document.body.offsetTop + 100, window.screen.width - 200, window.screen.height - 300);
                 this.relationshipsEditorWindow.window.setVisible(true);
-            } else if(selectedcell.edge) {
+            } else if (selectedcell.edge) {
                 this.editValueInOutcomeWindow = new EditValueInOutcomeWindow(selectedcell, ui, (document.body.offsetWidth - 880) / 2, 120, 900, 200);
                 this.editValueInOutcomeWindow.window.setVisible(true);
             }
@@ -12732,17 +14049,17 @@ Draw.loadPlugin(function (ui) {
     ui.actions.addAction('editTextInNode', function () {
         if (graph.isEnabled() && graph.getSelectionCount() == 1) {
             var selectedcell = graph.getSelectionCell();
-            if(selectedcell.value != null && selectedcell.value != "" && typeof selectedcell.value != "object" 
-            && !selectedcell.value.startsWith('<font color="#000000"><b>Enum</b></font>')
-            && !selectedcell.value.startsWith('<b><font color="#000000">Class and Object properties</font></b>')
-            && selectedcell.style != "rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;editable=0;" && !selectedcell.edge 
-            || selectedcell.value != null && typeof selectedcell.value == "object" 
-            && !selectedcell.value.getAttribute('label').startsWith('<font color="#000000"><b>Classes</b></font>')
-            && !selectedcell.value.getAttribute('label').startsWith('<b><font color="#000000">Relationships between objects</font></b>')
-            && selectedcell.value.getAttribute('type') != "AND" 
-            && selectedcell.value.getAttribute('type') != "OR" 
-            && selectedcell.value.getAttribute('type') != "predetermining"
-            && selectedcell.value.getAttribute("type") != "START" && !selectedcell.edge) {
+            if (selectedcell.value != null && selectedcell.value != "" && typeof selectedcell.value != "object"
+                && !selectedcell.value.startsWith('<font color="#000000"><b>Enum</b></font>')
+                && !selectedcell.value.startsWith('<b><font color="#000000">Class and Object properties</font></b>')
+                && selectedcell.style != "rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;editable=0;" && !selectedcell.edge
+                || selectedcell.value != null && typeof selectedcell.value == "object"
+                && !selectedcell.value.getAttribute('label').startsWith('<font color="#000000"><b>Classes</b></font>')
+                && !selectedcell.value.getAttribute('label').startsWith('<b><font color="#000000">Relationships between objects</font></b>')
+                && selectedcell.value.getAttribute('type') != "AND"
+                && selectedcell.value.getAttribute('type') != "OR"
+                && selectedcell.value.getAttribute('type') != "predetermining"
+                && selectedcell.value.getAttribute("type") != "START" && !selectedcell.edge) {
                 this.editTextInNodeWindow = new EditTextInNodeWindow(selectedcell, ui, (document.body.offsetWidth - 880) / 2, 120, 900, 550);
                 this.editTextInNodeWindow.window.setVisible(true);
             }
@@ -12752,19 +14069,19 @@ Draw.loadPlugin(function (ui) {
     ui.actions.addAction('editQuestionInfo', function () {
         if (graph.isEnabled() && graph.getSelectionCount() == 1) {
             var selectedcell = graph.getSelectionCell();
-            if(selectedcell.value != null && selectedcell.value != "" && typeof selectedcell.value != "object" 
-            && !selectedcell.value.startsWith('<font color="#000000"><b>Enum</b></font>')
-            && !selectedcell.value.startsWith('<b><font color="#000000">Class and Object properties</font></b>')
-            && selectedcell.style != "rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;editable=0;" && !selectedcell.edge 
-            || selectedcell.value != null && typeof selectedcell.value == "object" 
-            && selectedcell.style != "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;editable=0;"
-            && selectedcell.style != "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;editable=0;"
-            && !selectedcell.value.getAttribute('label').startsWith('<font color="#000000"><b>Classes</b></font>')
-            && !selectedcell.value.getAttribute('label').startsWith('<b><font color="#000000">Relationships between objects</font></b>')
-            && selectedcell.value.getAttribute("type") != "START" && !selectedcell.edge) {
+            if (selectedcell.value != null && selectedcell.value != "" && typeof selectedcell.value != "object"
+                && !selectedcell.value.startsWith('<font color="#000000"><b>Enum</b></font>')
+                && !selectedcell.value.startsWith('<b><font color="#000000">Class and Object properties</font></b>')
+                && selectedcell.style != "rounded=1;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;editable=0;" && !selectedcell.edge
+                || selectedcell.value != null && typeof selectedcell.value == "object"
+                && selectedcell.style != "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;editable=0;"
+                && selectedcell.style != "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;editable=0;"
+                && !selectedcell.value.getAttribute('label').startsWith('<font color="#000000"><b>Classes</b></font>')
+                && !selectedcell.value.getAttribute('label').startsWith('<b><font color="#000000">Relationships between objects</font></b>')
+                && selectedcell.value.getAttribute("type") != "START" && !selectedcell.edge) {
                 this.editQuestionInfoInNodeWindow = new EditQuestionInfoInNodeWindow(selectedcell, ui, (document.body.offsetWidth - 880) / 2, 120, 900, 550);
                 this.editQuestionInfoInNodeWindow.window.setVisible(true);
-            } else if(selectedcell.edge) {
+            } else if (selectedcell.edge) {
                 this.editQuestionInfoInOutcomeWindow = new EditQuestionInfoInOutcomeWindow(selectedcell, ui, (document.body.offsetWidth - 880) / 2, 120, 900, 550);
                 this.editQuestionInfoInOutcomeWindow.window.setVisible(true);
             }
